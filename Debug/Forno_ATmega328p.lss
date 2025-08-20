@@ -1,0 +1,479 @@
+
+Forno_ATmega328p.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000016  00800100  000002de  00000372  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002de  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000001  00800116  00800116  00000388  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000388  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003b8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000080  00000000  00000000  000003f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000f2d  00000000  00000000  00000478  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000008e3  00000000  00000000  000013a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000518  00000000  00000000  00001c88  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000bc  00000000  00000000  000021a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005df  00000000  00000000  0000225c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000002bf  00000000  00000000  0000283b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000050  00000000  00000000  00002afa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ee ed       	ldi	r30, 0xDE	; 222
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a6 31       	cpi	r26, 0x16	; 22
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a6 e1       	ldi	r26, 0x16	; 22
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	a7 31       	cpi	r26, 0x17	; 23
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 f0 00 	call	0x1e0	; 0x1e0 <main>
+  9e:	0c 94 6d 01 	jmp	0x2da	; 0x2da <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <Appl__Initialize>:
+
+
+void Appl__Initialize(void){
+	
+	// Configurando pinos de saida dos leds
+	GPIO_CONFIG(PORT_LED,LED1,OUTPUT_DIGITAL);
+  a6:	42 e0       	ldi	r20, 0x02	; 2
+  a8:	65 e0       	ldi	r22, 0x05	; 5
+  aa:	80 e0       	ldi	r24, 0x00	; 0
+  ac:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	GPIO_CONFIG(PORT_LED,LED2,OUTPUT_DIGITAL);
+  b0:	42 e0       	ldi	r20, 0x02	; 2
+  b2:	64 e0       	ldi	r22, 0x04	; 4
+  b4:	80 e0       	ldi	r24, 0x00	; 0
+  b6:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	GPIO_CONFIG(PORT_LED,LED3,OUTPUT_DIGITAL);
+  ba:	42 e0       	ldi	r20, 0x02	; 2
+  bc:	63 e0       	ldi	r22, 0x03	; 3
+  be:	80 e0       	ldi	r24, 0x00	; 0
+  c0:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	GPIO_CONFIG(PORT_LED,LED4,OUTPUT_DIGITAL);
+  c4:	42 e0       	ldi	r20, 0x02	; 2
+  c6:	62 e0       	ldi	r22, 0x02	; 2
+  c8:	80 e0       	ldi	r24, 0x00	; 0
+  ca:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	// Apaga os LEDs
+	DEFINE_LED_STATE(LED1,APAGADO);
+  ce:	41 e0       	ldi	r20, 0x01	; 1
+  d0:	65 e0       	ldi	r22, 0x05	; 5
+  d2:	80 e0       	ldi	r24, 0x00	; 0
+  d4:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+	DEFINE_LED_STATE(LED2,APAGADO);
+  d8:	41 e0       	ldi	r20, 0x01	; 1
+  da:	64 e0       	ldi	r22, 0x04	; 4
+  dc:	80 e0       	ldi	r24, 0x00	; 0
+  de:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+	DEFINE_LED_STATE(LED3,APAGADO);
+  e2:	41 e0       	ldi	r20, 0x01	; 1
+  e4:	63 e0       	ldi	r22, 0x03	; 3
+  e6:	80 e0       	ldi	r24, 0x00	; 0
+  e8:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+	DEFINE_LED_STATE(LED4,APAGADO);
+  ec:	41 e0       	ldi	r20, 0x01	; 1
+  ee:	62 e0       	ldi	r22, 0x02	; 2
+  f0:	80 e0       	ldi	r24, 0x00	; 0
+  f2:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+	
+	// Configura os botões como entrada digital com pullup 
+	GPIO_CONFIG(PORT_SW,SW1,INPUT_DIGITAL_PULLUP);
+  f6:	40 e0       	ldi	r20, 0x00	; 0
+  f8:	61 e0       	ldi	r22, 0x01	; 1
+  fa:	81 e0       	ldi	r24, 0x01	; 1
+  fc:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	GPIO_CONFIG(PORT_SW,SW2,INPUT_DIGITAL_PULLUP);
+ 100:	40 e0       	ldi	r20, 0x00	; 0
+ 102:	62 e0       	ldi	r22, 0x02	; 2
+ 104:	81 e0       	ldi	r24, 0x01	; 1
+ 106:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+	GPIO_CONFIG(PORT_SW,SW3,INPUT_DIGITAL_PULLUP);
+ 10a:	40 e0       	ldi	r20, 0x00	; 0
+ 10c:	63 e0       	ldi	r22, 0x03	; 3
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	0e 94 0a 01 	call	0x214	; 0x214 <GPIO_CONFIG>
+ 114:	08 95       	ret
+
+00000116 <Appl__Handler>:
+	
+}
+
+
+void Appl__Handler(void){
+ 116:	1f 93       	push	r17
+ 118:	cf 93       	push	r28
+ 11a:	df 93       	push	r29
+	unsigned char value1, value2, value3;
+	
+	value1  = READ_SW(SW1);
+ 11c:	61 e0       	ldi	r22, 0x01	; 1
+ 11e:	81 e0       	ldi	r24, 0x01	; 1
+ 120:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <GPIO_PIN_READ>
+ 124:	c8 2f       	mov	r28, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 126:	2f e9       	ldi	r18, 0x9F	; 159
+ 128:	86 e8       	ldi	r24, 0x86	; 134
+ 12a:	91 e0       	ldi	r25, 0x01	; 1
+ 12c:	21 50       	subi	r18, 0x01	; 1
+ 12e:	80 40       	sbci	r24, 0x00	; 0
+ 130:	90 40       	sbci	r25, 0x00	; 0
+ 132:	e1 f7       	brne	.-8      	; 0x12c <Appl__Handler+0x16>
+ 134:	00 c0       	rjmp	.+0      	; 0x136 <Appl__Handler+0x20>
+ 136:	00 00       	nop
+	_delay_ms(500);
+	value2  = READ_SW(SW2);
+ 138:	62 e0       	ldi	r22, 0x02	; 2
+ 13a:	81 e0       	ldi	r24, 0x01	; 1
+ 13c:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <GPIO_PIN_READ>
+ 140:	18 2f       	mov	r17, r24
+ 142:	2f e9       	ldi	r18, 0x9F	; 159
+ 144:	86 e8       	ldi	r24, 0x86	; 134
+ 146:	91 e0       	ldi	r25, 0x01	; 1
+ 148:	21 50       	subi	r18, 0x01	; 1
+ 14a:	80 40       	sbci	r24, 0x00	; 0
+ 14c:	90 40       	sbci	r25, 0x00	; 0
+ 14e:	e1 f7       	brne	.-8      	; 0x148 <Appl__Handler+0x32>
+ 150:	00 c0       	rjmp	.+0      	; 0x152 <Appl__Handler+0x3c>
+ 152:	00 00       	nop
+	_delay_ms(500);
+	value3  = READ_SW(SW3);
+ 154:	63 e0       	ldi	r22, 0x03	; 3
+ 156:	81 e0       	ldi	r24, 0x01	; 1
+ 158:	0e 94 5a 01 	call	0x2b4	; 0x2b4 <GPIO_PIN_READ>
+ 15c:	d8 2f       	mov	r29, r24
+	
+	
+	// SE a chave 1 e 3 são pressionadas desativa os leds
+	if (value1 == SW_ON && value3 == SW_ON)	{
+ 15e:	c1 11       	cpse	r28, r1
+ 160:	17 c0       	rjmp	.+46     	; 0x190 <Appl__Handler+0x7a>
+ 162:	81 11       	cpse	r24, r1
+ 164:	15 c0       	rjmp	.+42     	; 0x190 <Appl__Handler+0x7a>
+		DEFINE_LED_STATE(LED1,APAGADO);
+ 166:	41 e0       	ldi	r20, 0x01	; 1
+ 168:	65 e0       	ldi	r22, 0x05	; 5
+ 16a:	80 e0       	ldi	r24, 0x00	; 0
+ 16c:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		DEFINE_LED_STATE(LED2,APAGADO);
+ 170:	41 e0       	ldi	r20, 0x01	; 1
+ 172:	64 e0       	ldi	r22, 0x04	; 4
+ 174:	80 e0       	ldi	r24, 0x00	; 0
+ 176:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		DEFINE_LED_STATE(LED3,APAGADO);
+ 17a:	41 e0       	ldi	r20, 0x01	; 1
+ 17c:	63 e0       	ldi	r22, 0x03	; 3
+ 17e:	80 e0       	ldi	r24, 0x00	; 0
+ 180:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		DEFINE_LED_STATE(LED4,APAGADO);		
+ 184:	41 e0       	ldi	r20, 0x01	; 1
+ 186:	62 e0       	ldi	r22, 0x02	; 2
+ 188:	80 e0       	ldi	r24, 0x00	; 0
+ 18a:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+ 18e:	18 c0       	rjmp	.+48     	; 0x1c0 <Appl__Handler+0xaa>
+	}
+	else{ // SE os dois não estão sendo pressionados, pode ser que ou eu esteja pressionando o SW1 ou SW3 (ou nenhum)
+		if (value1 == SW_ON){
+ 190:	c1 11       	cpse	r28, r1
+ 192:	05 c0       	rjmp	.+10     	; 0x19e <Appl__Handler+0x88>
+			DEFINE_LED_STATE(LED1,ACESO);
+ 194:	40 e0       	ldi	r20, 0x00	; 0
+ 196:	65 e0       	ldi	r22, 0x05	; 5
+ 198:	80 e0       	ldi	r24, 0x00	; 0
+ 19a:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		}
+		if (value3 == SW_ON){ // aciona D1,D2 e D3
+ 19e:	d1 11       	cpse	r29, r1
+ 1a0:	0f c0       	rjmp	.+30     	; 0x1c0 <Appl__Handler+0xaa>
+			DEFINE_LED_STATE(LED1,ACESO);
+ 1a2:	40 e0       	ldi	r20, 0x00	; 0
+ 1a4:	65 e0       	ldi	r22, 0x05	; 5
+ 1a6:	80 e0       	ldi	r24, 0x00	; 0
+ 1a8:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+			DEFINE_LED_STATE(LED2,ACESO);
+ 1ac:	40 e0       	ldi	r20, 0x00	; 0
+ 1ae:	64 e0       	ldi	r22, 0x04	; 4
+ 1b0:	80 e0       	ldi	r24, 0x00	; 0
+ 1b2:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+			DEFINE_LED_STATE(LED3,ACESO);
+ 1b6:	40 e0       	ldi	r20, 0x00	; 0
+ 1b8:	63 e0       	ldi	r22, 0x03	; 3
+ 1ba:	80 e0       	ldi	r24, 0x00	; 0
+ 1bc:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		}
+	}
+	if (value2 == SW_ON){
+ 1c0:	11 11       	cpse	r17, r1
+ 1c2:	0a c0       	rjmp	.+20     	; 0x1d8 <Appl__Handler+0xc2>
+		DEFINE_LED_STATE(LED1,ACESO);
+ 1c4:	40 e0       	ldi	r20, 0x00	; 0
+ 1c6:	65 e0       	ldi	r22, 0x05	; 5
+ 1c8:	80 e0       	ldi	r24, 0x00	; 0
+ 1ca:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+		DEFINE_LED_STATE(LED2,ACESO);
+ 1ce:	40 e0       	ldi	r20, 0x00	; 0
+ 1d0:	64 e0       	ldi	r22, 0x04	; 4
+ 1d2:	80 e0       	ldi	r24, 0x00	; 0
+ 1d4:	0e 94 38 01 	call	0x270	; 0x270 <GPIO_PIN_WRITE>
+	}
+
+ 1d8:	df 91       	pop	r29
+ 1da:	cf 91       	pop	r28
+ 1dc:	1f 91       	pop	r17
+ 1de:	08 95       	ret
+
+000001e0 <main>:
+//=====================================================================================================================
+
+void main(void)
+{
+	
+	Slot = SLOT_1;
+ 1e0:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <__data_end>
+	
+	// Functions Initialization
+	INITIALIZE_TASKS();
+ 1e4:	0e 94 53 00 	call	0xa6	; 0xa6 <Appl__Initialize>
+	
+	//Main Loop
+	for(;;)
+	{
+		
+		switch(Slot)
+ 1e8:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <__data_end>
+ 1ec:	88 23       	and	r24, r24
+ 1ee:	19 f0       	breq	.+6      	; 0x1f6 <main+0x16>
+ 1f0:	85 30       	cpi	r24, 0x05	; 5
+ 1f2:	20 f4       	brcc	.+8      	; 0x1fc <main+0x1c>
+ 1f4:	05 c0       	rjmp	.+10     	; 0x200 <main+0x20>
+		{
+			case SLOT_1:
+			SLOT_1_TASKS();
+ 1f6:	0e 94 8b 00 	call	0x116	; 0x116 <Appl__Handler>
+			break;
+ 1fa:	02 c0       	rjmp	.+4      	; 0x200 <main+0x20>
+			case SLOT_5:
+			SLOT_5_TASKS();
+			break;
+
+			default:
+			Slot = SLOT_1;
+ 1fc:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <__data_end>
+			break;
+
+		}
+
+		Slot++;
+ 200:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <__data_end>
+ 204:	8f 5f       	subi	r24, 0xFF	; 255
+ 206:	80 93 16 01 	sts	0x0116, r24	; 0x800116 <__data_end>
+		if(Slot >= NUM_OF_MAIN_SLOTS)
+ 20a:	85 30       	cpi	r24, 0x05	; 5
+ 20c:	68 f3       	brcs	.-38     	; 0x1e8 <main+0x8>
+		{
+			Slot = SLOT_1;
+ 20e:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <__data_end>
+ 212:	ea cf       	rjmp	.-44     	; 0x1e8 <main+0x8>
+
+00000214 <GPIO_CONFIG>:
+void GPIO_PIN_TOGGLE(GPIO_PORT port, unsigned char pin){
+	volatile GPIO_DATA_TYPE *pt_data;
+	pt_data = GPIO_DATA_LIST[port];
+	
+	// Se pegar o set_mask é fazer XOR com o pino que você quer, ex: 0b11111111 xor 0x1 = 0b11111110
+	pt_data->DATA_OUT_PULL_REG.byte ^= GPIO_PIN_SET_MASK[pin];
+ 214:	83 30       	cpi	r24, 0x03	; 3
+ 216:	58 f5       	brcc	.+86     	; 0x26e <GPIO_CONFIG+0x5a>
+ 218:	68 30       	cpi	r22, 0x08	; 8
+ 21a:	48 f5       	brcc	.+82     	; 0x26e <GPIO_CONFIG+0x5a>
+ 21c:	70 e0       	ldi	r23, 0x00	; 0
+ 21e:	fb 01       	movw	r30, r22
+ 220:	e2 5f       	subi	r30, 0xF2	; 242
+ 222:	fe 4f       	sbci	r31, 0xFE	; 254
+ 224:	20 81       	ld	r18, Z
+ 226:	fb 01       	movw	r30, r22
+ 228:	ea 5f       	subi	r30, 0xFA	; 250
+ 22a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 22c:	90 81       	ld	r25, Z
+ 22e:	e8 2f       	mov	r30, r24
+ 230:	f0 e0       	ldi	r31, 0x00	; 0
+ 232:	ee 0f       	add	r30, r30
+ 234:	ff 1f       	adc	r31, r31
+ 236:	e0 50       	subi	r30, 0x00	; 0
+ 238:	ff 4f       	sbci	r31, 0xFF	; 255
+ 23a:	01 90       	ld	r0, Z+
+ 23c:	f0 81       	ld	r31, Z
+ 23e:	e0 2d       	mov	r30, r0
+ 240:	41 30       	cpi	r20, 0x01	; 1
+ 242:	59 f0       	breq	.+22     	; 0x25a <GPIO_CONFIG+0x46>
+ 244:	18 f0       	brcs	.+6      	; 0x24c <GPIO_CONFIG+0x38>
+ 246:	42 30       	cpi	r20, 0x02	; 2
+ 248:	79 f0       	breq	.+30     	; 0x268 <GPIO_CONFIG+0x54>
+ 24a:	08 95       	ret
+ 24c:	81 81       	ldd	r24, Z+1	; 0x01
+ 24e:	98 23       	and	r25, r24
+ 250:	91 83       	std	Z+1, r25	; 0x01
+ 252:	82 81       	ldd	r24, Z+2	; 0x02
+ 254:	28 2b       	or	r18, r24
+ 256:	22 83       	std	Z+2, r18	; 0x02
+ 258:	08 95       	ret
+ 25a:	81 81       	ldd	r24, Z+1	; 0x01
+ 25c:	89 23       	and	r24, r25
+ 25e:	81 83       	std	Z+1, r24	; 0x01
+ 260:	82 81       	ldd	r24, Z+2	; 0x02
+ 262:	98 23       	and	r25, r24
+ 264:	92 83       	std	Z+2, r25	; 0x02
+ 266:	08 95       	ret
+ 268:	81 81       	ldd	r24, Z+1	; 0x01
+ 26a:	28 2b       	or	r18, r24
+ 26c:	21 83       	std	Z+1, r18	; 0x01
+ 26e:	08 95       	ret
+
+00000270 <GPIO_PIN_WRITE>:
+ 270:	e8 2f       	mov	r30, r24
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	ee 0f       	add	r30, r30
+ 276:	ff 1f       	adc	r31, r31
+ 278:	e0 50       	subi	r30, 0x00	; 0
+ 27a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 27c:	a0 81       	ld	r26, Z
+ 27e:	b1 81       	ldd	r27, Z+1	; 0x01
+ 280:	41 30       	cpi	r20, 0x01	; 1
+ 282:	61 f4       	brne	.+24     	; 0x29c <GPIO_PIN_WRITE+0x2c>
+ 284:	12 96       	adiw	r26, 0x02	; 2
+ 286:	9c 91       	ld	r25, X
+ 288:	12 97       	sbiw	r26, 0x02	; 2
+ 28a:	e6 2f       	mov	r30, r22
+ 28c:	f0 e0       	ldi	r31, 0x00	; 0
+ 28e:	e2 5f       	subi	r30, 0xF2	; 242
+ 290:	fe 4f       	sbci	r31, 0xFE	; 254
+ 292:	80 81       	ld	r24, Z
+ 294:	89 2b       	or	r24, r25
+ 296:	12 96       	adiw	r26, 0x02	; 2
+ 298:	8c 93       	st	X, r24
+ 29a:	08 95       	ret
+ 29c:	12 96       	adiw	r26, 0x02	; 2
+ 29e:	9c 91       	ld	r25, X
+ 2a0:	12 97       	sbiw	r26, 0x02	; 2
+ 2a2:	e6 2f       	mov	r30, r22
+ 2a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a6:	ea 5f       	subi	r30, 0xFA	; 250
+ 2a8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2aa:	80 81       	ld	r24, Z
+ 2ac:	89 23       	and	r24, r25
+ 2ae:	12 96       	adiw	r26, 0x02	; 2
+ 2b0:	8c 93       	st	X, r24
+ 2b2:	08 95       	ret
+
+000002b4 <GPIO_PIN_READ>:
+}
+
+unsigned char GPIO_PIN_READ(GPIO_PORT port, unsigned char pin){
+	volatile GPIO_DATA_TYPE *pt_data;
+	pt_data = GPIO_DATA_LIST[port];
+ 2b4:	e8 2f       	mov	r30, r24
+ 2b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b8:	ee 0f       	add	r30, r30
+ 2ba:	ff 1f       	adc	r31, r31
+ 2bc:	e0 50       	subi	r30, 0x00	; 0
+ 2be:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2c0:	01 90       	ld	r0, Z+
+ 2c2:	f0 81       	ld	r31, Z
+ 2c4:	e0 2d       	mov	r30, r0
+	// AND dos dados de PINx com o pin_set_mask
+	if(pt_data->DATA_IN_REG.byte & GPIO_PIN_SET_MASK[pin]){
+ 2c6:	90 81       	ld	r25, Z
+ 2c8:	e6 2f       	mov	r30, r22
+ 2ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 2cc:	e2 5f       	subi	r30, 0xF2	; 242
+ 2ce:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2d0:	80 81       	ld	r24, Z
+ 2d2:	89 23       	and	r24, r25
+ 2d4:	09 f0       	breq	.+2      	; 0x2d8 <GPIO_PIN_READ+0x24>
+		return ON;
+ 2d6:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	return OFF;
+ 2d8:	08 95       	ret
+
+000002da <_exit>:
+ 2da:	f8 94       	cli
+
+000002dc <__stop_program>:
+ 2dc:	ff cf       	rjmp	.-2      	; 0x2dc <__stop_program>
