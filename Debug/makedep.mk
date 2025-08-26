@@ -8,3 +8,5 @@ Appl\main.c
 
 Drivers\GPIO.c
 
+Hal\Hal.c
+
