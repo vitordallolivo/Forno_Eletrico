@@ -31,8 +31,8 @@ typedef enum{
 }GPIO_PORT;
 
 typedef enum{ 
-	OFF = 0, 
-	ON
+	RESET = 0, 
+	SET
 }GPIO_PIN_STATE;
 
 
@@ -42,8 +42,7 @@ typedef enum{
 #define MAX_NUM_OF_PORTS NUM_OF_PORTS
 
 #ifdef __AVR_ATmega328P__
-	#define SW_OFF 1  // é invertido por conta do pullup
-	#define SW_ON  0
+
 	// --------------------------------PINOS DO MODULO--------------------------------
 	#define LED1 PB5 //LED1 é o substituto de PB5 na programação
 	#define LED2 PB4 //LED2 é o substituto de PB4 na programação
@@ -68,11 +67,5 @@ void GPIO_PIN_WRITE(GPIO_PORT port, unsigned char pin, GPIO_PIN_STATE state);
 void GPIO_PIN_TOGGLE(GPIO_PORT port, unsigned char pin);
 unsigned char GPIO_PIN_READ(GPIO_PORT port, unsigned char pin);
 
-// ------------------------		MACROS ----------------------------------------------///
-
-#define ENABLE_PULLUP(port,pin) GPIO_PIN_WRITE(port,pin,ON);]
-#define DISABLE_PULLUP(port,pin) GPIO_PIN_WRITE(port,pin,OFF);
-#define DEFINE_LED_STATE(pin,state) GPIO_PIN_WRITE(PORT_LED,pin,state)
-#define READ_SW(pin) GPIO_PIN_READ(PORT_SW,pin)
 
 #endif /* GPIO_H_ */

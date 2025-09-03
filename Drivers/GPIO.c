@@ -61,7 +61,7 @@ void GPIO_PIN_WRITE(GPIO_PORT port, unsigned char pin, GPIO_PIN_STATE state){
 	volatile GPIO_DATA_TYPE *pt_data;
 	pt_data =  GPIO_DATA_LIST[port];
 	
-	if (state == ON){
+	if (state == SET){
 		pt_data->DATA_OUT_PULL_REG.byte |= GPIO_PIN_SET_MASK[pin]; 
 	}
 	else{
@@ -82,7 +82,7 @@ unsigned char GPIO_PIN_READ(GPIO_PORT port, unsigned char pin){
 	pt_data = GPIO_DATA_LIST[port];
 	// AND dos dados de PINx com o pin_set_mask
 	if(pt_data->DATA_IN_REG.byte & GPIO_PIN_SET_MASK[pin]){
-		return ON;
+		return SET;
 	}
-	return OFF;
+	return RESET;
 }

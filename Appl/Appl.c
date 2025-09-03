@@ -12,9 +12,9 @@
 #include <util/delay.h> /*biblioteca para o uso das rotinas de _delay_ms() e _delay_us()*/
 #include "..\Header\Appl.h"
 #include "..\Header\Gpio.h"
-#include "..\Header\Hal.h"
+#include "..\Header\Display.h"
 //-------------------------------------- PUBLIC (Variables) -----------------------------------------------------------
-
+KEY_EVENT_TYPE User_Action;
 
 //-------------------------------------- Defines, Enumerations ----------------------------------------------------------------
 #define ACESO       0
@@ -33,33 +33,37 @@ unsigned char Trigger;
 
 
 void Appl__Initialize(void){
-	Hal__Initialize();
-	Hal__SetAllLeds(APAGADO);	
+	User_Action = EVENTS_NO_EVENT;
 }
 
 
-void Appl__Handler(void){
-	
-	KEYS_READ* keys = Hal__ReadAllKey(); 
-	
-	if (keys->key[KEY_0] == SW_ON &&  keys->key[KEY_2] == SW_ON){
-		Hal__SetAllLeds(APAGADO);
+void Appl__Handler(void)
+{
+	User_Action = Display__GetEvent(); 
+	if (User_Action != EVENTS_NO_EVENT)
+	{
+		switch(User_Action)
+		{
+			case KEY_OFF_EVENT:
+			Display__SetState(OVEN_OFF);
+			break;
+			
+			case KEY_MIN_EVENT:
+			Display__SetState(OVEN_MIN);
+			break;
+			
+			case KEY_MED_EVENT:
+			Display__SetState(OVEN_MED);
+			break;
+			
+			case KEY_MAX_EVENT:
+			Display__SetState(OVEN_MAX);
+			break;
+
+			default:
+			break;
+
+		}
 	}
-	else{
-		if (keys->key[KEY_0] == SW_ON ){
-			Hal__SetAllLeds(APAGADO);
-			Hal__SetLed(LED_0,ACESO);
-		}
-		if (keys->key[KEY_2] == SW_ON){
-			Hal__SetAllLeds(APAGADO);
-			Hal__SetLed(LED_0,ACESO);
-			Hal__SetLed(LED_1,ACESO);
-			Hal__SetLed(LED_2,ACESO);
-		}
-		if (keys->key[KEY_1] == SW_ON){
-			Hal__SetAllLeds(APAGADO);
-			Hal__SetLed(LED_0,ACESO);
-			Hal__SetLed(LED_1,ACESO);
-		}
-	}
-}
+	
+} 

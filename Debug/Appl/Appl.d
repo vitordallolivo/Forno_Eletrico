@@ -14,7 +14,9 @@ Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  ../Appl/..\Header\Appl.h ../Appl/..\Header\Gpio.h \
- ../Appl/..\Header\../Header/Micro.h ../Appl/..\Header\Hal.h
+ ../Appl/..\Header\../Header/Micro.h ../Appl/..\Header\Display.h \
+ ../Appl/..\Header\..\Header\Display_prm.h \
+ ../Appl/..\Header\..\Header\..\Header\C_types.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -50,4 +52,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Appl/..\Header\../Header/Micro.h:
 
-../Appl/..\Header\Hal.h:
+../Appl/..\Header\Display.h:
+
+../Appl/..\Header\..\Header\Display_prm.h:
+
+../Appl/..\Header\..\Header\..\Header\C_types.h:

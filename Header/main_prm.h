@@ -15,8 +15,8 @@
 
 
 //#include "ADC.h"
-//#include "Hal.h"
-//#include "Display.h"
+#include "..\Header\Hal.h"
+#include "..\Header\Display.h"
 
 //#include "TempSensor.h"
 //#include "OvenTempControl.h"
@@ -41,6 +41,8 @@
 
 #define INITIALIZE_TASKS()\
 {\
+	Hal__Initialize();\
+	Display__Initialize();\
 	Appl__Initialize();\
 }
 
@@ -55,6 +57,7 @@
 
 #define SLOT_2_TASKS()\
 {\
+	Display__Handler();\
 }
 	
 #define SLOT_3_TASKS()\

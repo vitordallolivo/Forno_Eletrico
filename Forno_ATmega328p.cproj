@@ -177,6 +177,15 @@
     <Compile Include="Header\Appl.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\C_Types.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Display.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Display_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\GPIO.h">
       <SubType>compile</SubType>
     </Compile>
@@ -192,12 +201,16 @@
     <Compile Include="Header\Micro.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="System\Display.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Appl" />
     <Folder Include="Drivers" />
     <Folder Include="Header" />
     <Folder Include="Hal" />
+    <Folder Include="System" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
