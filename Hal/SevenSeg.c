@@ -19,39 +19,44 @@ const char SEGMENT_SELECT[] = {0xF1,0xF2,0xF4,0xF8};
 
 
 /* Write a value to one of the 4 digits of the display */
-void SevenSeg_WriteValueToSegment(char* ptr_display_values)
+void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 {
-	for (char Segment = 0 ; Segment < NUM_SEG; Segment ++){
-		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET);
+	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
+		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET); // Inicia o processo de escrever no registrador
 
 
-		for (uint8_t i = 0; i < 8; i++) {
-			if (ptr_display_values[0] & (1 << (7 - i))) {
+		for (uint8_t i = 0; i < 8; i++) { // Digitos do display a serem escritos
+			
+			if (ptr_display_values[Segment] & (1 << (7 - i))) {
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
 			}
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
-			}
-
+			}	
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+			_delay_us(500);
 		}
 
-		for (uint8_t i = 0; i < 8; i++) {
+		
+
+		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
 			if (SEGMENT_SELECT[Segment] & (1 << (7 - i))) {
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
 			} 
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
 			}
-
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+			_delay_ms(3);
 		}
-
+		
+			
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
-		ptr_display_values++;
+		
 	}
+	
 }
 
 

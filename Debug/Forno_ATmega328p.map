@@ -231,7 +231,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x4e2
+.text           0x00000000      0x4ee
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -351,34 +351,34 @@ END GROUP
                 0x000002f6        0x6 Hal/Hal.o
                 0x000002f6                Hal__WriteValtoSegment
  .text.SevenSeg_WriteValueToSegment
-                0x000002fc       0xe6 Hal/SevenSeg.o
+                0x000002fc       0xf2 Hal/SevenSeg.o
                 0x000002fc                SevenSeg_WriteValueToSegment
  .text.Display__Initialize
-                0x000003e2        0xc System/Display.o
-                0x000003e2                Display__Initialize
+                0x000003ee        0xc System/Display.o
+                0x000003ee                Display__Initialize
  .text.Display__SetState
-                0x000003ee        0xa System/Display.o
-                0x000003ee                Display__SetState
+                0x000003fa        0xa System/Display.o
+                0x000003fa                Display__SetState
  .text.UpdateDisplayLeds
-                0x000003f8       0x6a System/Display.o
-                0x000003f8                UpdateDisplayLeds
+                0x00000404       0x6a System/Display.o
+                0x00000404                UpdateDisplayLeds
  .text.ReadDisplayKeys
-                0x00000462       0x3c System/Display.o
-                0x00000462                ReadDisplayKeys
+                0x0000046e       0x3c System/Display.o
+                0x0000046e                ReadDisplayKeys
  .text.Display__GetEvent
-                0x0000049e        0xa System/Display.o
-                0x0000049e                Display__GetEvent
+                0x000004aa        0xa System/Display.o
+                0x000004aa                Display__GetEvent
  .text.UpdateDisplaySevenSeg
-                0x000004a8       0x2c System/Display.o
-                0x000004a8                UpdateDisplaySevenSeg
+                0x000004b4       0x2c System/Display.o
+                0x000004b4                UpdateDisplaySevenSeg
  .text.Display__Handler
-                0x000004d4        0xa System/Display.o
-                0x000004d4                Display__Handler
-                0x000004de                . = ALIGN (0x2)
+                0x000004e0        0xa System/Display.o
+                0x000004e0                Display__Handler
+                0x000004ea                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000004de        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000004de                _exit
-                0x000004de                exit
+ .fini9         0x000004ea        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000004ea                _exit
+                0x000004ea                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -397,11 +397,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000004de        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000004ea        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000004e2                _etext = .
+                0x000004ee                _etext = .
 
-.data           0x00800100       0x38 load address 0x000004e2
+.data           0x00800100       0x38 load address 0x000004ee
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -462,8 +462,8 @@ END GROUP
                 0x00800141                Display_Keys_Map
                 0x00800142                Oven_Display_State
                 0x00800143                PROVIDE (__bss_end, .)
-                0x000004e2                __data_load_start = LOADADDR (.data)
-                0x0000051a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000004ee                __data_load_start = LOADADDR (.data)
+                0x00000526                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800143        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -557,35 +557,35 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x18ae
+.debug_info     0x00000000     0x1922
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x5f4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_info    0x000005f4      0x1b3 Appl/Appl.o
  .debug_info    0x000007a7      0x110 Appl/main.o
  .debug_info    0x000008b7      0x3af Drivers/GPIO.o
- .debug_info    0x00000c66      0x4b3 Hal/Hal.o
- .debug_info    0x00001119      0x332 Hal/SevenSeg.o
- .debug_info    0x0000144b      0x463 System/Display.o
+ .debug_info    0x00000c66      0x4b8 Hal/Hal.o
+ .debug_info    0x0000111e      0x3a7 Hal/SevenSeg.o
+ .debug_info    0x000014c5      0x45d System/Display.o
 
-.debug_abbrev   0x00000000      0xd58
+.debug_abbrev   0x00000000      0xd7d
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x5a2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_abbrev  0x000005a2       0xd5 Appl/Appl.o
  .debug_abbrev  0x00000677       0x91 Appl/main.o
  .debug_abbrev  0x00000708      0x16d Drivers/GPIO.o
- .debug_abbrev  0x00000875      0x20a Hal/Hal.o
- .debug_abbrev  0x00000a7f      0x17d Hal/SevenSeg.o
- .debug_abbrev  0x00000bfc      0x15c System/Display.o
+ .debug_abbrev  0x00000875      0x211 Hal/Hal.o
+ .debug_abbrev  0x00000a86      0x19b Hal/SevenSeg.o
+ .debug_abbrev  0x00000c21      0x15c System/Display.o
 
-.debug_line     0x00000000      0xa11
+.debug_line     0x00000000      0xa17
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x134 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
  .debug_line    0x00000134       0xad Appl/Appl.o
  .debug_line    0x000001e1       0xba Appl/main.o
  .debug_line    0x0000029b      0x14a Drivers/GPIO.o
  .debug_line    0x000003e5      0x27a Hal/Hal.o
- .debug_line    0x0000065f      0x1ec Hal/SevenSeg.o
- .debug_line    0x0000084b      0x1c6 System/Display.o
+ .debug_line    0x0000065f      0x1f2 Hal/SevenSeg.o
+ .debug_line    0x00000851      0x1c6 System/Display.o
 
 .debug_frame    0x00000000      0x200
  *(.debug_frame)
@@ -596,28 +596,28 @@ END GROUP
  .debug_frame   0x00000144       0x38 Hal/SevenSeg.o
  .debug_frame   0x0000017c       0x84 System/Display.o
 
-.debug_str      0x00000000      0x945
+.debug_str      0x00000000      0x92b
  *(.debug_str)
  .debug_str     0x00000000      0x208 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega328p/avr5/crtatmega328p.o
- .debug_str     0x00000208      0x24e Appl/Appl.o
-                                0x282 (size before relaxing)
- .debug_str     0x00000456       0x9b Appl/main.o
-                                0x1c0 (size before relaxing)
- .debug_str     0x000004f1      0x19f Drivers/GPIO.o
-                                0x30c (size before relaxing)
- .debug_str     0x00000690      0x199 Hal/Hal.o
-                                0x3a8 (size before relaxing)
- .debug_str     0x00000829       0x3b Hal/SevenSeg.o
-                                0x262 (size before relaxing)
- .debug_str     0x00000864       0xe1 System/Display.o
-                                0x3e7 (size before relaxing)
+ .debug_str     0x00000208      0x225 Appl/Appl.o
+                                0x259 (size before relaxing)
+ .debug_str     0x0000042d       0x9b Appl/main.o
+                                0x197 (size before relaxing)
+ .debug_str     0x000004c8      0x19f Drivers/GPIO.o
+                                0x2e3 (size before relaxing)
+ .debug_str     0x00000667      0x199 Hal/Hal.o
+                                0x37f (size before relaxing)
+ .debug_str     0x00000800       0x4a Hal/SevenSeg.o
+                                0x248 (size before relaxing)
+ .debug_str     0x0000084a       0xe1 System/Display.o
+                                0x3be (size before relaxing)
 
-.debug_loc      0x00000000      0x4e6
+.debug_loc      0x00000000      0x53a
  *(.debug_loc)
  .debug_loc     0x00000000      0x18e Drivers/GPIO.o
  .debug_loc     0x0000018e      0x210 Hal/Hal.o
- .debug_loc     0x0000039e      0x108 Hal/SevenSeg.o
- .debug_loc     0x000004a6       0x40 System/Display.o
+ .debug_loc     0x0000039e      0x15c Hal/SevenSeg.o
+ .debug_loc     0x000004fa       0x40 System/Display.o
 
 .debug_macinfo
  *(.debug_macinfo)

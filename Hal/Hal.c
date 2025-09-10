@@ -157,6 +157,6 @@ KEYS_READ* Hal__ReadAllKey(void)
 
 char last_display_status;
 
-void Hal__WriteValtoSegment(char* ptr_display_values){	
+void Hal__WriteValtoSegment(const char* ptr_display_values){	
 	SevenSeg_WriteValueToSegment(ptr_display_values);
 }

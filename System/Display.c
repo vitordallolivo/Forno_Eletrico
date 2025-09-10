@@ -196,7 +196,7 @@ void ReadDisplayKeys(void)
 
 void UpdateDisplaySevenSeg(void)
 {
-	char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
+	const char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
 	switch(Oven_Display_State)
 		{
 		case OVEN_OFF:

@@ -3,31 +3,31 @@ Forno_ATmega328p.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000038  00800100  000004e2  00000576  2**0
+  0 .data         00000038  00800100  000004ee  00000582  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000004e2  00000000  00000000  00000094  2**1
+  1 .text         000004ee  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000000b  00800138  00800138  000005ae  2**0
+  2 .bss          0000000b  00800138  00800138  000005ba  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000005ae  2**0
+  3 .comment      00000030  00000000  00000000  000005ba  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000005e0  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000005ec  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000138  00000000  00000000  00000620  2**0
+  5 .debug_aranges 00000138  00000000  00000000  0000062c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000018ae  00000000  00000000  00000758  2**0
+  6 .debug_info   00001922  00000000  00000000  00000764  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000d58  00000000  00000000  00002006  2**0
+  7 .debug_abbrev 00000d7d  00000000  00000000  00002086  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000a11  00000000  00000000  00002d5e  2**0
+  8 .debug_line   00000a17  00000000  00000000  00002e03  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000200  00000000  00000000  00003770  2**2
+  9 .debug_frame  00000200  00000000  00000000  0000381c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000945  00000000  00000000  00003970  2**0
+ 10 .debug_str    0000092b  00000000  00000000  00003a1c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000004e6  00000000  00000000  000042b5  2**0
+ 11 .debug_loc    0000053a  00000000  00000000  00004347  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000d8  00000000  00000000  0000479b  2**0
+ 12 .debug_ranges 000000d8  00000000  00000000  00004881  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,7 +72,7 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e2 ee       	ldi	r30, 0xE2	; 226
+  7a:	ee ee       	ldi	r30, 0xEE	; 238
   7c:	f4 e0       	ldi	r31, 0x04	; 4
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
@@ -95,7 +95,7 @@ Disassembly of section .text:
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 75 00 	call	0xea	; 0xea <main>
-  9e:	0c 94 6f 02 	jmp	0x4de	; 0x4de <_exit>
+  9e:	0c 94 75 02 	jmp	0x4ea	; 0x4ea <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -118,7 +118,7 @@ void Appl__Initialize(void){
 void Appl__Handler(void)
 {
 	User_Action = Display__GetEvent(); 
-  ae:	0e 94 4f 02 	call	0x49e	; 0x49e <Display__GetEvent>
+  ae:	0e 94 55 02 	call	0x4aa	; 0x4aa <Display__GetEvent>
   b2:	80 93 38 01 	sts	0x0138, r24	; 0x800138 <__data_end>
 	if (User_Action != EVENTS_NO_EVENT)
   b6:	8f 3f       	cpi	r24, 0xFF	; 255
@@ -137,28 +137,28 @@ void Appl__Handler(void)
 			case KEY_OFF_EVENT:
 			Display__SetState(OVEN_OFF);
   ca:	80 e0       	ldi	r24, 0x00	; 0
-  cc:	0e 94 f7 01 	call	0x3ee	; 0x3ee <Display__SetState>
+  cc:	0e 94 fd 01 	call	0x3fa	; 0x3fa <Display__SetState>
 			break;
   d0:	08 95       	ret
 			
 			case KEY_MIN_EVENT:
 			Display__SetState(OVEN_MIN);
   d2:	81 e0       	ldi	r24, 0x01	; 1
-  d4:	0e 94 f7 01 	call	0x3ee	; 0x3ee <Display__SetState>
+  d4:	0e 94 fd 01 	call	0x3fa	; 0x3fa <Display__SetState>
 			break;
   d8:	08 95       	ret
 			
 			case KEY_MED_EVENT:
 			Display__SetState(OVEN_MED);
   da:	82 e0       	ldi	r24, 0x02	; 2
-  dc:	0e 94 f7 01 	call	0x3ee	; 0x3ee <Display__SetState>
+  dc:	0e 94 fd 01 	call	0x3fa	; 0x3fa <Display__SetState>
 			break;
   e0:	08 95       	ret
 			
 			case KEY_MAX_EVENT:
 			Display__SetState(OVEN_MAX);
   e2:	83 e0       	ldi	r24, 0x03	; 3
-  e4:	0e 94 f7 01 	call	0x3ee	; 0x3ee <Display__SetState>
+  e4:	0e 94 fd 01 	call	0x3fa	; 0x3fa <Display__SetState>
   e8:	08 95       	ret
 
 000000ea <main>:
@@ -173,7 +173,7 @@ void main(void)
 	// Functions Initialization
 	INITIALIZE_TASKS();
   ee:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <Hal__Initialize>
-  f2:	0e 94 f1 01 	call	0x3e2	; 0x3e2 <Display__Initialize>
+  f2:	0e 94 f7 01 	call	0x3ee	; 0x3ee <Display__Initialize>
   f6:	0e 94 53 00 	call	0xa6	; 0xa6 <Appl__Initialize>
 	
 	//Main Loop
@@ -197,7 +197,7 @@ void main(void)
 
 			case SLOT_2:
 			SLOT_2_TASKS();
- 110:	0e 94 6a 02 	call	0x4d4	; 0x4d4 <Display__Handler>
+ 110:	0e 94 70 02 	call	0x4e0	; 0x4e0 <Display__Handler>
 			break;
  114:	02 c0       	rjmp	.+4      	; 0x11a <main+0x30>
 			case SLOT_5:
@@ -521,7 +521,7 @@ KEYS_READ* Hal__ReadAllKey(void)
 
 char last_display_status;
 
-void Hal__WriteValtoSegment(char* ptr_display_values){	
+void Hal__WriteValtoSegment(const char* ptr_display_values){	
 	SevenSeg_WriteValueToSegment(ptr_display_values);
  2f6:	0e 94 7e 01 	call	0x2fc	; 0x2fc <SevenSeg_WriteValueToSegment>
  2fa:	08 95       	ret
@@ -531,412 +531,427 @@ const char SEGMENT_SELECT[] = {0xF1,0xF2,0xF4,0xF8};
 
 
 /* Write a value to one of the 4 digits of the display */
-void SevenSeg_WriteValueToSegment(char* ptr_display_values)
+void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 {
  2fc:	0f 93       	push	r16
  2fe:	1f 93       	push	r17
  300:	cf 93       	push	r28
  302:	df 93       	push	r29
  304:	ec 01       	movw	r28, r24
-	for (char Segment = 0 ; Segment < NUM_SEG; Segment ++){
+	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
  306:	00 e0       	ldi	r16, 0x00	; 0
- 308:	64 c0       	rjmp	.+200    	; 0x3d2 <SevenSeg_WriteValueToSegment+0xd6>
-		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET);
+ 308:	6a c0       	rjmp	.+212    	; 0x3de <SevenSeg_WriteValueToSegment+0xe2>
+		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET); // Inicia o processo de escrever no registrador
  30a:	40 e0       	ldi	r20, 0x00	; 0
  30c:	64 e0       	ldi	r22, 0x04	; 4
  30e:	82 e0       	ldi	r24, 0x02	; 2
  310:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
 
 
-		for (uint8_t i = 0; i < 8; i++) {
+		for (uint8_t i = 0; i < 8; i++) { // Digitos do display a serem escritos
  314:	10 e0       	ldi	r17, 0x00	; 0
- 316:	23 c0       	rjmp	.+70     	; 0x35e <SevenSeg_WriteValueToSegment+0x62>
-			if (ptr_display_values[0] & (1 << (7 - i))) {
- 318:	88 81       	ld	r24, Y
- 31a:	27 e0       	ldi	r18, 0x07	; 7
- 31c:	30 e0       	ldi	r19, 0x00	; 0
- 31e:	21 1b       	sub	r18, r17
- 320:	31 09       	sbc	r19, r1
- 322:	90 e0       	ldi	r25, 0x00	; 0
- 324:	02 c0       	rjmp	.+4      	; 0x32a <SevenSeg_WriteValueToSegment+0x2e>
- 326:	95 95       	asr	r25
- 328:	87 95       	ror	r24
- 32a:	2a 95       	dec	r18
- 32c:	e2 f7       	brpl	.-8      	; 0x326 <SevenSeg_WriteValueToSegment+0x2a>
- 32e:	80 ff       	sbrs	r24, 0
- 330:	06 c0       	rjmp	.+12     	; 0x33e <SevenSeg_WriteValueToSegment+0x42>
+ 316:	2a c0       	rjmp	.+84     	; 0x36c <SevenSeg_WriteValueToSegment+0x70>
+			
+			if (ptr_display_values[Segment] & (1 << (7 - i))) {
+ 318:	fe 01       	movw	r30, r28
+ 31a:	e0 0f       	add	r30, r16
+ 31c:	f1 1d       	adc	r31, r1
+ 31e:	80 81       	ld	r24, Z
+ 320:	27 e0       	ldi	r18, 0x07	; 7
+ 322:	30 e0       	ldi	r19, 0x00	; 0
+ 324:	21 1b       	sub	r18, r17
+ 326:	31 09       	sbc	r19, r1
+ 328:	90 e0       	ldi	r25, 0x00	; 0
+ 32a:	02 c0       	rjmp	.+4      	; 0x330 <SevenSeg_WriteValueToSegment+0x34>
+ 32c:	95 95       	asr	r25
+ 32e:	87 95       	ror	r24
+ 330:	2a 95       	dec	r18
+ 332:	e2 f7       	brpl	.-8      	; 0x32c <SevenSeg_WriteValueToSegment+0x30>
+ 334:	80 ff       	sbrs	r24, 0
+ 336:	06 c0       	rjmp	.+12     	; 0x344 <SevenSeg_WriteValueToSegment+0x48>
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
- 332:	41 e0       	ldi	r20, 0x01	; 1
- 334:	60 e0       	ldi	r22, 0x00	; 0
- 336:	80 e0       	ldi	r24, 0x00	; 0
- 338:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
- 33c:	05 c0       	rjmp	.+10     	; 0x348 <SevenSeg_WriteValueToSegment+0x4c>
+ 338:	41 e0       	ldi	r20, 0x01	; 1
+ 33a:	60 e0       	ldi	r22, 0x00	; 0
+ 33c:	80 e0       	ldi	r24, 0x00	; 0
+ 33e:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 342:	05 c0       	rjmp	.+10     	; 0x34e <SevenSeg_WriteValueToSegment+0x52>
 			}
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
- 33e:	40 e0       	ldi	r20, 0x00	; 0
- 340:	60 e0       	ldi	r22, 0x00	; 0
- 342:	80 e0       	ldi	r24, 0x00	; 0
- 344:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
-			}
-
+ 344:	40 e0       	ldi	r20, 0x00	; 0
+ 346:	60 e0       	ldi	r22, 0x00	; 0
+ 348:	80 e0       	ldi	r24, 0x00	; 0
+ 34a:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+			}	
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
- 348:	41 e0       	ldi	r20, 0x01	; 1
- 34a:	67 e0       	ldi	r22, 0x07	; 7
- 34c:	82 e0       	ldi	r24, 0x02	; 2
- 34e:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 34e:	41 e0       	ldi	r20, 0x01	; 1
+ 350:	67 e0       	ldi	r22, 0x07	; 7
+ 352:	82 e0       	ldi	r24, 0x02	; 2
+ 354:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
- 352:	40 e0       	ldi	r20, 0x00	; 0
- 354:	67 e0       	ldi	r22, 0x07	; 7
- 356:	82 e0       	ldi	r24, 0x02	; 2
- 358:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 358:	40 e0       	ldi	r20, 0x00	; 0
+ 35a:	67 e0       	ldi	r22, 0x07	; 7
+ 35c:	82 e0       	ldi	r24, 0x02	; 2
+ 35e:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 362:	86 ea       	ldi	r24, 0xA6	; 166
+ 364:	8a 95       	dec	r24
+ 366:	f1 f7       	brne	.-4      	; 0x364 <SevenSeg_WriteValueToSegment+0x68>
+ 368:	00 c0       	rjmp	.+0      	; 0x36a <SevenSeg_WriteValueToSegment+0x6e>
 {
-	for (char Segment = 0 ; Segment < NUM_SEG; Segment ++){
-		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET);
+	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
+		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET); // Inicia o processo de escrever no registrador
 
 
-		for (uint8_t i = 0; i < 8; i++) {
- 35c:	1f 5f       	subi	r17, 0xFF	; 255
- 35e:	18 30       	cpi	r17, 0x08	; 8
- 360:	d8 f2       	brcs	.-74     	; 0x318 <SevenSeg_WriteValueToSegment+0x1c>
- 362:	10 e0       	ldi	r17, 0x00	; 0
- 364:	27 c0       	rjmp	.+78     	; 0x3b4 <SevenSeg_WriteValueToSegment+0xb8>
-			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
-			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+		for (uint8_t i = 0; i < 8; i++) { // Digitos do display a serem escritos
+ 36a:	1f 5f       	subi	r17, 0xFF	; 255
+ 36c:	18 30       	cpi	r17, 0x08	; 8
+ 36e:	a0 f2       	brcs	.-88     	; 0x318 <SevenSeg_WriteValueToSegment+0x1c>
+ 370:	10 e0       	ldi	r17, 0x00	; 0
+ 372:	2d c0       	rjmp	.+90     	; 0x3ce <SevenSeg_WriteValueToSegment+0xd2>
 		}
 
-		for (uint8_t i = 0; i < 8; i++) {
+		
+
+		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
 			if (SEGMENT_SELECT[Segment] & (1 << (7 - i))) {
- 366:	e0 2f       	mov	r30, r16
- 368:	f0 e0       	ldi	r31, 0x00	; 0
- 36a:	ec 5d       	subi	r30, 0xDC	; 220
- 36c:	fe 4f       	sbci	r31, 0xFE	; 254
- 36e:	80 81       	ld	r24, Z
- 370:	27 e0       	ldi	r18, 0x07	; 7
- 372:	30 e0       	ldi	r19, 0x00	; 0
- 374:	21 1b       	sub	r18, r17
- 376:	31 09       	sbc	r19, r1
- 378:	90 e0       	ldi	r25, 0x00	; 0
- 37a:	02 c0       	rjmp	.+4      	; 0x380 <SevenSeg_WriteValueToSegment+0x84>
- 37c:	95 95       	asr	r25
- 37e:	87 95       	ror	r24
- 380:	2a 95       	dec	r18
- 382:	e2 f7       	brpl	.-8      	; 0x37c <SevenSeg_WriteValueToSegment+0x80>
- 384:	80 ff       	sbrs	r24, 0
- 386:	06 c0       	rjmp	.+12     	; 0x394 <SevenSeg_WriteValueToSegment+0x98>
+ 374:	e0 2f       	mov	r30, r16
+ 376:	f0 e0       	ldi	r31, 0x00	; 0
+ 378:	ec 5d       	subi	r30, 0xDC	; 220
+ 37a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 37c:	80 81       	ld	r24, Z
+ 37e:	27 e0       	ldi	r18, 0x07	; 7
+ 380:	30 e0       	ldi	r19, 0x00	; 0
+ 382:	21 1b       	sub	r18, r17
+ 384:	31 09       	sbc	r19, r1
+ 386:	90 e0       	ldi	r25, 0x00	; 0
+ 388:	02 c0       	rjmp	.+4      	; 0x38e <SevenSeg_WriteValueToSegment+0x92>
+ 38a:	95 95       	asr	r25
+ 38c:	87 95       	ror	r24
+ 38e:	2a 95       	dec	r18
+ 390:	e2 f7       	brpl	.-8      	; 0x38a <SevenSeg_WriteValueToSegment+0x8e>
+ 392:	80 ff       	sbrs	r24, 0
+ 394:	06 c0       	rjmp	.+12     	; 0x3a2 <SevenSeg_WriteValueToSegment+0xa6>
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
- 388:	41 e0       	ldi	r20, 0x01	; 1
- 38a:	60 e0       	ldi	r22, 0x00	; 0
- 38c:	80 e0       	ldi	r24, 0x00	; 0
- 38e:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
- 392:	05 c0       	rjmp	.+10     	; 0x39e <SevenSeg_WriteValueToSegment+0xa2>
+ 396:	41 e0       	ldi	r20, 0x01	; 1
+ 398:	60 e0       	ldi	r22, 0x00	; 0
+ 39a:	80 e0       	ldi	r24, 0x00	; 0
+ 39c:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 3a0:	05 c0       	rjmp	.+10     	; 0x3ac <SevenSeg_WriteValueToSegment+0xb0>
 			} 
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
- 394:	40 e0       	ldi	r20, 0x00	; 0
- 396:	60 e0       	ldi	r22, 0x00	; 0
- 398:	80 e0       	ldi	r24, 0x00	; 0
- 39a:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 3a2:	40 e0       	ldi	r20, 0x00	; 0
+ 3a4:	60 e0       	ldi	r22, 0x00	; 0
+ 3a6:	80 e0       	ldi	r24, 0x00	; 0
+ 3a8:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
 			}
-
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
- 39e:	41 e0       	ldi	r20, 0x01	; 1
- 3a0:	67 e0       	ldi	r22, 0x07	; 7
- 3a2:	82 e0       	ldi	r24, 0x02	; 2
- 3a4:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 3ac:	41 e0       	ldi	r20, 0x01	; 1
+ 3ae:	67 e0       	ldi	r22, 0x07	; 7
+ 3b0:	82 e0       	ldi	r24, 0x02	; 2
+ 3b2:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
- 3a8:	40 e0       	ldi	r20, 0x00	; 0
- 3aa:	67 e0       	ldi	r22, 0x07	; 7
- 3ac:	82 e0       	ldi	r24, 0x02	; 2
- 3ae:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+ 3b6:	40 e0       	ldi	r20, 0x00	; 0
+ 3b8:	67 e0       	ldi	r22, 0x07	; 7
+ 3ba:	82 e0       	ldi	r24, 0x02	; 2
+ 3bc:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
 
-			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
-			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3c0:	8d ee       	ldi	r24, 0xED	; 237
+ 3c2:	92 e0       	ldi	r25, 0x02	; 2
+ 3c4:	01 97       	sbiw	r24, 0x01	; 1
+ 3c6:	f1 f7       	brne	.-4      	; 0x3c4 <SevenSeg_WriteValueToSegment+0xc8>
+ 3c8:	00 c0       	rjmp	.+0      	; 0x3ca <SevenSeg_WriteValueToSegment+0xce>
+ 3ca:	00 00       	nop
+			_delay_us(500);
 		}
 
-		for (uint8_t i = 0; i < 8; i++) {
- 3b2:	1f 5f       	subi	r17, 0xFF	; 255
- 3b4:	18 30       	cpi	r17, 0x08	; 8
- 3b6:	b8 f2       	brcs	.-82     	; 0x366 <SevenSeg_WriteValueToSegment+0x6a>
+		
 
-			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
+		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
+ 3cc:	1f 5f       	subi	r17, 0xFF	; 255
+ 3ce:	18 30       	cpi	r17, 0x08	; 8
+ 3d0:	88 f2       	brcs	.-94     	; 0x374 <SevenSeg_WriteValueToSegment+0x78>
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+			_delay_ms(3);
 		}
-
+		
+			
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
- 3b8:	41 e0       	ldi	r20, 0x01	; 1
- 3ba:	64 e0       	ldi	r22, 0x04	; 4
- 3bc:	82 e0       	ldi	r24, 0x02	; 2
- 3be:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
- 3c2:	87 e8       	ldi	r24, 0x87	; 135
- 3c4:	93 e1       	ldi	r25, 0x13	; 19
- 3c6:	01 97       	sbiw	r24, 0x01	; 1
- 3c8:	f1 f7       	brne	.-4      	; 0x3c6 <SevenSeg_WriteValueToSegment+0xca>
- 3ca:	00 c0       	rjmp	.+0      	; 0x3cc <SevenSeg_WriteValueToSegment+0xd0>
- 3cc:	00 00       	nop
-		_delay_ms(20);
-		ptr_display_values++;
- 3ce:	21 96       	adiw	r28, 0x01	; 1
+ 3d2:	41 e0       	ldi	r20, 0x01	; 1
+ 3d4:	64 e0       	ldi	r22, 0x04	; 4
+ 3d6:	82 e0       	ldi	r24, 0x02	; 2
+ 3d8:	0e 94 c5 00 	call	0x18a	; 0x18a <GPIO_PIN_WRITE>
 
 
 /* Write a value to one of the 4 digits of the display */
-void SevenSeg_WriteValueToSegment(char* ptr_display_values)
+void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 {
-	for (char Segment = 0 ; Segment < NUM_SEG; Segment ++){
- 3d0:	0f 5f       	subi	r16, 0xFF	; 255
- 3d2:	04 30       	cpi	r16, 0x04	; 4
- 3d4:	08 f4       	brcc	.+2      	; 0x3d8 <SevenSeg_WriteValueToSegment+0xdc>
- 3d6:	99 cf       	rjmp	.-206    	; 0x30a <SevenSeg_WriteValueToSegment+0xe>
-
+	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
+ 3dc:	0f 5f       	subi	r16, 0xFF	; 255
+ 3de:	04 30       	cpi	r16, 0x04	; 4
+ 3e0:	08 f4       	brcc	.+2      	; 0x3e4 <SevenSeg_WriteValueToSegment+0xe8>
+ 3e2:	93 cf       	rjmp	.-218    	; 0x30a <SevenSeg_WriteValueToSegment+0xe>
+			
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
-		_delay_ms(20);
-		ptr_display_values++;
+		
 	}
+	
 }
- 3d8:	df 91       	pop	r29
- 3da:	cf 91       	pop	r28
- 3dc:	1f 91       	pop	r17
- 3de:	0f 91       	pop	r16
- 3e0:	08 95       	ret
+ 3e4:	df 91       	pop	r29
+ 3e6:	cf 91       	pop	r28
+ 3e8:	1f 91       	pop	r17
+ 3ea:	0f 91       	pop	r16
+ 3ec:	08 95       	ret
 
-000003e2 <Display__Initialize>:
+000003ee <Display__Initialize>:
 /**
  *  Inicializa vari?veis referente ao estado inicial do forno e das chaves
  */
 void Display__Initialize(void)
 	{
 	Oven_Display_State = OVEN_INIT;
- 3e2:	84 e0       	ldi	r24, 0x04	; 4
- 3e4:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <Oven_Display_State>
+ 3ee:	84 e0       	ldi	r24, 0x04	; 4
+ 3f0:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <Oven_Display_State>
 	Display_Keys_Map = KEY_OFF_EVENT;
- 3e8:	10 92 41 01 	sts	0x0141, r1	; 0x800141 <Display_Keys_Map>
- 3ec:	08 95       	ret
+ 3f4:	10 92 41 01 	sts	0x0141, r1	; 0x800141 <Display_Keys_Map>
+ 3f8:	08 95       	ret
 
-000003ee <Display__SetState>:
+000003fa <Display__SetState>:
  *  A funcao atualiza a variavel global:
  *  Oven_Display_State que indica o estado do forno  
  */
 void Display__SetState(OVEN_DISPLAY_STATE_TYPE state)
 {
 	if(state < NUM_OF_OVEN_STATES)
- 3ee:	86 30       	cpi	r24, 0x06	; 6
- 3f0:	10 f4       	brcc	.+4      	; 0x3f6 <Display__SetState+0x8>
+ 3fa:	86 30       	cpi	r24, 0x06	; 6
+ 3fc:	10 f4       	brcc	.+4      	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
 	{
 		Oven_Display_State = state;
- 3f2:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <Oven_Display_State>
- 3f6:	08 95       	ret
+ 3fe:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <Oven_Display_State>
+ 402:	08 95       	ret
 
-000003f8 <UpdateDisplayLeds>:
+00000404 <UpdateDisplayLeds>:
      tipo Hal__SetLed() 
  */
 void UpdateDisplayLeds(void)
 {
 	
 	switch(Oven_Display_State)
- 3f8:	80 91 42 01 	lds	r24, 0x0142	; 0x800142 <Oven_Display_State>
- 3fc:	81 30       	cpi	r24, 0x01	; 1
- 3fe:	51 f0       	breq	.+20     	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
- 400:	28 f0       	brcs	.+10     	; 0x40c <__EEPROM_REGION_LENGTH__+0xc>
- 402:	82 30       	cpi	r24, 0x02	; 2
- 404:	a1 f0       	breq	.+40     	; 0x42e <__EEPROM_REGION_LENGTH__+0x2e>
- 406:	83 30       	cpi	r24, 0x03	; 3
- 408:	f9 f0       	breq	.+62     	; 0x448 <__EEPROM_REGION_LENGTH__+0x48>
- 40a:	08 95       	ret
+ 404:	80 91 42 01 	lds	r24, 0x0142	; 0x800142 <Oven_Display_State>
+ 408:	81 30       	cpi	r24, 0x01	; 1
+ 40a:	51 f0       	breq	.+20     	; 0x420 <UpdateDisplayLeds+0x1c>
+ 40c:	28 f0       	brcs	.+10     	; 0x418 <UpdateDisplayLeds+0x14>
+ 40e:	82 30       	cpi	r24, 0x02	; 2
+ 410:	a1 f0       	breq	.+40     	; 0x43a <UpdateDisplayLeds+0x36>
+ 412:	83 30       	cpi	r24, 0x03	; 3
+ 414:	f9 f0       	breq	.+62     	; 0x454 <UpdateDisplayLeds+0x50>
+ 416:	08 95       	ret
 	{
 	case OVEN_OFF:
 	{
 	       Hal__SetAllLeds(APAGA_LED);
- 40c:	81 e0       	ldi	r24, 0x01	; 1
- 40e:	0e 94 38 01 	call	0x270	; 0x270 <Hal__SetAllLeds>
+ 418:	81 e0       	ldi	r24, 0x01	; 1
+ 41a:	0e 94 38 01 	call	0x270	; 0x270 <Hal__SetAllLeds>
 		   break;
- 412:	08 95       	ret
+ 41e:	08 95       	ret
 	   		
 		break;
 
 	case OVEN_MIN:
 	{
 		Hal__SetLed(LED_0, ACENDE_LED);
- 414:	60 e0       	ldi	r22, 0x00	; 0
- 416:	80 e0       	ldi	r24, 0x00	; 0
- 418:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 420:	60 e0       	ldi	r22, 0x00	; 0
+ 422:	80 e0       	ldi	r24, 0x00	; 0
+ 424:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_1, APAGA_LED);
- 41c:	61 e0       	ldi	r22, 0x01	; 1
- 41e:	81 e0       	ldi	r24, 0x01	; 1
- 420:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 428:	61 e0       	ldi	r22, 0x01	; 1
+ 42a:	81 e0       	ldi	r24, 0x01	; 1
+ 42c:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_2, APAGA_LED);
- 424:	61 e0       	ldi	r22, 0x01	; 1
- 426:	82 e0       	ldi	r24, 0x02	; 2
- 428:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 430:	61 e0       	ldi	r22, 0x01	; 1
+ 432:	82 e0       	ldi	r24, 0x02	; 2
+ 434:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		break;
- 42c:	08 95       	ret
+ 438:	08 95       	ret
 	}
 	case OVEN_MED:
 	{
 		Hal__SetLed(LED_0, ACENDE_LED);
- 42e:	60 e0       	ldi	r22, 0x00	; 0
- 430:	80 e0       	ldi	r24, 0x00	; 0
- 432:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 43a:	60 e0       	ldi	r22, 0x00	; 0
+ 43c:	80 e0       	ldi	r24, 0x00	; 0
+ 43e:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_1, ACENDE_LED);
- 436:	60 e0       	ldi	r22, 0x00	; 0
- 438:	81 e0       	ldi	r24, 0x01	; 1
- 43a:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 442:	60 e0       	ldi	r22, 0x00	; 0
+ 444:	81 e0       	ldi	r24, 0x01	; 1
+ 446:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_2, APAGA_LED);
- 43e:	61 e0       	ldi	r22, 0x01	; 1
- 440:	82 e0       	ldi	r24, 0x02	; 2
- 442:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 44a:	61 e0       	ldi	r22, 0x01	; 1
+ 44c:	82 e0       	ldi	r24, 0x02	; 2
+ 44e:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		break;
- 446:	08 95       	ret
+ 452:	08 95       	ret
 	}
 	case OVEN_MAX:
 	{
 		Hal__SetLed(LED_0, ACENDE_LED);
- 448:	60 e0       	ldi	r22, 0x00	; 0
- 44a:	80 e0       	ldi	r24, 0x00	; 0
- 44c:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 454:	60 e0       	ldi	r22, 0x00	; 0
+ 456:	80 e0       	ldi	r24, 0x00	; 0
+ 458:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_1, ACENDE_LED);
- 450:	60 e0       	ldi	r22, 0x00	; 0
- 452:	81 e0       	ldi	r24, 0x01	; 1
- 454:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 45c:	60 e0       	ldi	r22, 0x00	; 0
+ 45e:	81 e0       	ldi	r24, 0x01	; 1
+ 460:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
 		Hal__SetLed(LED_2, ACENDE_LED);
- 458:	60 e0       	ldi	r22, 0x00	; 0
- 45a:	82 e0       	ldi	r24, 0x02	; 2
- 45c:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
- 460:	08 95       	ret
+ 464:	60 e0       	ldi	r22, 0x00	; 0
+ 466:	82 e0       	ldi	r24, 0x02	; 2
+ 468:	0e 94 2c 01 	call	0x258	; 0x258 <Hal__SetLed>
+ 46c:	08 95       	ret
 
-00000462 <ReadDisplayKeys>:
+0000046e <ReadDisplayKeys>:
  *  Atualiza a variavel global (Display_Keys_Map) das chaves
  *  chamando Hal_ReadKey()
  */
 void ReadDisplayKeys(void)
 {	
 	KEYS_READ* keys= Hal__ReadAllKey(); // Lê todas as chaves
- 462:	0e 94 4e 01 	call	0x29c	; 0x29c <Hal__ReadAllKey>
- 466:	fc 01       	movw	r30, r24
+ 46e:	0e 94 4e 01 	call	0x29c	; 0x29c <Hal__ReadAllKey>
+ 472:	fc 01       	movw	r30, r24
 	
 	if (keys->key[KEY_0] == SW_ON &&  keys->key[KEY_2] == SW_ON){ // Forno desligado
- 468:	80 81       	ld	r24, Z
- 46a:	81 11       	cpse	r24, r1
- 46c:	06 c0       	rjmp	.+12     	; 0x47a <ReadDisplayKeys+0x18>
- 46e:	92 81       	ldd	r25, Z+2	; 0x02
- 470:	91 11       	cpse	r25, r1
- 472:	03 c0       	rjmp	.+6      	; 0x47a <ReadDisplayKeys+0x18>
+ 474:	80 81       	ld	r24, Z
+ 476:	81 11       	cpse	r24, r1
+ 478:	06 c0       	rjmp	.+12     	; 0x486 <ReadDisplayKeys+0x18>
+ 47a:	92 81       	ldd	r25, Z+2	; 0x02
+ 47c:	91 11       	cpse	r25, r1
+ 47e:	03 c0       	rjmp	.+6      	; 0x486 <ReadDisplayKeys+0x18>
 		Display_Keys_Map = KEY_OFF_EVENT;
- 474:	10 92 41 01 	sts	0x0141, r1	; 0x800141 <Display_Keys_Map>
- 478:	08 95       	ret
+ 480:	10 92 41 01 	sts	0x0141, r1	; 0x800141 <Display_Keys_Map>
+ 484:	08 95       	ret
 	}
 	else{
 		if (keys->key[KEY_0] == SW_ON ){ // Forno no minimo
- 47a:	81 11       	cpse	r24, r1
- 47c:	03 c0       	rjmp	.+6      	; 0x484 <ReadDisplayKeys+0x22>
-			Display_Keys_Map = KEY_MIN_EVENT;	
- 47e:	81 e0       	ldi	r24, 0x01	; 1
- 480:	80 93 41 01 	sts	0x0141, r24	; 0x800141 <Display_Keys_Map>
-		}
-		if (keys->key[KEY_2] == SW_ON){ // Forno no máximo
- 484:	82 81       	ldd	r24, Z+2	; 0x02
  486:	81 11       	cpse	r24, r1
- 488:	03 c0       	rjmp	.+6      	; 0x490 <ReadDisplayKeys+0x2e>
-			Display_Keys_Map  = KEY_MAX_EVENT;
- 48a:	83 e0       	ldi	r24, 0x03	; 3
+ 488:	03 c0       	rjmp	.+6      	; 0x490 <ReadDisplayKeys+0x22>
+			Display_Keys_Map = KEY_MIN_EVENT;	
+ 48a:	81 e0       	ldi	r24, 0x01	; 1
  48c:	80 93 41 01 	sts	0x0141, r24	; 0x800141 <Display_Keys_Map>
 		}
-		if (keys->key[KEY_1] == SW_ON){ // Forno no médio
- 490:	81 81       	ldd	r24, Z+1	; 0x01
+		if (keys->key[KEY_2] == SW_ON){ // Forno no máximo
+ 490:	82 81       	ldd	r24, Z+2	; 0x02
  492:	81 11       	cpse	r24, r1
- 494:	03 c0       	rjmp	.+6      	; 0x49c <ReadDisplayKeys+0x3a>
-			Display_Keys_Map  = KEY_MED_EVENT;
- 496:	82 e0       	ldi	r24, 0x02	; 2
+ 494:	03 c0       	rjmp	.+6      	; 0x49c <ReadDisplayKeys+0x2e>
+			Display_Keys_Map  = KEY_MAX_EVENT;
+ 496:	83 e0       	ldi	r24, 0x03	; 3
  498:	80 93 41 01 	sts	0x0141, r24	; 0x800141 <Display_Keys_Map>
- 49c:	08 95       	ret
+		}
+		if (keys->key[KEY_1] == SW_ON){ // Forno no médio
+ 49c:	81 81       	ldd	r24, Z+1	; 0x01
+ 49e:	81 11       	cpse	r24, r1
+ 4a0:	03 c0       	rjmp	.+6      	; 0x4a8 <ReadDisplayKeys+0x3a>
+			Display_Keys_Map  = KEY_MED_EVENT;
+ 4a2:	82 e0       	ldi	r24, 0x02	; 2
+ 4a4:	80 93 41 01 	sts	0x0141, r24	; 0x800141 <Display_Keys_Map>
+ 4a8:	08 95       	ret
 
-0000049e <Display__GetEvent>:
+000004aa <Display__GetEvent>:
 
 
 KEY_EVENT_TYPE Display__GetEvent(void)
 {
 	KEY_EVENT_TYPE event;
 	ReadDisplayKeys();    // L? as chaves e coloca valor na vari?vel global Display_Keys_Map
- 49e:	0e 94 31 02 	call	0x462	; 0x462 <ReadDisplayKeys>
+ 4aa:	0e 94 37 02 	call	0x46e	; 0x46e <ReadDisplayKeys>
 	event = Display_Keys_Map;  //atribui a event o global atualizada em ReadDisplayKeys()
 	return (event);
 }
- 4a2:	80 91 41 01 	lds	r24, 0x0141	; 0x800141 <Display_Keys_Map>
- 4a6:	08 95       	ret
+ 4ae:	80 91 41 01 	lds	r24, 0x0141	; 0x800141 <Display_Keys_Map>
+ 4b2:	08 95       	ret
 
-000004a8 <UpdateDisplaySevenSeg>:
+000004b4 <UpdateDisplaySevenSeg>:
 
 
 void UpdateDisplaySevenSeg(void)
 {
-	char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
+	const char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
 	switch(Oven_Display_State)
- 4a8:	80 91 42 01 	lds	r24, 0x0142	; 0x800142 <Oven_Display_State>
- 4ac:	82 30       	cpi	r24, 0x02	; 2
- 4ae:	39 f0       	breq	.+14     	; 0x4be <UpdateDisplaySevenSeg+0x16>
- 4b0:	83 30       	cpi	r24, 0x03	; 3
- 4b2:	41 f0       	breq	.+16     	; 0x4c4 <UpdateDisplaySevenSeg+0x1c>
- 4b4:	81 30       	cpi	r24, 0x01	; 1
- 4b6:	49 f0       	breq	.+18     	; 0x4ca <UpdateDisplaySevenSeg+0x22>
+ 4b4:	80 91 42 01 	lds	r24, 0x0142	; 0x800142 <Oven_Display_State>
+ 4b8:	82 30       	cpi	r24, 0x02	; 2
+ 4ba:	39 f0       	breq	.+14     	; 0x4ca <UpdateDisplaySevenSeg+0x16>
+ 4bc:	83 30       	cpi	r24, 0x03	; 3
+ 4be:	41 f0       	breq	.+16     	; 0x4d0 <UpdateDisplaySevenSeg+0x1c>
+ 4c0:	81 30       	cpi	r24, 0x01	; 1
+ 4c2:	49 f0       	breq	.+18     	; 0x4d6 <UpdateDisplaySevenSeg+0x22>
 
 
 
 void UpdateDisplaySevenSeg(void)
 {
-	char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
- 4b8:	84 e3       	ldi	r24, 0x34	; 52
- 4ba:	91 e0       	ldi	r25, 0x01	; 1
- 4bc:	08 c0       	rjmp	.+16     	; 0x4ce <UpdateDisplaySevenSeg+0x26>
+	const char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
+ 4c4:	84 e3       	ldi	r24, 0x34	; 52
+ 4c6:	91 e0       	ldi	r25, 0x01	; 1
+ 4c8:	08 c0       	rjmp	.+16     	; 0x4da <UpdateDisplaySevenSeg+0x26>
 		case OVEN_MIN:
 			ptr_display_values = &MINIMO_DIGITO[0];
 			break;
 		case OVEN_MED:
 			{
 			ptr_display_values = &MEDIO_DIGITO[0];
- 4be:	8c e2       	ldi	r24, 0x2C	; 44
- 4c0:	91 e0       	ldi	r25, 0x01	; 1
+ 4ca:	8c e2       	ldi	r24, 0x2C	; 44
+ 4cc:	91 e0       	ldi	r25, 0x01	; 1
 			break;
- 4c2:	05 c0       	rjmp	.+10     	; 0x4ce <UpdateDisplaySevenSeg+0x26>
+ 4ce:	05 c0       	rjmp	.+10     	; 0x4da <UpdateDisplaySevenSeg+0x26>
 			}
 		case OVEN_MAX:
 			{
 			ptr_display_values = &MAXIMO_DIGITO[0];
- 4c4:	88 e2       	ldi	r24, 0x28	; 40
- 4c6:	91 e0       	ldi	r25, 0x01	; 1
+ 4d0:	88 e2       	ldi	r24, 0x28	; 40
+ 4d2:	91 e0       	ldi	r25, 0x01	; 1
 			break;
- 4c8:	02 c0       	rjmp	.+4      	; 0x4ce <UpdateDisplaySevenSeg+0x26>
+ 4d4:	02 c0       	rjmp	.+4      	; 0x4da <UpdateDisplaySevenSeg+0x26>
 			break;
 		case OVEN_INIT:
 		case OVEN_TIMEOUT:
 			break;
 		case OVEN_MIN:
 			ptr_display_values = &MINIMO_DIGITO[0];
- 4ca:	80 e3       	ldi	r24, 0x30	; 48
- 4cc:	91 e0       	ldi	r25, 0x01	; 1
+ 4d6:	80 e3       	ldi	r24, 0x30	; 48
+ 4d8:	91 e0       	ldi	r25, 0x01	; 1
 		default:
 			{
 			break;
 			}
 	   }
 		Hal__WriteValtoSegment(ptr_display_values);
- 4ce:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <Hal__WriteValtoSegment>
- 4d2:	08 95       	ret
+ 4da:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <Hal__WriteValtoSegment>
+ 4de:	08 95       	ret
 
-000004d4 <Display__Handler>:
+000004e0 <Display__Handler>:
  *   Atualiza o display(leds) do estado do forno em fun??o da leitura das chaves
  */
 void Display__Handler(void)
 {
 	#if (LED_DISPLAY == ENABLED)	
 	   UpdateDisplayLeds();        // atualiza??o dos leds
- 4d4:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <UpdateDisplayLeds>
+ 4e0:	0e 94 02 02 	call	0x404	; 0x404 <UpdateDisplayLeds>
 	#endif	                       // fun??o privada!
 	#if (SEVEN_SEG_DISPLAY == ENABLED)
 		UpdateDisplaySevenSeg();
- 4d8:	0e 94 54 02 	call	0x4a8	; 0x4a8 <UpdateDisplaySevenSeg>
- 4dc:	08 95       	ret
+ 4e4:	0e 94 5a 02 	call	0x4b4	; 0x4b4 <UpdateDisplaySevenSeg>
+ 4e8:	08 95       	ret
 
-000004de <_exit>:
- 4de:	f8 94       	cli
+000004ea <_exit>:
+ 4ea:	f8 94       	cli
 
-000004e0 <__stop_program>:
- 4e0:	ff cf       	rjmp	.-2      	; 0x4e0 <__stop_program>
+000004ec <__stop_program>:
+ 4ec:	ff cf       	rjmp	.-2      	; 0x4ec <__stop_program>

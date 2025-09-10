@@ -10,7 +10,7 @@
 #define SEVENSEG_H_
 
 
-void SevenSeg_WriteValueToSegment(char* ptr_display_values);
+void SevenSeg_WriteValueToSegment(const char* ptr_display_values);
 
 
 #endif /* SEVENSEG_H_ */
