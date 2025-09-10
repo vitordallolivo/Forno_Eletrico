@@ -10,5 +10,7 @@ Drivers\GPIO.c
 
 Hal\Hal.c
 
+Hal\SevenSeg.c
+
 System\Display.c
 

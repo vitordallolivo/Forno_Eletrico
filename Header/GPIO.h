@@ -58,7 +58,11 @@ typedef enum{
 
 	#define PORT_LED PORT_B
 	#define PORT_SW PORT_C
-
+	
+	#define NUM_SEG 4
+	#define LATCH_PIN     PD4   // pino 12 (shiftclk do 74HC595)
+	#define CLK_PIN       PD7   // pino 11 (latchclk do 74HC595)
+	#define DATA_PIN      PB0   // pino 14 (serial data input do 74HC595)
 #endif
 
 // --------------------------------Prototipos de funções--------------------------------//

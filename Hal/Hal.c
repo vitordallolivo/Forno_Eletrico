@@ -11,6 +11,7 @@
 //#include "ADC.h"
 //#include "PWM.h"
 #include "..\Header\Hal.h"
+#include "..\Header\SevenSeg.h"
 #include <util/delay.h>
 
 // -------------------------- Defines, Enumerações ---------------------------//
@@ -84,10 +85,13 @@ void Hal__Initialize(void)
 		GPIO_CONFIG(KEYS_GPIO[key_index].port, KEYS_GPIO[key_index].pin, INPUT_DIGITAL_PULLUP);
 	}
 	
+	// Configuration of 7 segment's
+	GPIO_CONFIG(PORT_D,4,OUTPUT_DIGITAL);
+	GPIO_CONFIG(PORT_D,7,OUTPUT_DIGITAL);
+	GPIO_CONFIG(PORT_B,0,OUTPUT_DIGITAL);
+	
+	
 }
-
-
-
 
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -126,9 +130,9 @@ void Hal__SetAllLeds(unsigned char value)
  */
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key)
 {
-unsigned char value;
-value = GPIO_PIN_READ(KEYS_GPIO[key].port, KEYS_GPIO[key].pin);
-return (value);
+	unsigned char value;
+	value = GPIO_PIN_READ(KEYS_GPIO[key].port, KEYS_GPIO[key].pin);
+	return (value);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -149,4 +153,10 @@ KEYS_READ* Hal__ReadAllKey(void)
 			tab.key[index] = GPIO_PIN_READ(KEYS_GPIO[index].port, KEYS_GPIO[index].pin);
 	}
 	return (&tab);
+}
+
+char last_display_status;
+
+void Hal__WriteValtoSegment(char* ptr_display_values){	
+	SevenSeg_WriteValueToSegment(ptr_display_values);
 }

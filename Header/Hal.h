@@ -44,5 +44,7 @@ void Hal__SetAllLeds(unsigned char value);
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key);
 KEYS_READ* Hal__ReadAllKey(void);            
 
+void Hal__WriteValtoSegment(char* ptr_display_values);
+
 
 #endif /* HAL_H_ */
