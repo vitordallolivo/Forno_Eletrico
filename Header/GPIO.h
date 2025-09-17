@@ -49,8 +49,9 @@ typedef enum{
 	#define LED3 PB3 //LED3 é o substituto de PB3 na programação
 	#define LED4 PB2 //LED4 é o substituto de PB2 na programação
 	#define SW1  PC1 //SW1  é o substituto de PC1 na programação
-	#define SW2  PC2 //SW1  é o substituto de PC2 na programação
-	#define SW3  PC3 //SW1  é o substituto de PC3 na programação
+	#define SW2  PC2 //SW2  é o substituto de PC2 na programação
+	#define SW3  PC3 //SW3  é o substituto de PC3 na programação
+	#define SW4  PC5 // 
 
 	// Pinos RX e Tx do Atmega328P
 	#define TX_pin PC0

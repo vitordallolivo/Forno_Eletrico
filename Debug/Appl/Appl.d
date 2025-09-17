@@ -16,7 +16,7 @@ Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c \
  ../Appl/..\Header\Appl.h ../Appl/..\Header\Gpio.h \
  ../Appl/..\Header\../Header/Micro.h ../Appl/..\Header\Display.h \
  ../Appl/..\Header\..\Header\Display_prm.h \
- c:\users\vitor\forno_eletrico\header\c_types.h
+ ../Appl/..\Header\..\Header\..\Header\C_types.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -56,4 +56,4 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Appl/..\Header\..\Header\Display_prm.h:
 
-c:\users\vitor\forno_eletrico\header\c_types.h:
+../Appl/..\Header\..\Header\..\Header\C_types.h:

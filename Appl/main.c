@@ -39,41 +39,39 @@ void main(void)
 	//Main Loop
 	for(;;)
 	{
-		
-		switch(Slot)
-		{
+		ALL_SLOTS_TASKS();
+		switch(Slot){
+			
 			case SLOT_1:
-			SLOT_1_TASKS();
+				SLOT_1_TASKS();
 			break;
 
 			case SLOT_2:
-			SLOT_2_TASKS();
+				SLOT_2_TASKS();
 			break;
 
 			case SLOT_3:
-			SLOT_3_TASKS();
+				SLOT_3_TASKS();
 			break;
 
 			case SLOT_4:
-			SLOT_4_TASKS();
+				SLOT_4_TASKS();
 			break;
 
 			case SLOT_5:
-			SLOT_5_TASKS();
+				SLOT_5_TASKS();
 			break;
 
 			default:
-			Slot = SLOT_1;
+				Slot = SLOT_1;
 			break;
 
 		}
 
 		Slot++;
-		if(Slot >= NUM_OF_MAIN_SLOTS)
-		{
+		if(Slot >= NUM_OF_MAIN_SLOTS){
 			Slot = SLOT_1;
 		}
-
 	}
 
 }

@@ -10,7 +10,7 @@
 #define HAL_H_
 
 //--------------------------- INCLUSAO DE ARQUIVOS ---------------------------//
-
+ #include "..\Header\Hal_prm.h"
 // -------------------------- Defines, Enumerações ---------------------------//
 
 typedef enum
@@ -27,22 +27,27 @@ typedef enum
 	KEY_0 = 0,
 	KEY_1,
 	KEY_2,
+	KEY_3,
 	NUM_OF_KEYS
 }KEY_INPUT_TYPE;
 
 typedef struct
 {
-	unsigned char key[3];
+	unsigned char key[NUM_OF_KEYS];
 }KEYS_READ;
+
 
 //=====================================================================================================================
 //--------------------------------------Funções Publicas (Function Prototypes) -------------------------------------------------
 //=====================================================================================================================
 void Hal__Initialize(void);
+void Hal__BackgroundHandler(void);
+void Hal__FastHandler(void);
+
 void Hal__SetLed(LED_OUTPUT_TYPE output,unsigned char value);
 void Hal__SetAllLeds(unsigned char value);
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key);
-KEYS_READ* Hal__ReadAllKey(void);            
+unsigned char Hal__ReadAllKey(void);            
 
 void Hal__WriteValtoSegment(const char* ptr_display_values);
 

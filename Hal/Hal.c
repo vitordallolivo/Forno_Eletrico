@@ -13,6 +13,10 @@
 #include "..\Header\Hal.h"
 #include "..\Header\SevenSeg.h"
 #include <util/delay.h>
+//-------------------------------------- PUBLIC (Variables) -----------------------------------------------------------
+
+const unsigned char Leds_Enable_Table[NUM_OF_LEDS]= {USE_LED_0, USE_LED_1, USE_LED_2, USE_LED_3};
+const unsigned char Keys_Enable_Table[NUM_OF_KEYS]= {USE_KEY_0, USE_KEY_1, USE_KEY_2, USE_KEY_3};
 
 // -------------------------- Defines, Enumerações ---------------------------//
 
@@ -26,6 +30,8 @@
 #define  TRUE           1
 #define  FALSE          0
 #define  ENABLED        1
+
+#define ACENDE_LED 0 
 
 typedef struct
 {
@@ -47,17 +53,20 @@ HAL_GPIO_TYPE KEYS_GPIO[NUM_OF_KEYS] =
 	{PORT_C,SW1},    //!SW1
 	{PORT_C,SW2},    //!SW2
 	{PORT_C,SW3},    //!SW3
+	{PORT_C,SW4}     // SW4 (Pino A5)
 };
 
 
 //-------------------------------------- Global Variables ----------------------------------------------------------------
 
-//unsigned char Hal_Leds_Buffer[NUM_OF_LEDS];
-//unsigned char Hal_Keys_Buffer;
-KEYS_READ tab;        // vari?vel tab ? do tipo estrutura com os vetores das chaves
+unsigned char Hal_Leds_Buffer[NUM_OF_LEDS];
+unsigned char Hal_Keys_Buffer;
+KEYS_READ tab[3];
+ 
 
 //-------------------------------------- PRIVATE (Function Prototypes) ---------------------------------------------------
-
+void LEDsUpdate(void);
+void KeysRead(void);
 //=====================================================================================================================
 //-------------------------------------- Public Functions -------------------------------------------------------------
 //=====================================================================================================================
@@ -93,6 +102,13 @@ void Hal__Initialize(void)
 	
 }
 
+void Hal__FastHandler(void)
+{
+	LEDsUpdate();   // update the LEDs status
+	KeysRead();     // reads the keys and update the Hal_Keys_Buffer
+	
+}
+
 
 //---------------------------------------------------------------------------------------------------------------------
 /**
@@ -102,7 +118,9 @@ void Hal__Initialize(void)
  */
 void Hal__SetLed(LED_OUTPUT_TYPE output,unsigned char value)
 {
-	GPIO_PIN_WRITE(LED_GPIO[output].port, LED_GPIO[output].pin, value);
+	Hal_Leds_Buffer[output] = LED_OFF;
+	if (value == ACENDE_LED)
+		Hal_Leds_Buffer[output] = LED_ON;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -115,10 +133,12 @@ void Hal__SetLed(LED_OUTPUT_TYPE output,unsigned char value)
 void Hal__SetAllLeds(unsigned char value)
 {
 	LED_OUTPUT_TYPE index;
-	
+
 	for(index = 0; index < NUM_OF_LEDS; index++)
 	{
-		GPIO_PIN_WRITE(LED_GPIO[index].port, LED_GPIO[index].pin, value);
+		Hal_Leds_Buffer[index] = LED_OFF;
+		if (value == ACENDE_LED)
+		Hal_Leds_Buffer[index] = LED_ON;
 	}
 }
 
@@ -130,9 +150,12 @@ void Hal__SetAllLeds(unsigned char value)
  */
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key)
 {
-	unsigned char value;
-	value = GPIO_PIN_READ(KEYS_GPIO[key].port, KEYS_GPIO[key].pin);
-	return (value);
+	if (key < NUM_OF_KEYS)
+	{
+		if (BIT_TEST(Hal_Keys_Buffer, key) > 0)
+		return (TRUE);
+	}
+	return (FALSE);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -141,22 +164,74 @@ unsigned char Hal__ReadKey(KEY_INPUT_TYPE key)
  *  *  return: retorno o ponteiro da estrutura com os vetores das chaves*/
 
 
-KEYS_READ* Hal__ReadAllKey(void)
+unsigned char Hal__ReadAllKey(void)
 {
 	KEY_INPUT_TYPE index;
-	for (index = 0; index < NUM_OF_KEYS; index++)
-		tab.key[index] = 0xff;
+	for(index = 0; index < NUM_OF_KEYS; index++)
+	{
+		tab->key[index]=Hal__ReadKey(index);
 		
-	
-	for (index = 0; index < NUM_OF_KEYS; index++){
-			_delay_ms(100);
-			tab.key[index] = GPIO_PIN_READ(KEYS_GPIO[index].port, KEYS_GPIO[index].pin);
+		if (tab->key[index] == TRUE){ // A chave x foi apertada
+			return index;
+		}
 	}
-	return (&tab);
+	return NUM_OF_KEYS; // Nenhuma chave apertada
+	
 }
 
-char last_display_status;
+
 
 void Hal__WriteValtoSegment(const char* ptr_display_values){	
 	SevenSeg_WriteValueToSegment(ptr_display_values);
+}
+
+
+//=====================================================================================================================
+//-------------------------------------- PRIVATE Functions -------------------------------------------------------------
+//=====================================================================================================================
+//---------------------------------------------------------------------------------------------------------------------
+/**
+ *  This local function update the LEDs status
+ */
+void LEDsUpdate(void)
+{
+	unsigned char index;
+	unsigned char value;
+	
+	//LEDs Update
+	for(index = 0; index < NUM_OF_LEDS; index++){
+		if(Leds_Enable_Table[index] == ENABLED){
+			value = LED_ON;
+			if(Hal_Leds_Buffer[index] > 0){  
+					value = LED_OFF;
+			}
+			GPIO_PIN_WRITE(LED_GPIO[index].port, LED_GPIO[index].pin, value);
+		}
+	}
+}
+//---------------------------------------------------------------------------------------------------------------------
+/**
+ *  This local function reads the keys input and update the Hal_Keys_Buffer
+ */
+
+void KeysRead(void)
+{
+	//Keys read
+	KEY_INPUT_TYPE key_index;
+	unsigned char value;
+	
+	for(key_index = KEY_0; key_index < NUM_OF_KEYS; key_index++){
+		if(Keys_Enable_Table[key_index] == ENABLED){
+			value = GPIO_PIN_READ(KEYS_GPIO[key_index].port, KEYS_GPIO[key_index].pin);
+			if(value == KEY_PRESSED){
+				BIT_SET(Hal_Keys_Buffer,key_index);
+			}
+			else{
+				BIT_CLR(Hal_Keys_Buffer,key_index);
+
+			}
+		}
+	}
+	
+
 }

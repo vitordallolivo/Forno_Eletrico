@@ -48,6 +48,7 @@
 
 #define ALL_SLOTS_TASKS()\
 {\
+	Hal__FastHandler();\
 }
 
 #define SLOT_1_TASKS()\

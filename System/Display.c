@@ -163,22 +163,25 @@ void UpdateDisplayLeds(void)
  */
 void ReadDisplayKeys(void)
 {	
-	KEYS_READ* keys= Hal__ReadAllKey(); // Lê todas as chaves
+	unsigned char key_press=Hal__ReadAllKey(); // Lê todas as chaves
 	
-	if (keys->key[KEY_0] == SW_ON &&  keys->key[KEY_2] == SW_ON){ // Forno desligado
-		Display_Keys_Map = KEY_OFF_EVENT;
+	switch(key_press){
+		case KEY_0:
+			Display_Keys_Map= KEY_MIN_EVENT;
+			break;
+		case KEY_1:
+			Display_Keys_Map= KEY_MED_EVENT;
+			break;
+		case KEY_2:
+			Display_Keys_Map= KEY_MAX_EVENT;
+			break;
+		case KEY_3:
+			Display_Keys_Map= KEY_OFF_EVENT;
+			break;
+		case NUM_OF_KEYS:
+			break;
 	}
-	else{
-		if (keys->key[KEY_0] == SW_ON ){ // Forno no minimo
-			Display_Keys_Map = KEY_MIN_EVENT;	
-		}
-		if (keys->key[KEY_2] == SW_ON){ // Forno no máximo
-			Display_Keys_Map  = KEY_MAX_EVENT;
-		}
-		if (keys->key[KEY_1] == SW_ON){ // Forno no médio
-			Display_Keys_Map  = KEY_MED_EVENT;
-		}
-	}
+	
 }
 
 /**

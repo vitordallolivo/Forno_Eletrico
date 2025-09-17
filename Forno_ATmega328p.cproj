@@ -195,6 +195,9 @@
     <Compile Include="Header\Hal.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\Hal_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\main.h">
       <SubType>compile</SubType>
     </Compile>

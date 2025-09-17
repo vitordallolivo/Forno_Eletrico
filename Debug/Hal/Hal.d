@@ -11,7 +11,9 @@ Hal/Hal.d Hal/Hal.o: ../Hal/Hal.c ../Hal/..\Header\Gpio.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../Hal/..\Header\Hal.h ../Hal/..\Header\SevenSeg.h \
+ ../Hal/..\Header\Hal.h ../Hal/..\Header\..\Header\Hal_prm.h \
+ ../Hal/..\Header\..\Header\..\Header\C_Types.h \
+ ../Hal/..\Header\SevenSeg.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
@@ -43,6 +45,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
 ../Hal/..\Header\Hal.h:
+
+../Hal/..\Header\..\Header\Hal_prm.h:
+
+../Hal/..\Header\..\Header\..\Header\C_Types.h:
 
 ../Hal/..\Header\SevenSeg.h:
 
