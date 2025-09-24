@@ -1,6 +1,4 @@
-Appl/main.d Appl/main.o: ../Appl/main.c ../Appl/..\Header\main_prm.h \
- ../Appl/..\Header\..\Header\Appl.h ../Appl/..\Header\..\Header\ADC.h \
- ../Appl/..\Header\..\Header\..\Header\Micro.h \
+Drivers/ADC.d Drivers/ADC.o: ../Drivers/ADC.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -12,21 +10,12 @@ Appl/main.d Appl/main.o: ../Appl/main.c ../Appl/..\Header\main_prm.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../Appl/..\Header\..\Header\..\Header\Adc_prm.h \
- ../Appl/..\Header\..\Header\Hal.h \
- ../Appl/..\Header\..\Header\..\Header\Hal_prm.h \
- ../Appl/..\Header\..\Header\..\Header\..\Header\C_Types.h \
- ../Appl/..\Header\..\Header\Display.h \
- ../Appl/..\Header\..\Header\..\Header\Display_prm.h \
- ../Appl/..\Header\..\Header\..\Header\..\Header\C_types.h
-
-../Appl/..\Header\main_prm.h:
-
-../Appl/..\Header\..\Header\Appl.h:
-
-../Appl/..\Header\..\Header\ADC.h:
-
-../Appl/..\Header\..\Header\..\Header\Micro.h:
+ ../Drivers/..\Header\C_Types.h ../Drivers/..\Header\ADC.h \
+ ../Drivers/..\Header\..\Header\Micro.h \
+ ../Drivers/..\Header\..\Header\Adc_prm.h ../Drivers/..\Header\Gpio.h \
+ ../Drivers/..\Header\../Header/Micro.h ../Drivers/..\Header\Hal.h \
+ ../Drivers/..\Header\..\Header\Hal_prm.h \
+ ../Drivers/..\Header\..\Header\..\Header\C_Types.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -50,16 +39,20 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../Appl/..\Header\..\Header\..\Header\Adc_prm.h:
+../Drivers/..\Header\C_Types.h:
 
-../Appl/..\Header\..\Header\Hal.h:
+../Drivers/..\Header\ADC.h:
 
-../Appl/..\Header\..\Header\..\Header\Hal_prm.h:
+../Drivers/..\Header\..\Header\Micro.h:
 
-../Appl/..\Header\..\Header\..\Header\..\Header\C_Types.h:
+../Drivers/..\Header\..\Header\Adc_prm.h:
 
-../Appl/..\Header\..\Header\Display.h:
+../Drivers/..\Header\Gpio.h:
 
-../Appl/..\Header\..\Header\..\Header\Display_prm.h:
+../Drivers/..\Header\../Header/Micro.h:
 
-../Appl/..\Header\..\Header\..\Header\..\Header\C_types.h:
+../Drivers/..\Header\Hal.h:
+
+../Drivers/..\Header\..\Header\Hal_prm.h:
+
+../Drivers/..\Header\..\Header\..\Header\C_Types.h:

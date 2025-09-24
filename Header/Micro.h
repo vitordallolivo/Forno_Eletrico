@@ -69,6 +69,8 @@ typedef struct
 } GPIO_DATA_TYPE;
 
 
+
+
 #ifdef __AVR_ATmega328P__
 
 	// Port Data and Direction Registers Address
@@ -81,6 +83,26 @@ typedef struct
 	#define PORTD  &GPIOD_DATA
 
 	#define GPIO_DATA {PORTB, PORTC, PORTD};
+
+	typedef struct
+	{
+		volatile DEF_LOWBYTE  ADCL_REG;  /*** ADCL  - Data Result Low  Register;     ***/
+		volatile DEF_HIBYTE   ADCH_REG;  /*** ADCH  - Data Result High Register;     ***/
+		volatile DEF_LOWBYTE ADCSRA_REG;                /*** ADCSRA - ADC Control and Status  Register A;   ***/
+		volatile DEF_LOWBYTE ADCSRB_REG;                  /*** ADCSRB - ADC Control and Status  Register B;     ***/
+		volatile DEF_LOWBYTE ADMUX_REG;						/*** ADMUX - ADC Multiplexer election Register;         ***/
+		volatile DEF_LOWBYTE LIXO;                          /*** espaço deixado pelo fabricante    ***/
+		volatile DEF_LOWBYTE DIDR0_REG;						 /*** DIDR0 - Digital Input Disable Register;         ***/
+		volatile DEF_LOWBYTE DIDR1_REG;						/*** DIDR1 - Digital Input Disable Register;         ***/
+	} ADC_REG_TYPE;
+
+	// Completar o endereço!!!    **************//
+	// Port Data and Direction Registers Address
+	#define ADC_ADCL  (*((volatile ADC_REG_TYPE *)0x00000078))	/*** ADCL  - Data Result Low  Register;     ***/
+	#define ADC_REGISTERS  &ADC_ADCL
+	
+	
+
 
 #endif
 

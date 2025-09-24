@@ -6,6 +6,8 @@ Appl\Appl.c
 
 Appl\main.c
 
+Drivers\ADC.c
+
 Drivers\GPIO.c
 
 Hal\Hal.c

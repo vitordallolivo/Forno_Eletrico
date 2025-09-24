@@ -37,6 +37,18 @@ typedef struct
 }KEYS_READ;
 
 
+// define as entradas analógicas existentes POT_INT no canal 0 e POT_EXT no canal 5
+typedef enum
+{
+	POT_INT = 0,
+	ANALOG_INPUT_1,
+	ANALOG_INPUT_2,
+	ANALOG_INPUT_3,
+	ANALOG_INPUT_4,
+	POT_EXT,
+	NUM_OF_ANALOG_INPUT,
+}ANALOG_INPUT_TYPE;
+
 //=====================================================================================================================
 //--------------------------------------Funções Publicas (Function Prototypes) -------------------------------------------------
 //=====================================================================================================================

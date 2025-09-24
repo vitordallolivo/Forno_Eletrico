@@ -37,6 +37,39 @@
 #define USE_KEY_2		ENABLED
 #define USE_KEY_3		ENABLED
 
+//-------------------------------------------------------------------------------------------
+// ---------------------------------  AD CONFIGURATION ------------------------------------
+//-------------------------------------------------------------------------------------------
+#define USE_POT_IN		DISABLED
+#define USE_POT_OUT     ENABLED
+
+#define HAL_ANALOG_MODE	    	MODE_10BITS//MODE_8BITS //MODE_10BITS //MODE_12BITS
+#define HAL_CONVERSION_METHOD	AD_CONTINUOUS_CONVERSION//AD_SINGLE_CONVERSION //AD_CONTINUOUS_CONVERSION
+
+
+//On board Analog configuration
+// Select ENABLED for analog that will be used otherwise DISABLED
+//PTB2 AD CH0 (Analog 0 - Pot)
+//PTD1 AD CH1 (Analog 1 - Pot)
+
+
+//#define USE_POT_INPUT_1
+//#define USE_ACCEL_AXIS_X	ENABLED
+//#define USE_ACCEL_AXIS_Y	ENABLED
+//#define USE_ACCEL_AXIS_Z	ENABLED
+
+
+//Use table below to link each analog input configured as enabled with its respective AD channel (AD_CHx) as per
+// enumeration defined in ADC.h
+#define HAL_ANALOG_CHANNEL_CONFIG\
+	{\
+	AD_CH0,\
+	AD_CH1,\
+	AD_CH2,\
+	AD_CH3,\
+	AD_CH4,\
+	AD_CH5\
+	}
 
 
 

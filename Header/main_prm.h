@@ -14,7 +14,7 @@
 //#include "Gpio.h"
 
 
-//#include "ADC.h"
+#include "..\Header\ADC.h"
 #include "..\Header\Hal.h"
 #include "..\Header\Display.h"
 
@@ -49,6 +49,7 @@
 #define ALL_SLOTS_TASKS()\
 {\
 	Hal__FastHandler();\
+	Hal__BackgroundHandler();\
 }
 
 #define SLOT_1_TASKS()\
@@ -63,6 +64,7 @@
 	
 #define SLOT_3_TASKS()\
 {\
+	ADC__Handler();\
 }
 	
 #define SLOT_4_TASKS()\

@@ -114,45 +114,78 @@ KEY_EVENT_TYPE Display__GetEvent(void)
 void UpdateDisplayLeds(void)
 {
 	
+	unsigned short int leitura_adc = Hal_GetAnalogInput(POT_EXT);
+		
 	switch(Oven_Display_State)
 	{
-	case OVEN_OFF:
-	{
-	       Hal__SetAllLeds(APAGA_LED);
-		   break;
-	}
-	case OVEN_INIT:
-	case OVEN_TIMEOUT:
-	   		
+		case OVEN_OFF:
+		{
+			Hal__SetAllLeds(APAGA_LED);
+			break;
+		}
+		case OVEN_INIT:
+		{
+			Hal__SetAllLeds(APAGA_LED);
+			break;
+		}
+		case OVEN_TIMEOUT:
+		
 		break;
 
-	case OVEN_MIN:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
-		Hal__SetLed(LED_1, APAGA_LED);
-		Hal__SetLed(LED_2, APAGA_LED);
-		break;
-	}
-	case OVEN_MED:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
-		Hal__SetLed(LED_1, ACENDE_LED);
-		Hal__SetLed(LED_2, APAGA_LED);
-		break;
-	}
-	case OVEN_MAX:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
-		Hal__SetLed(LED_1, ACENDE_LED);
-		Hal__SetLed(LED_2, ACENDE_LED);
-		break;
-	}
+		case OVEN_MIN:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+			Hal__SetLed(LED_1, APAGA_LED);
+			Hal__SetLed(LED_2, APAGA_LED);
+			
+			if (leitura_adc > 300){
+				Hal__SetLed(LED_3,ACENDE_LED);
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+			}
+			
+			break;
+		}
+		case OVEN_MED:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+			Hal__SetLed(LED_1, ACENDE_LED);
+			Hal__SetLed(LED_2, APAGA_LED);
+			
+			if (leitura_adc > 500){
+				Hal__SetLed(LED_3,ACENDE_LED);
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+			}
+			
+			break;
+		}
+		case OVEN_MAX:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+			Hal__SetLed(LED_1, ACENDE_LED);
+			Hal__SetLed(LED_2, ACENDE_LED);
+			
+			if (leitura_adc > 800){
+				Hal__SetLed(LED_3,ACENDE_LED);
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+			}
+			
+			break;
+		}
 		
-	default:
-	{
-	break;
+		default:
+		{
+			break;
+		}
 	}
- }
+	
+	
+ 
 }
 
 

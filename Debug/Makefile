@@ -44,6 +44,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../Appl/Appl.c \
 ../Appl/main.c \
+../Drivers/ADC.c \
 ../Drivers/GPIO.c \
 ../Hal/Hal.c \
 ../Hal/SevenSeg.c \
@@ -59,6 +60,7 @@ ASM_SRCS +=
 OBJS +=  \
 Appl/Appl.o \
 Appl/main.o \
+Drivers/ADC.o \
 Drivers/GPIO.o \
 Hal/Hal.o \
 Hal/SevenSeg.o \
@@ -67,6 +69,7 @@ System/Display.o
 OBJS_AS_ARGS +=  \
 Appl/Appl.o \
 Appl/main.o \
+Drivers/ADC.o \
 Drivers/GPIO.o \
 Hal/Hal.o \
 Hal/SevenSeg.o \
@@ -75,6 +78,7 @@ System/Display.o
 C_DEPS +=  \
 Appl/Appl.d \
 Appl/main.d \
+Drivers/ADC.d \
 Drivers/GPIO.d \
 Hal/Hal.d \
 Hal/SevenSeg.d \
@@ -83,6 +87,7 @@ System/Display.d
 C_DEPS_AS_ARGS +=  \
 Appl/Appl.d \
 Appl/main.d \
+Drivers/ADC.d \
 Drivers/GPIO.d \
 Hal/Hal.d \
 Hal/SevenSeg.d \
@@ -110,6 +115,13 @@ Appl/Appl.o: ../Appl/Appl.c
 	
 
 Appl/main.o: ../Appl/main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Drivers/ADC.o: ../Drivers/ADC.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

@@ -168,6 +168,9 @@
     <Compile Include="Appl\main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Drivers\ADC.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Drivers\GPIO.c">
       <SubType>compile</SubType>
     </Compile>
@@ -175,6 +178,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Hal\SevenSeg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\ADC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Adc_prm.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Header\Appl.h">

@@ -51,7 +51,7 @@ typedef enum{
 	#define SW1  PC1 //SW1  é o substituto de PC1 na programação
 	#define SW2  PC2 //SW2  é o substituto de PC2 na programação
 	#define SW3  PC3 //SW3  é o substituto de PC3 na programação
-	#define SW4  PC5 // 
+	#define SW4  PD5 // 
 
 	// Pinos RX e Tx do Atmega328P
 	#define TX_pin PC0

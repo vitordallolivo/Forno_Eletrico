@@ -3,31 +3,31 @@ Forno_ATmega328p.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000042  00800100  000005c0  00000654  2**0
+  0 .data         00000054  00800100  000008da  0000096e  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000005c0  00000000  00000000  00000094  2**1
+  1 .text         000008da  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000018  00800142  00800142  00000696  2**0
+  2 .bss          00000053  00800154  00800154  000009c2  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000696  2**0
+  3 .comment      00000030  00000000  00000000  000009c2  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000006c8  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000009f4  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000150  00000000  00000000  00000708  2**0
+  5 .debug_aranges 000001a0  00000000  00000000  00000a34  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000197d  00000000  00000000  00000858  2**0
+  6 .debug_info   00002244  00000000  00000000  00000bd4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000cf9  00000000  00000000  000021d5  2**0
+  7 .debug_abbrev 00000e96  00000000  00000000  00002e18  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000a1a  00000000  00000000  00002ece  2**0
+  8 .debug_line   00000d72  00000000  00000000  00003cae  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000023c  00000000  00000000  000038e8  2**2
+  9 .debug_frame  000002d8  00000000  00000000  00004a20  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000009b4  00000000  00000000  00003b24  2**0
+ 10 .debug_str    00000df9  00000000  00000000  00004cf8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000058f  00000000  00000000  000044d8  2**0
+ 11 .debug_loc    0000071e  00000000  00000000  00005af1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000f0  00000000  00000000  00004a67  2**0
+ 12 .debug_ranges 00000130  00000000  00000000  0000620f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e0 ec       	ldi	r30, 0xC0	; 192
-  7c:	f5 e0       	ldi	r31, 0x05	; 5
+  7a:	ea ed       	ldi	r30, 0xDA	; 218
+  7c:	f8 e0       	ldi	r31, 0x08	; 8
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a2 34       	cpi	r26, 0x42	; 66
+  84:	a4 35       	cpi	r26, 0x54	; 84
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a2 e4       	ldi	r26, 0x42	; 66
+  8c:	a4 e5       	ldi	r26, 0x54	; 84
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,11 +91,11 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	aa 35       	cpi	r26, 0x5A	; 90
+  94:	a7 3a       	cpi	r26, 0xA7	; 167
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 75 00 	call	0xea	; 0xea <main>
-  9e:	0c 94 de 02 	jmp	0x5bc	; 0x5bc <_exit>
+  9e:	0c 94 6b 04 	jmp	0x8d6	; 0x8d6 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -108,7 +108,7 @@ Disassembly of section .text:
 void Appl__Initialize(void){
 	User_Action = EVENTS_NO_EVENT;
   a6:	8f ef       	ldi	r24, 0xFF	; 255
-  a8:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <__data_end>
+  a8:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <__data_end>
   ac:	08 95       	ret
 
 000000ae <Appl__Handler>:
@@ -118,8 +118,8 @@ void Appl__Initialize(void){
 void Appl__Handler(void)
 {
 	User_Action = Display__GetEvent(); 
-  ae:	0e 94 be 02 	call	0x57c	; 0x57c <Display__GetEvent>
-  b2:	80 93 42 01 	sts	0x0142, r24	; 0x800142 <__data_end>
+  ae:	0e 94 4b 04 	call	0x896	; 0x896 <Display__GetEvent>
+  b2:	80 93 54 01 	sts	0x0154, r24	; 0x800154 <__data_end>
 	if (User_Action != EVENTS_NO_EVENT)
   b6:	8f 3f       	cpi	r24, 0xFF	; 255
   b8:	b9 f0       	breq	.+46     	; 0xe8 <Appl__Handler+0x3a>
@@ -137,28 +137,28 @@ void Appl__Handler(void)
 			case KEY_OFF_EVENT:
 			Display__SetState(OVEN_OFF);
   ca:	80 e0       	ldi	r24, 0x00	; 0
-  cc:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <Display__SetState>
+  cc:	0e 94 c2 03 	call	0x784	; 0x784 <Display__SetState>
 			break;
   d0:	08 95       	ret
 			
 			case KEY_MIN_EVENT:
 			Display__SetState(OVEN_MIN);
   d2:	81 e0       	ldi	r24, 0x01	; 1
-  d4:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <Display__SetState>
+  d4:	0e 94 c2 03 	call	0x784	; 0x784 <Display__SetState>
 			break;
   d8:	08 95       	ret
 			
 			case KEY_MED_EVENT:
 			Display__SetState(OVEN_MED);
   da:	82 e0       	ldi	r24, 0x02	; 2
-  dc:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <Display__SetState>
+  dc:	0e 94 c2 03 	call	0x784	; 0x784 <Display__SetState>
 			break;
   e0:	08 95       	ret
 			
 			case KEY_MAX_EVENT:
 			Display__SetState(OVEN_MAX);
   e2:	83 e0       	ldi	r24, 0x03	; 3
-  e4:	0e 94 6b 02 	call	0x4d6	; 0x4d6 <Display__SetState>
+  e4:	0e 94 c2 03 	call	0x784	; 0x784 <Display__SetState>
   e8:	08 95       	ret
 
 000000ea <main>:
@@ -168,12 +168,12 @@ void main(void)
 {
 	
 	Slot = SLOT_1;
-  ea:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Slot>
+  ea:	10 92 58 01 	sts	0x0158, r1	; 0x800158 <Slot>
 	
 	// Functions Initialization
 	INITIALIZE_TASKS();
-  ee:	0e 94 fc 00 	call	0x1f8	; 0x1f8 <Hal__Initialize>
-  f2:	0e 94 65 02 	call	0x4ca	; 0x4ca <Display__Initialize>
+  ee:	0e 94 af 01 	call	0x35e	; 0x35e <Hal__Initialize>
+  f2:	0e 94 bc 03 	call	0x778	; 0x778 <Display__Initialize>
   f6:	0e 94 53 00 	call	0xa6	; 0xa6 <Appl__Initialize>
 	
 	
@@ -181,1040 +181,1619 @@ void main(void)
 	for(;;)
 	{
 		ALL_SLOTS_TASKS();
-  fa:	0e 94 e7 01 	call	0x3ce	; 0x3ce <Hal__FastHandler>
+  fa:	0e 94 cd 02 	call	0x59a	; 0x59a <Hal__FastHandler>
+  fe:	0e 94 44 03 	call	0x688	; 0x688 <Hal__BackgroundHandler>
 		switch(Slot){
-  fe:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <Slot>
- 102:	81 30       	cpi	r24, 0x01	; 1
- 104:	39 f0       	breq	.+14     	; 0x114 <main+0x2a>
- 106:	18 f0       	brcs	.+6      	; 0x10e <main+0x24>
- 108:	85 30       	cpi	r24, 0x05	; 5
- 10a:	38 f4       	brcc	.+14     	; 0x11a <main+0x30>
- 10c:	08 c0       	rjmp	.+16     	; 0x11e <main+0x34>
+ 102:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <Slot>
+ 106:	82 30       	cpi	r24, 0x02	; 2
+ 108:	79 f0       	breq	.+30     	; 0x128 <main+0x3e>
+ 10a:	28 f4       	brcc	.+10     	; 0x116 <main+0x2c>
+ 10c:	88 23       	and	r24, r24
+ 10e:	31 f0       	breq	.+12     	; 0x11c <main+0x32>
+ 110:	81 30       	cpi	r24, 0x01	; 1
+ 112:	39 f0       	breq	.+14     	; 0x122 <main+0x38>
+ 114:	0c c0       	rjmp	.+24     	; 0x12e <main+0x44>
+ 116:	85 30       	cpi	r24, 0x05	; 5
+ 118:	60 f0       	brcs	.+24     	; 0x132 <main+0x48>
+ 11a:	09 c0       	rjmp	.+18     	; 0x12e <main+0x44>
 			
 			case SLOT_1:
 				SLOT_1_TASKS();
- 10e:	0e 94 57 00 	call	0xae	; 0xae <Appl__Handler>
+ 11c:	0e 94 57 00 	call	0xae	; 0xae <Appl__Handler>
 			break;
- 112:	05 c0       	rjmp	.+10     	; 0x11e <main+0x34>
+ 120:	08 c0       	rjmp	.+16     	; 0x132 <main+0x48>
 
 			case SLOT_2:
 				SLOT_2_TASKS();
- 114:	0e 94 d9 02 	call	0x5b2	; 0x5b2 <Display__Handler>
+ 122:	0e 94 66 04 	call	0x8cc	; 0x8cc <Display__Handler>
 			break;
- 118:	02 c0       	rjmp	.+4      	; 0x11e <main+0x34>
+ 126:	05 c0       	rjmp	.+10     	; 0x132 <main+0x48>
+
+			case SLOT_3:
+				SLOT_3_TASKS();
+ 128:	0e 94 a3 00 	call	0x146	; 0x146 <ADC__Handler>
+			break;
+ 12c:	02 c0       	rjmp	.+4      	; 0x132 <main+0x48>
 			case SLOT_5:
 				SLOT_5_TASKS();
 			break;
 
 			default:
 				Slot = SLOT_1;
- 11a:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Slot>
+ 12e:	10 92 58 01 	sts	0x0158, r1	; 0x800158 <Slot>
 			break;
 
 		}
 
 		Slot++;
- 11e:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <Slot>
- 122:	8f 5f       	subi	r24, 0xFF	; 255
- 124:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <Slot>
+ 132:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <Slot>
+ 136:	8f 5f       	subi	r24, 0xFF	; 255
+ 138:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <Slot>
 		if(Slot >= NUM_OF_MAIN_SLOTS){
- 128:	85 30       	cpi	r24, 0x05	; 5
- 12a:	38 f3       	brcs	.-50     	; 0xfa <main+0x10>
+ 13c:	85 30       	cpi	r24, 0x05	; 5
+ 13e:	e8 f2       	brcs	.-70     	; 0xfa <main+0x10>
 			Slot = SLOT_1;
- 12c:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <Slot>
- 130:	e4 cf       	rjmp	.-56     	; 0xfa <main+0x10>
+ 140:	10 92 58 01 	sts	0x0158, r1	; 0x800158 <Slot>
+ 144:	da cf       	rjmp	.-76     	; 0xfa <main+0x10>
 
-00000132 <GPIO_CONFIG>:
+00000146 <ADC__Handler>:
+	unsigned short int value, value_high;
+	volatile ADC_REG_TYPE *adc_pt;
+	adc_pt = ADC_REGISTERS;
+	
+
+	switch(Adc_Step)
+ 146:	80 91 65 01 	lds	r24, 0x0165	; 0x800165 <Adc_Step>
+ 14a:	82 30       	cpi	r24, 0x02	; 2
+ 14c:	79 f1       	breq	.+94     	; 0x1ac <ADC__Handler+0x66>
+ 14e:	28 f4       	brcc	.+10     	; 0x15a <ADC__Handler+0x14>
+ 150:	88 23       	and	r24, r24
+ 152:	41 f0       	breq	.+16     	; 0x164 <ADC__Handler+0x1e>
+ 154:	81 30       	cpi	r24, 0x01	; 1
+ 156:	f1 f0       	breq	.+60     	; 0x194 <ADC__Handler+0x4e>
+ 158:	62 c0       	rjmp	.+196    	; 0x21e <ADC__Handler+0xd8>
+ 15a:	83 30       	cpi	r24, 0x03	; 3
+ 15c:	b9 f1       	breq	.+110    	; 0x1cc <ADC__Handler+0x86>
+ 15e:	84 30       	cpi	r24, 0x04	; 4
+ 160:	e9 f1       	breq	.+122    	; 0x1dc <ADC__Handler+0x96>
+ 162:	5d c0       	rjmp	.+186    	; 0x21e <ADC__Handler+0xd8>
+	{
+	case ADC_STEP_INIT:
+		Adc_Channel++;											// Selects next channel
+ 164:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <Adc_Channel>
+ 168:	8f 5f       	subi	r24, 0xFF	; 255
+ 16a:	80 93 67 01 	sts	0x0167, r24	; 0x800167 <Adc_Channel>
+		if(Adc_Channel >= NUM_OF_AD_CHANNELS)
+ 16e:	86 30       	cpi	r24, 0x06	; 6
+ 170:	10 f0       	brcs	.+4      	; 0x176 <ADC__Handler+0x30>
+		{
+			Adc_Channel = AD_CH0;  // varre constantemente todas os canais
+ 172:	10 92 67 01 	sts	0x0167, r1	; 0x800167 <Adc_Channel>
+		}
+
+		if(Adc_Enable_Table[Adc_Channel] == ENABLED)			// Checks if current channel is enabled
+ 176:	e0 91 67 01 	lds	r30, 0x0167	; 0x800167 <Adc_Channel>
+ 17a:	f0 e0       	ldi	r31, 0x00	; 0
+ 17c:	ea 5e       	subi	r30, 0xEA	; 234
+ 17e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 180:	80 81       	ld	r24, Z
+ 182:	81 30       	cpi	r24, 0x01	; 1
+ 184:	09 f0       	breq	.+2      	; 0x188 <ADC__Handler+0x42>
+ 186:	4d c0       	rjmp	.+154    	; 0x222 <ADC__Handler+0xdc>
+		{
+			Adc_Step = ADC_STEP_SAMPLING;
+ 188:	80 93 65 01 	sts	0x0165, r24	; 0x800165 <Adc_Step>
+			Sampling_Time = ADC_SAMPLING_TIME;
+ 18c:	82 e3       	ldi	r24, 0x32	; 50
+ 18e:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <Sampling_Time>
+ 192:	08 95       	ret
+		}
+		break;
+
+	case ADC_STEP_SAMPLING:
+		if(Sampling_Time)
+ 194:	80 91 66 01 	lds	r24, 0x0166	; 0x800166 <Sampling_Time>
+ 198:	88 23       	and	r24, r24
+ 19a:	21 f0       	breq	.+8      	; 0x1a4 <ADC__Handler+0x5e>
+		{
+			Sampling_Time--;
+ 19c:	81 50       	subi	r24, 0x01	; 1
+ 19e:	80 93 66 01 	sts	0x0166, r24	; 0x800166 <Sampling_Time>
+ 1a2:	08 95       	ret
+		}
+		else
+		{
+			Adc_Step = ADC_STEP_CONFIG_CHANNEL;	
+ 1a4:	82 e0       	ldi	r24, 0x02	; 2
+ 1a6:	80 93 65 01 	sts	0x0165, r24	; 0x800165 <Adc_Step>
+ 1aa:	08 95       	ret
+		}
+		break;
+
+	case ADC_STEP_CONFIG_CHANNEL:
+	    adc_pt->ADMUX_REG.byte |= (unsigned char)Adc_Channel;	// Configures the channel be read
+ 1ac:	e8 e7       	ldi	r30, 0x78	; 120
+ 1ae:	f0 e0       	ldi	r31, 0x00	; 0
+ 1b0:	94 81       	ldd	r25, Z+4	; 0x04
+ 1b2:	80 91 67 01 	lds	r24, 0x0167	; 0x800167 <Adc_Channel>
+ 1b6:	89 2b       	or	r24, r25
+ 1b8:	84 83       	std	Z+4, r24	; 0x04
+		// ADC habilitado, sem auto trigger, sem interrupção, prescaler 128
+		adc_pt->ADCSRA_REG.byte =  0x87; 
+ 1ba:	87 e8       	ldi	r24, 0x87	; 135
+ 1bc:	82 83       	std	Z+2, r24	; 0x02
+		// INICIA conversão
+		adc_pt->ADCSRA_REG.bit.bit6  = 1;    //seta bit 6 (ADSC)
+ 1be:	82 81       	ldd	r24, Z+2	; 0x02
+ 1c0:	80 64       	ori	r24, 0x40	; 64
+ 1c2:	82 83       	std	Z+2, r24	; 0x02
+		Adc_Step = ADC_STEP_WAIT_CONVERSION;					// Set next step
+ 1c4:	83 e0       	ldi	r24, 0x03	; 3
+ 1c6:	80 93 65 01 	sts	0x0165, r24	; 0x800165 <Adc_Step>
+		break;
+ 1ca:	08 95       	ret
+		
+	case ADC_STEP_WAIT_CONVERSION:
+		if(adc_pt->ADCSRA_REG.bit.bit6 == 0)	// Wait until conversion be completed
+ 1cc:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 1d0:	86 fd       	sbrc	r24, 6
+ 1d2:	27 c0       	rjmp	.+78     	; 0x222 <ADC__Handler+0xdc>
+		   	Adc_Step = ADC_STEP_READ_RESULT;
+ 1d4:	84 e0       	ldi	r24, 0x04	; 4
+ 1d6:	80 93 65 01 	sts	0x0165, r24	; 0x800165 <Adc_Step>
+ 1da:	08 95       	ret
+		break;
+
+	case ADC_STEP_READ_RESULT:  // AQUI é feita a leitura do ADC físico!!!
+	    if(adc_pt->ADMUX_REG.bit.bit5 == 1)   //8 bits
+ 1dc:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+ 1e0:	85 ff       	sbrs	r24, 5
+ 1e2:	04 c0       	rjmp	.+8      	; 0x1ec <ADC__Handler+0xa6>
+		   value = (unsigned short int)(adc_pt->ADCH_REG.byte)& (LO_BYTE_MASK); // 8 bits   testado ok
+ 1e4:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 1e8:	28 2f       	mov	r18, r24
+ 1ea:	30 e0       	ldi	r19, 0x00	; 0
+		if(adc_pt->ADMUX_REG.bit.bit5 == 0)    // 10 bits
+ 1ec:	80 91 7c 00 	lds	r24, 0x007C	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+ 1f0:	85 fd       	sbrc	r24, 5
+ 1f2:	09 c0       	rjmp	.+18     	; 0x206 <ADC__Handler+0xc0>
+		   {
+			value = (unsigned short int)((adc_pt->ADCL_REG.byte)& LO_BYTE_MASK);
+ 1f4:	e8 e7       	ldi	r30, 0x78	; 120
+ 1f6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1f8:	20 81       	ld	r18, Z
+			value_high = (unsigned short int)(adc_pt->ADCH_REG.byte <<8); 
+ 1fa:	31 81       	ldd	r19, Z+1	; 0x01
+ 1fc:	80 e0       	ldi	r24, 0x00	; 0
+ 1fe:	93 2f       	mov	r25, r19
+			value |= value_high;	// Reads the conversion result bytes  
+ 200:	ac 01       	movw	r20, r24
+ 202:	42 2b       	or	r20, r18
+ 204:	9a 01       	movw	r18, r20
+		   }
+
+		ADC_Buffer[Adc_Channel] = value;  // A leitura do ADC é colocado no buffer ADC_Buffer do respectivo canal.
+ 206:	e0 91 67 01 	lds	r30, 0x0167	; 0x800167 <Adc_Channel>
+ 20a:	f0 e0       	ldi	r31, 0x00	; 0
+ 20c:	ee 0f       	add	r30, r30
+ 20e:	ff 1f       	adc	r31, r31
+ 210:	e7 5a       	subi	r30, 0xA7	; 167
+ 212:	fe 4f       	sbci	r31, 0xFE	; 254
+ 214:	31 83       	std	Z+1, r19	; 0x01
+ 216:	20 83       	st	Z, r18
+		Adc_Step = ADC_STEP_INIT;
+ 218:	10 92 65 01 	sts	0x0165, r1	; 0x800165 <Adc_Step>
+		
+		   //if (value >= 127)
+		    //Hal__SetLed(LED_3, 0); //liga LED4
+		  //else
+		    //Hal__SetLed(LED_3, 1); //desliga LED4
+	 	 break;
+ 21c:	08 95       	ret
+
+	default:
+		Adc_Step = ADC_STEP_INIT;
+ 21e:	10 92 65 01 	sts	0x0165, r1	; 0x800165 <Adc_Step>
+ 222:	08 95       	ret
+
+00000224 <ADC__ConfigModes>:
+	volatile ADC_REG_TYPE *adc_pt;
+	adc_pt = ADC_REGISTERS;
+	
+	
+	 	// seleção da tensão de referencia:
+	adc_pt->ADMUX_REG.bit.bit7 = 0;   //tensão de referencia 5V
+ 224:	e8 e7       	ldi	r30, 0x78	; 120
+ 226:	f0 e0       	ldi	r31, 0x00	; 0
+ 228:	94 81       	ldd	r25, Z+4	; 0x04
+ 22a:	9f 77       	andi	r25, 0x7F	; 127
+ 22c:	94 83       	std	Z+4, r25	; 0x04
+	adc_pt->ADMUX_REG.bit.bit6 = 1;   //tensão de referencia 5V
+ 22e:	94 81       	ldd	r25, Z+4	; 0x04
+ 230:	90 64       	ori	r25, 0x40	; 64
+ 232:	94 83       	std	Z+4, r25	; 0x04
+	
+	if(mode < NUM_OF_MODES)
+ 234:	82 30       	cpi	r24, 0x02	; 2
+ 236:	60 f4       	brcc	.+24     	; 0x250 <ADC__ConfigModes+0x2c>
+	{
+		if (mode == MODE_8BITS)
+ 238:	81 11       	cpse	r24, r1
+ 23a:	03 c0       	rjmp	.+6      	; 0x242 <ADC__ConfigModes+0x1e>
+		   adc_pt->ADMUX_REG.bit.bit5 = 1;  //Micro.h => ADLAR = 1, alinhado a esquerda e a leitura é no ADCH (8 bits)
+ 23c:	94 81       	ldd	r25, Z+4	; 0x04
+ 23e:	90 62       	ori	r25, 0x20	; 32
+ 240:	94 83       	std	Z+4, r25	; 0x04
+		if (mode == MODE_10BITS)
+ 242:	81 30       	cpi	r24, 0x01	; 1
+ 244:	29 f4       	brne	.+10     	; 0x250 <ADC__ConfigModes+0x2c>
+		   adc_pt->ADMUX_REG.bit.bit5 = 0;  //ADLAR = 0, alinhado a direita e a leitura é primeiro no ADCL e depois ADCH (10 bits)
+ 246:	e8 e7       	ldi	r30, 0x78	; 120
+ 248:	f0 e0       	ldi	r31, 0x00	; 0
+ 24a:	84 81       	ldd	r24, Z+4	; 0x04
+ 24c:	8f 7d       	andi	r24, 0xDF	; 223
+ 24e:	84 83       	std	Z+4, r24	; 0x04
+	}
+		
+	if(conv_type < NUM_OF_CONVERSION_TYPES)
+ 250:	62 30       	cpi	r22, 0x02	; 2
+ 252:	98 f4       	brcc	.+38     	; 0x27a <ADC__ConfigModes+0x56>
+	{
+		if (conv_type == AD_SINGLE_CONVERSION)
+ 254:	61 11       	cpse	r22, r1
+ 256:	05 c0       	rjmp	.+10     	; 0x262 <ADC__ConfigModes+0x3e>
+		   adc_pt->ADCSRA_REG.bit.bit5 = 0;      //Micro.h => ADATE = 0, uma leitura
+ 258:	e8 e7       	ldi	r30, 0x78	; 120
+ 25a:	f0 e0       	ldi	r31, 0x00	; 0
+ 25c:	82 81       	ldd	r24, Z+2	; 0x02
+ 25e:	8f 7d       	andi	r24, 0xDF	; 223
+ 260:	82 83       	std	Z+2, r24	; 0x02
+		if (conv_type == AD_CONTINUOUS_CONVERSION)
+ 262:	61 30       	cpi	r22, 0x01	; 1
+ 264:	29 f4       	brne	.+10     	; 0x270 <ADC__ConfigModes+0x4c>
+		   adc_pt->ADCSRA_REG.bit.bit5 = 1;      //ADATE = 1, a fonte de disparo pode ser conversão continua, comparador analogico, etc 
+ 266:	e8 e7       	ldi	r30, 0x78	; 120
+ 268:	f0 e0       	ldi	r31, 0x00	; 0
+ 26a:	82 81       	ldd	r24, Z+2	; 0x02
+ 26c:	80 62       	ori	r24, 0x20	; 32
+ 26e:	82 83       	std	Z+2, r24	; 0x02
+		   adc_pt->ADCSRB_REG.byte &= 0xF8; // no ATDS2:0, 0xF8 = 0b1111000 -> ADCSRB and 0b11111000 = 0bXXXXX000
+ 270:	e8 e7       	ldi	r30, 0x78	; 120
+ 272:	f0 e0       	ldi	r31, 0x00	; 0
+ 274:	83 81       	ldd	r24, Z+3	; 0x03
+ 276:	88 7f       	andi	r24, 0xF8	; 248
+ 278:	83 83       	std	Z+3, r24	; 0x03
+ 27a:	08 95       	ret
+
+0000027c <ADC__GetValue>:
+ */
+
+
+unsigned short int ADC__GetValue(AD_CHANNEL_TYPE channel)
+{
+	if(channel < NUM_OF_AD_CHANNELS)
+ 27c:	86 30       	cpi	r24, 0x06	; 6
+ 27e:	48 f4       	brcc	.+18     	; 0x292 <ADC__GetValue+0x16>
+	{
+		return ADC_Buffer[channel];  // retorna valor do ADC lido no ADC_Buffer do canal solcitado!
+ 280:	e8 2f       	mov	r30, r24
+ 282:	f0 e0       	ldi	r31, 0x00	; 0
+ 284:	ee 0f       	add	r30, r30
+ 286:	ff 1f       	adc	r31, r31
+ 288:	e7 5a       	subi	r30, 0xA7	; 167
+ 28a:	fe 4f       	sbci	r31, 0xFE	; 254
+ 28c:	80 81       	ld	r24, Z
+ 28e:	91 81       	ldd	r25, Z+1	; 0x01
+ 290:	08 95       	ret
+	}
+	return 0;
+ 292:	80 e0       	ldi	r24, 0x00	; 0
+ 294:	90 e0       	ldi	r25, 0x00	; 0
+}
+ 296:	08 95       	ret
+
+00000298 <GPIO_CONFIG>:
 void GPIO_PIN_TOGGLE(GPIO_PORT port, unsigned char pin){
 	volatile GPIO_DATA_TYPE *pt_data;
 	pt_data = GPIO_DATA_LIST[port];
 	
 	// Se pegar o set_mask é fazer XOR com o pino que você quer, ex: 0b11111111 xor 0x1 = 0b11111110
 	pt_data->DATA_OUT_PULL_REG.byte ^= GPIO_PIN_SET_MASK[pin];
- 132:	83 30       	cpi	r24, 0x03	; 3
- 134:	58 f5       	brcc	.+86     	; 0x18c <GPIO_CONFIG+0x5a>
- 136:	68 30       	cpi	r22, 0x08	; 8
- 138:	48 f5       	brcc	.+82     	; 0x18c <GPIO_CONFIG+0x5a>
- 13a:	70 e0       	ldi	r23, 0x00	; 0
- 13c:	fb 01       	movw	r30, r22
- 13e:	e2 5e       	subi	r30, 0xE2	; 226
- 140:	fe 4f       	sbci	r31, 0xFE	; 254
- 142:	20 81       	ld	r18, Z
- 144:	fb 01       	movw	r30, r22
- 146:	ea 5e       	subi	r30, 0xEA	; 234
- 148:	fe 4f       	sbci	r31, 0xFE	; 254
- 14a:	90 81       	ld	r25, Z
- 14c:	e8 2f       	mov	r30, r24
- 14e:	f0 e0       	ldi	r31, 0x00	; 0
- 150:	ee 0f       	add	r30, r30
- 152:	ff 1f       	adc	r31, r31
- 154:	e0 50       	subi	r30, 0x00	; 0
- 156:	ff 4f       	sbci	r31, 0xFF	; 255
- 158:	01 90       	ld	r0, Z+
- 15a:	f0 81       	ld	r31, Z
- 15c:	e0 2d       	mov	r30, r0
- 15e:	41 30       	cpi	r20, 0x01	; 1
- 160:	59 f0       	breq	.+22     	; 0x178 <GPIO_CONFIG+0x46>
- 162:	18 f0       	brcs	.+6      	; 0x16a <GPIO_CONFIG+0x38>
- 164:	42 30       	cpi	r20, 0x02	; 2
- 166:	79 f0       	breq	.+30     	; 0x186 <GPIO_CONFIG+0x54>
- 168:	08 95       	ret
- 16a:	81 81       	ldd	r24, Z+1	; 0x01
- 16c:	98 23       	and	r25, r24
- 16e:	91 83       	std	Z+1, r25	; 0x01
- 170:	82 81       	ldd	r24, Z+2	; 0x02
- 172:	28 2b       	or	r18, r24
- 174:	22 83       	std	Z+2, r18	; 0x02
- 176:	08 95       	ret
- 178:	81 81       	ldd	r24, Z+1	; 0x01
- 17a:	89 23       	and	r24, r25
- 17c:	81 83       	std	Z+1, r24	; 0x01
- 17e:	82 81       	ldd	r24, Z+2	; 0x02
- 180:	98 23       	and	r25, r24
- 182:	92 83       	std	Z+2, r25	; 0x02
- 184:	08 95       	ret
- 186:	81 81       	ldd	r24, Z+1	; 0x01
- 188:	28 2b       	or	r18, r24
- 18a:	21 83       	std	Z+1, r18	; 0x01
- 18c:	08 95       	ret
+ 298:	83 30       	cpi	r24, 0x03	; 3
+ 29a:	58 f5       	brcc	.+86     	; 0x2f2 <GPIO_CONFIG+0x5a>
+ 29c:	68 30       	cpi	r22, 0x08	; 8
+ 29e:	48 f5       	brcc	.+82     	; 0x2f2 <GPIO_CONFIG+0x5a>
+ 2a0:	70 e0       	ldi	r23, 0x00	; 0
+ 2a2:	fb 01       	movw	r30, r22
+ 2a4:	ec 5d       	subi	r30, 0xDC	; 220
+ 2a6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2a8:	20 81       	ld	r18, Z
+ 2aa:	fb 01       	movw	r30, r22
+ 2ac:	e4 5e       	subi	r30, 0xE4	; 228
+ 2ae:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2b0:	90 81       	ld	r25, Z
+ 2b2:	e8 2f       	mov	r30, r24
+ 2b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2b6:	ee 0f       	add	r30, r30
+ 2b8:	ff 1f       	adc	r31, r31
+ 2ba:	e0 50       	subi	r30, 0x00	; 0
+ 2bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2be:	01 90       	ld	r0, Z+
+ 2c0:	f0 81       	ld	r31, Z
+ 2c2:	e0 2d       	mov	r30, r0
+ 2c4:	41 30       	cpi	r20, 0x01	; 1
+ 2c6:	59 f0       	breq	.+22     	; 0x2de <GPIO_CONFIG+0x46>
+ 2c8:	18 f0       	brcs	.+6      	; 0x2d0 <GPIO_CONFIG+0x38>
+ 2ca:	42 30       	cpi	r20, 0x02	; 2
+ 2cc:	79 f0       	breq	.+30     	; 0x2ec <GPIO_CONFIG+0x54>
+ 2ce:	08 95       	ret
+ 2d0:	81 81       	ldd	r24, Z+1	; 0x01
+ 2d2:	98 23       	and	r25, r24
+ 2d4:	91 83       	std	Z+1, r25	; 0x01
+ 2d6:	82 81       	ldd	r24, Z+2	; 0x02
+ 2d8:	28 2b       	or	r18, r24
+ 2da:	22 83       	std	Z+2, r18	; 0x02
+ 2dc:	08 95       	ret
+ 2de:	81 81       	ldd	r24, Z+1	; 0x01
+ 2e0:	89 23       	and	r24, r25
+ 2e2:	81 83       	std	Z+1, r24	; 0x01
+ 2e4:	82 81       	ldd	r24, Z+2	; 0x02
+ 2e6:	98 23       	and	r25, r24
+ 2e8:	92 83       	std	Z+2, r25	; 0x02
+ 2ea:	08 95       	ret
+ 2ec:	81 81       	ldd	r24, Z+1	; 0x01
+ 2ee:	28 2b       	or	r18, r24
+ 2f0:	21 83       	std	Z+1, r18	; 0x01
+ 2f2:	08 95       	ret
 
-0000018e <GPIO_PIN_WRITE>:
- 18e:	e8 2f       	mov	r30, r24
- 190:	f0 e0       	ldi	r31, 0x00	; 0
- 192:	ee 0f       	add	r30, r30
- 194:	ff 1f       	adc	r31, r31
- 196:	e0 50       	subi	r30, 0x00	; 0
- 198:	ff 4f       	sbci	r31, 0xFF	; 255
- 19a:	a0 81       	ld	r26, Z
- 19c:	b1 81       	ldd	r27, Z+1	; 0x01
- 19e:	41 30       	cpi	r20, 0x01	; 1
- 1a0:	61 f4       	brne	.+24     	; 0x1ba <GPIO_PIN_WRITE+0x2c>
- 1a2:	12 96       	adiw	r26, 0x02	; 2
- 1a4:	9c 91       	ld	r25, X
- 1a6:	12 97       	sbiw	r26, 0x02	; 2
- 1a8:	e6 2f       	mov	r30, r22
- 1aa:	f0 e0       	ldi	r31, 0x00	; 0
- 1ac:	e2 5e       	subi	r30, 0xE2	; 226
- 1ae:	fe 4f       	sbci	r31, 0xFE	; 254
- 1b0:	80 81       	ld	r24, Z
- 1b2:	89 2b       	or	r24, r25
- 1b4:	12 96       	adiw	r26, 0x02	; 2
- 1b6:	8c 93       	st	X, r24
- 1b8:	08 95       	ret
- 1ba:	12 96       	adiw	r26, 0x02	; 2
- 1bc:	9c 91       	ld	r25, X
- 1be:	12 97       	sbiw	r26, 0x02	; 2
- 1c0:	e6 2f       	mov	r30, r22
- 1c2:	f0 e0       	ldi	r31, 0x00	; 0
- 1c4:	ea 5e       	subi	r30, 0xEA	; 234
- 1c6:	fe 4f       	sbci	r31, 0xFE	; 254
- 1c8:	80 81       	ld	r24, Z
- 1ca:	89 23       	and	r24, r25
- 1cc:	12 96       	adiw	r26, 0x02	; 2
- 1ce:	8c 93       	st	X, r24
- 1d0:	08 95       	ret
+000002f4 <GPIO_PIN_WRITE>:
+ 2f4:	e8 2f       	mov	r30, r24
+ 2f6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f8:	ee 0f       	add	r30, r30
+ 2fa:	ff 1f       	adc	r31, r31
+ 2fc:	e0 50       	subi	r30, 0x00	; 0
+ 2fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 300:	a0 81       	ld	r26, Z
+ 302:	b1 81       	ldd	r27, Z+1	; 0x01
+ 304:	41 30       	cpi	r20, 0x01	; 1
+ 306:	61 f4       	brne	.+24     	; 0x320 <GPIO_PIN_WRITE+0x2c>
+ 308:	12 96       	adiw	r26, 0x02	; 2
+ 30a:	9c 91       	ld	r25, X
+ 30c:	12 97       	sbiw	r26, 0x02	; 2
+ 30e:	e6 2f       	mov	r30, r22
+ 310:	f0 e0       	ldi	r31, 0x00	; 0
+ 312:	ec 5d       	subi	r30, 0xDC	; 220
+ 314:	fe 4f       	sbci	r31, 0xFE	; 254
+ 316:	80 81       	ld	r24, Z
+ 318:	89 2b       	or	r24, r25
+ 31a:	12 96       	adiw	r26, 0x02	; 2
+ 31c:	8c 93       	st	X, r24
+ 31e:	08 95       	ret
+ 320:	12 96       	adiw	r26, 0x02	; 2
+ 322:	9c 91       	ld	r25, X
+ 324:	12 97       	sbiw	r26, 0x02	; 2
+ 326:	e6 2f       	mov	r30, r22
+ 328:	f0 e0       	ldi	r31, 0x00	; 0
+ 32a:	e4 5e       	subi	r30, 0xE4	; 228
+ 32c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 32e:	80 81       	ld	r24, Z
+ 330:	89 23       	and	r24, r25
+ 332:	12 96       	adiw	r26, 0x02	; 2
+ 334:	8c 93       	st	X, r24
+ 336:	08 95       	ret
 
-000001d2 <GPIO_PIN_READ>:
+00000338 <GPIO_PIN_READ>:
 }
 
 unsigned char GPIO_PIN_READ(GPIO_PORT port, unsigned char pin){
 	volatile GPIO_DATA_TYPE *pt_data;
 	pt_data = GPIO_DATA_LIST[port];
- 1d2:	e8 2f       	mov	r30, r24
- 1d4:	f0 e0       	ldi	r31, 0x00	; 0
- 1d6:	ee 0f       	add	r30, r30
- 1d8:	ff 1f       	adc	r31, r31
- 1da:	e0 50       	subi	r30, 0x00	; 0
- 1dc:	ff 4f       	sbci	r31, 0xFF	; 255
- 1de:	01 90       	ld	r0, Z+
- 1e0:	f0 81       	ld	r31, Z
- 1e2:	e0 2d       	mov	r30, r0
+ 338:	e8 2f       	mov	r30, r24
+ 33a:	f0 e0       	ldi	r31, 0x00	; 0
+ 33c:	ee 0f       	add	r30, r30
+ 33e:	ff 1f       	adc	r31, r31
+ 340:	e0 50       	subi	r30, 0x00	; 0
+ 342:	ff 4f       	sbci	r31, 0xFF	; 255
+ 344:	01 90       	ld	r0, Z+
+ 346:	f0 81       	ld	r31, Z
+ 348:	e0 2d       	mov	r30, r0
 	// AND dos dados de PINx com o pin_set_mask
 	if(pt_data->DATA_IN_REG.byte & GPIO_PIN_SET_MASK[pin]){
- 1e4:	90 81       	ld	r25, Z
- 1e6:	e6 2f       	mov	r30, r22
- 1e8:	f0 e0       	ldi	r31, 0x00	; 0
- 1ea:	e2 5e       	subi	r30, 0xE2	; 226
- 1ec:	fe 4f       	sbci	r31, 0xFE	; 254
- 1ee:	80 81       	ld	r24, Z
- 1f0:	89 23       	and	r24, r25
- 1f2:	09 f0       	breq	.+2      	; 0x1f6 <GPIO_PIN_READ+0x24>
+ 34a:	90 81       	ld	r25, Z
+ 34c:	e6 2f       	mov	r30, r22
+ 34e:	f0 e0       	ldi	r31, 0x00	; 0
+ 350:	ec 5d       	subi	r30, 0xDC	; 220
+ 352:	fe 4f       	sbci	r31, 0xFE	; 254
+ 354:	80 81       	ld	r24, Z
+ 356:	89 23       	and	r24, r25
+ 358:	09 f0       	breq	.+2      	; 0x35c <GPIO_PIN_READ+0x24>
 		return SET;
- 1f4:	81 e0       	ldi	r24, 0x01	; 1
+ 35a:	81 e0       	ldi	r24, 0x01	; 1
 	}
 	return RESET;
- 1f6:	08 95       	ret
+ 35c:	08 95       	ret
 
-000001f8 <Hal__Initialize>:
+0000035e <Hal__Initialize>:
 /*
  * Call this function on initialize tasks before use any function of this module
  * This function will properly configure all pins before use it
  */
 void Hal__Initialize(void)
 {
- 1f8:	cf 93       	push	r28
+ 35e:	cf 93       	push	r28
 	LED_OUTPUT_TYPE led_index;
 	KEY_INPUT_TYPE key_index;
-		
+	ANALOG_INPUT_TYPE analog_index;
 	
 	// LEDs Configuration
 	for(led_index = 0; led_index < NUM_OF_LEDS; led_index++)
- 1fa:	c0 e0       	ldi	r28, 0x00	; 0
- 1fc:	0c c0       	rjmp	.+24     	; 0x216 <Hal__Initialize+0x1e>
+ 360:	c0 e0       	ldi	r28, 0x00	; 0
+ 362:	0c c0       	rjmp	.+24     	; 0x37c <Hal__Initialize+0x1e>
 	{
 		GPIO_CONFIG(LED_GPIO[led_index].port, LED_GPIO[led_index].pin, OUTPUT_DIGITAL);
- 1fe:	ec 2f       	mov	r30, r28
- 200:	f0 e0       	ldi	r31, 0x00	; 0
- 202:	ee 0f       	add	r30, r30
- 204:	ff 1f       	adc	r31, r31
- 206:	e2 5f       	subi	r30, 0xF2	; 242
- 208:	fe 4f       	sbci	r31, 0xFE	; 254
- 20a:	42 e0       	ldi	r20, 0x02	; 2
- 20c:	61 81       	ldd	r22, Z+1	; 0x01
- 20e:	80 81       	ld	r24, Z
- 210:	0e 94 99 00 	call	0x132	; 0x132 <GPIO_CONFIG>
+ 364:	ec 2f       	mov	r30, r28
+ 366:	f0 e0       	ldi	r31, 0x00	; 0
+ 368:	ee 0f       	add	r30, r30
+ 36a:	ff 1f       	adc	r31, r31
+ 36c:	e2 5f       	subi	r30, 0xF2	; 242
+ 36e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 370:	42 e0       	ldi	r20, 0x02	; 2
+ 372:	61 81       	ldd	r22, Z+1	; 0x01
+ 374:	80 81       	ld	r24, Z
+ 376:	0e 94 4c 01 	call	0x298	; 0x298 <GPIO_CONFIG>
 	LED_OUTPUT_TYPE led_index;
 	KEY_INPUT_TYPE key_index;
-		
+	ANALOG_INPUT_TYPE analog_index;
 	
 	// LEDs Configuration
 	for(led_index = 0; led_index < NUM_OF_LEDS; led_index++)
- 214:	cf 5f       	subi	r28, 0xFF	; 255
- 216:	c4 30       	cpi	r28, 0x04	; 4
- 218:	90 f3       	brcs	.-28     	; 0x1fe <Hal__Initialize+0x6>
- 21a:	c0 e0       	ldi	r28, 0x00	; 0
- 21c:	0c c0       	rjmp	.+24     	; 0x236 <Hal__Initialize+0x3e>
+ 37a:	cf 5f       	subi	r28, 0xFF	; 255
+ 37c:	c4 30       	cpi	r28, 0x04	; 4
+ 37e:	90 f3       	brcs	.-28     	; 0x364 <Hal__Initialize+0x6>
+ 380:	c0 e0       	ldi	r28, 0x00	; 0
+ 382:	0c c0       	rjmp	.+24     	; 0x39c <Hal__Initialize+0x3e>
 	
 	
 	// Keys Configuration
 	for(key_index = 0; key_index < NUM_OF_KEYS; key_index++)
 	{
 		GPIO_CONFIG(KEYS_GPIO[key_index].port, KEYS_GPIO[key_index].pin, INPUT_DIGITAL_PULLUP);
- 21e:	ec 2f       	mov	r30, r28
- 220:	f0 e0       	ldi	r31, 0x00	; 0
- 222:	ee 0f       	add	r30, r30
- 224:	ff 1f       	adc	r31, r31
- 226:	ea 5f       	subi	r30, 0xFA	; 250
- 228:	fe 4f       	sbci	r31, 0xFE	; 254
- 22a:	40 e0       	ldi	r20, 0x00	; 0
- 22c:	61 81       	ldd	r22, Z+1	; 0x01
- 22e:	80 81       	ld	r24, Z
- 230:	0e 94 99 00 	call	0x132	; 0x132 <GPIO_CONFIG>
+ 384:	ec 2f       	mov	r30, r28
+ 386:	f0 e0       	ldi	r31, 0x00	; 0
+ 388:	ee 0f       	add	r30, r30
+ 38a:	ff 1f       	adc	r31, r31
+ 38c:	ea 5f       	subi	r30, 0xFA	; 250
+ 38e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 390:	40 e0       	ldi	r20, 0x00	; 0
+ 392:	61 81       	ldd	r22, Z+1	; 0x01
+ 394:	80 81       	ld	r24, Z
+ 396:	0e 94 4c 01 	call	0x298	; 0x298 <GPIO_CONFIG>
 		GPIO_CONFIG(LED_GPIO[led_index].port, LED_GPIO[led_index].pin, OUTPUT_DIGITAL);
 	}
 	
 	
 	// Keys Configuration
 	for(key_index = 0; key_index < NUM_OF_KEYS; key_index++)
- 234:	cf 5f       	subi	r28, 0xFF	; 255
- 236:	c4 30       	cpi	r28, 0x04	; 4
- 238:	90 f3       	brcs	.-28     	; 0x21e <Hal__Initialize+0x26>
+ 39a:	cf 5f       	subi	r28, 0xFF	; 255
+ 39c:	c4 30       	cpi	r28, 0x04	; 4
+ 39e:	90 f3       	brcs	.-28     	; 0x384 <Hal__Initialize+0x26>
 	{
 		GPIO_CONFIG(KEYS_GPIO[key_index].port, KEYS_GPIO[key_index].pin, INPUT_DIGITAL_PULLUP);
 	}
 	
 	// Configuration of 7 segment's
 	GPIO_CONFIG(PORT_D,4,OUTPUT_DIGITAL);
- 23a:	42 e0       	ldi	r20, 0x02	; 2
- 23c:	64 e0       	ldi	r22, 0x04	; 4
- 23e:	82 e0       	ldi	r24, 0x02	; 2
- 240:	0e 94 99 00 	call	0x132	; 0x132 <GPIO_CONFIG>
+ 3a0:	42 e0       	ldi	r20, 0x02	; 2
+ 3a2:	64 e0       	ldi	r22, 0x04	; 4
+ 3a4:	82 e0       	ldi	r24, 0x02	; 2
+ 3a6:	0e 94 4c 01 	call	0x298	; 0x298 <GPIO_CONFIG>
 	GPIO_CONFIG(PORT_D,7,OUTPUT_DIGITAL);
- 244:	42 e0       	ldi	r20, 0x02	; 2
- 246:	67 e0       	ldi	r22, 0x07	; 7
- 248:	82 e0       	ldi	r24, 0x02	; 2
- 24a:	0e 94 99 00 	call	0x132	; 0x132 <GPIO_CONFIG>
+ 3aa:	42 e0       	ldi	r20, 0x02	; 2
+ 3ac:	67 e0       	ldi	r22, 0x07	; 7
+ 3ae:	82 e0       	ldi	r24, 0x02	; 2
+ 3b0:	0e 94 4c 01 	call	0x298	; 0x298 <GPIO_CONFIG>
 	GPIO_CONFIG(PORT_B,0,OUTPUT_DIGITAL);
- 24e:	42 e0       	ldi	r20, 0x02	; 2
- 250:	60 e0       	ldi	r22, 0x00	; 0
- 252:	80 e0       	ldi	r24, 0x00	; 0
- 254:	0e 94 99 00 	call	0x132	; 0x132 <GPIO_CONFIG>
+ 3b4:	42 e0       	ldi	r20, 0x02	; 2
+ 3b6:	60 e0       	ldi	r22, 0x00	; 0
+ 3b8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ba:	0e 94 4c 01 	call	0x298	; 0x298 <GPIO_CONFIG>
 	
+	// Analog Inputs Configuration - modo de conversão e resolução e inicializa os buffers de várias leitura do ADC
+	ADC__ConfigModes(HAL_ANALOG_MODE,HAL_CONVERSION_METHOD);
+ 3be:	61 e0       	ldi	r22, 0x01	; 1
+ 3c0:	81 e0       	ldi	r24, 0x01	; 1
+ 3c2:	0e 94 12 01 	call	0x224	; 0x224 <ADC__ConfigModes>
+	AD_Mux_State = 	MUX_INIT;
+ 3c6:	10 92 91 01 	sts	0x0191, r1	; 0x800191 <AD_Mux_State>
+	AD_Channel = POT_EXT;  // equivalente ao canal AD5 do arduino
+ 3ca:	85 e0       	ldi	r24, 0x05	; 5
+ 3cc:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <AD_Channel>
+
+	for(analog_index = 0; analog_index < NUM_OF_ANALOG_INPUT; analog_index++)
+ 3d0:	80 e0       	ldi	r24, 0x00	; 0
+ 3d2:	1a c0       	rjmp	.+52     	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+	{
+		if(AD_Enable_Table[analog_index] == ENABLED)
+ 3d4:	28 2f       	mov	r18, r24
+ 3d6:	30 e0       	ldi	r19, 0x00	; 0
+ 3d8:	f9 01       	movw	r30, r18
+ 3da:	ee 5c       	subi	r30, 0xCE	; 206
+ 3dc:	fe 4f       	sbci	r31, 0xFE	; 254
+ 3de:	90 81       	ld	r25, Z
+ 3e0:	91 30       	cpi	r25, 0x01	; 1
+ 3e2:	89 f4       	brne	.+34     	; 0x406 <__EEPROM_REGION_LENGTH__+0x6>
+		{
+			Hal_Analog_Inputs[analog_index] = 0;   // zera o buffer de valor de cada canal
+ 3e4:	a9 01       	movw	r20, r18
+ 3e6:	44 0f       	add	r20, r20
+ 3e8:	55 1f       	adc	r21, r21
+ 3ea:	fa 01       	movw	r30, r20
+ 3ec:	eb 57       	subi	r30, 0x7B	; 123
+ 3ee:	fe 4f       	sbci	r31, 0xFE	; 254
+ 3f0:	11 82       	std	Z+1, r1	; 0x01
+ 3f2:	10 82       	st	Z, r1
+			AD_Accumulator[analog_index] = 0;
+ 3f4:	fa 01       	movw	r30, r20
+ 3f6:	e7 56       	subi	r30, 0x67	; 103
+ 3f8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 3fa:	11 82       	std	Z+1, r1	; 0x01
+ 3fc:	10 82       	st	Z, r1
+			AD_Counter[analog_index] = 0;
+ 3fe:	f9 01       	movw	r30, r18
+ 400:	ee 56       	subi	r30, 0x6E	; 110
+ 402:	fe 4f       	sbci	r31, 0xFE	; 254
+ 404:	10 82       	st	Z, r1
+	// Analog Inputs Configuration - modo de conversão e resolução e inicializa os buffers de várias leitura do ADC
+	ADC__ConfigModes(HAL_ANALOG_MODE,HAL_CONVERSION_METHOD);
+	AD_Mux_State = 	MUX_INIT;
+	AD_Channel = POT_EXT;  // equivalente ao canal AD5 do arduino
+
+	for(analog_index = 0; analog_index < NUM_OF_ANALOG_INPUT; analog_index++)
+ 406:	8f 5f       	subi	r24, 0xFF	; 255
+ 408:	86 30       	cpi	r24, 0x06	; 6
+ 40a:	20 f3       	brcs	.-56     	; 0x3d4 <Hal__Initialize+0x76>
+			AD_Accumulator[analog_index] = 0;
+			AD_Counter[analog_index] = 0;
+		}
+	}
 	
 }
- 258:	cf 91       	pop	r28
- 25a:	08 95       	ret
+ 40c:	cf 91       	pop	r28
+ 40e:	08 95       	ret
 
-0000025c <Hal__SetLed>:
+00000410 <Hal__SetLed>:
  *  output: Respective LED
  *  value: ON/OFF
  */
 void Hal__SetLed(LED_OUTPUT_TYPE output,unsigned char value)
 {
 	Hal_Leds_Buffer[output] = LED_OFF;
- 25c:	90 e0       	ldi	r25, 0x00	; 0
- 25e:	fc 01       	movw	r30, r24
- 260:	e9 5b       	subi	r30, 0xB9	; 185
- 262:	fe 4f       	sbci	r31, 0xFE	; 254
- 264:	21 e0       	ldi	r18, 0x01	; 1
- 266:	20 83       	st	Z, r18
+ 410:	90 e0       	ldi	r25, 0x00	; 0
+ 412:	fc 01       	movw	r30, r24
+ 414:	e7 59       	subi	r30, 0x97	; 151
+ 416:	fe 4f       	sbci	r31, 0xFE	; 254
+ 418:	21 e0       	ldi	r18, 0x01	; 1
+ 41a:	20 83       	st	Z, r18
 	if (value == ACENDE_LED)
- 268:	61 11       	cpse	r22, r1
- 26a:	04 c0       	rjmp	.+8      	; 0x274 <Hal__SetLed+0x18>
+ 41c:	61 11       	cpse	r22, r1
+ 41e:	04 c0       	rjmp	.+8      	; 0x428 <Hal__SetLed+0x18>
 		Hal_Leds_Buffer[output] = LED_ON;
- 26c:	fc 01       	movw	r30, r24
- 26e:	e9 5b       	subi	r30, 0xB9	; 185
- 270:	fe 4f       	sbci	r31, 0xFE	; 254
- 272:	10 82       	st	Z, r1
- 274:	08 95       	ret
+ 420:	fc 01       	movw	r30, r24
+ 422:	e7 59       	subi	r30, 0x97	; 151
+ 424:	fe 4f       	sbci	r31, 0xFE	; 254
+ 426:	10 82       	st	Z, r1
+ 428:	08 95       	ret
 
-00000276 <Hal__SetAllLeds>:
+0000042a <Hal__SetAllLeds>:
  */
 void Hal__SetAllLeds(unsigned char value)
 {
 	LED_OUTPUT_TYPE index;
 
 	for(index = 0; index < NUM_OF_LEDS; index++)
- 276:	90 e0       	ldi	r25, 0x00	; 0
- 278:	0e c0       	rjmp	.+28     	; 0x296 <Hal__SetAllLeds+0x20>
+ 42a:	90 e0       	ldi	r25, 0x00	; 0
+ 42c:	0e c0       	rjmp	.+28     	; 0x44a <Hal__SetAllLeds+0x20>
 	{
 		Hal_Leds_Buffer[index] = LED_OFF;
- 27a:	29 2f       	mov	r18, r25
- 27c:	30 e0       	ldi	r19, 0x00	; 0
- 27e:	f9 01       	movw	r30, r18
- 280:	e9 5b       	subi	r30, 0xB9	; 185
- 282:	fe 4f       	sbci	r31, 0xFE	; 254
- 284:	41 e0       	ldi	r20, 0x01	; 1
- 286:	40 83       	st	Z, r20
+ 42e:	29 2f       	mov	r18, r25
+ 430:	30 e0       	ldi	r19, 0x00	; 0
+ 432:	f9 01       	movw	r30, r18
+ 434:	e7 59       	subi	r30, 0x97	; 151
+ 436:	fe 4f       	sbci	r31, 0xFE	; 254
+ 438:	41 e0       	ldi	r20, 0x01	; 1
+ 43a:	40 83       	st	Z, r20
 		if (value == ACENDE_LED)
- 288:	81 11       	cpse	r24, r1
- 28a:	04 c0       	rjmp	.+8      	; 0x294 <Hal__SetAllLeds+0x1e>
+ 43c:	81 11       	cpse	r24, r1
+ 43e:	04 c0       	rjmp	.+8      	; 0x448 <Hal__SetAllLeds+0x1e>
 		Hal_Leds_Buffer[index] = LED_ON;
- 28c:	f9 01       	movw	r30, r18
- 28e:	e9 5b       	subi	r30, 0xB9	; 185
- 290:	fe 4f       	sbci	r31, 0xFE	; 254
- 292:	10 82       	st	Z, r1
+ 440:	f9 01       	movw	r30, r18
+ 442:	e7 59       	subi	r30, 0x97	; 151
+ 444:	fe 4f       	sbci	r31, 0xFE	; 254
+ 446:	10 82       	st	Z, r1
  */
 void Hal__SetAllLeds(unsigned char value)
 {
 	LED_OUTPUT_TYPE index;
 
 	for(index = 0; index < NUM_OF_LEDS; index++)
- 294:	9f 5f       	subi	r25, 0xFF	; 255
- 296:	94 30       	cpi	r25, 0x04	; 4
- 298:	80 f3       	brcs	.-32     	; 0x27a <Hal__SetAllLeds+0x4>
+ 448:	9f 5f       	subi	r25, 0xFF	; 255
+ 44a:	94 30       	cpi	r25, 0x04	; 4
+ 44c:	80 f3       	brcs	.-32     	; 0x42e <Hal__SetAllLeds+0x4>
 	{
 		Hal_Leds_Buffer[index] = LED_OFF;
 		if (value == ACENDE_LED)
 		Hal_Leds_Buffer[index] = LED_ON;
 	}
 }
- 29a:	08 95       	ret
+ 44e:	08 95       	ret
 
-0000029c <Hal__ReadKey>:
+00000450 <Hal__ReadKey>:
  *  Use this function to read the status of a specific key
  *  key: desired key to be read
  *  return: TRUE if key is pressed otherwise FALSE
  */
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key)
 {
- 29c:	28 2f       	mov	r18, r24
+ 450:	28 2f       	mov	r18, r24
 	if (key < NUM_OF_KEYS)
- 29e:	84 30       	cpi	r24, 0x04	; 4
- 2a0:	80 f4       	brcc	.+32     	; 0x2c2 <Hal__ReadKey+0x26>
+ 452:	84 30       	cpi	r24, 0x04	; 4
+ 454:	80 f4       	brcc	.+32     	; 0x476 <Hal__ReadKey+0x26>
 	{
 		if (BIT_TEST(Hal_Keys_Buffer, key) > 0)
- 2a2:	80 91 57 01 	lds	r24, 0x0157	; 0x800157 <Hal_Keys_Buffer>
- 2a6:	90 e0       	ldi	r25, 0x00	; 0
- 2a8:	a0 e0       	ldi	r26, 0x00	; 0
- 2aa:	b0 e0       	ldi	r27, 0x00	; 0
- 2ac:	04 c0       	rjmp	.+8      	; 0x2b6 <Hal__ReadKey+0x1a>
- 2ae:	b6 95       	lsr	r27
- 2b0:	a7 95       	ror	r26
- 2b2:	97 95       	ror	r25
- 2b4:	87 95       	ror	r24
- 2b6:	2a 95       	dec	r18
- 2b8:	d2 f7       	brpl	.-12     	; 0x2ae <Hal__ReadKey+0x12>
- 2ba:	80 fd       	sbrc	r24, 0
- 2bc:	04 c0       	rjmp	.+8      	; 0x2c6 <Hal__ReadKey+0x2a>
+ 456:	80 91 98 01 	lds	r24, 0x0198	; 0x800198 <Hal_Keys_Buffer>
+ 45a:	90 e0       	ldi	r25, 0x00	; 0
+ 45c:	a0 e0       	ldi	r26, 0x00	; 0
+ 45e:	b0 e0       	ldi	r27, 0x00	; 0
+ 460:	04 c0       	rjmp	.+8      	; 0x46a <Hal__ReadKey+0x1a>
+ 462:	b6 95       	lsr	r27
+ 464:	a7 95       	ror	r26
+ 466:	97 95       	ror	r25
+ 468:	87 95       	ror	r24
+ 46a:	2a 95       	dec	r18
+ 46c:	d2 f7       	brpl	.-12     	; 0x462 <Hal__ReadKey+0x12>
+ 46e:	80 fd       	sbrc	r24, 0
+ 470:	04 c0       	rjmp	.+8      	; 0x47a <Hal__ReadKey+0x2a>
 		return (TRUE);
 	}
 	return (FALSE);
- 2be:	80 e0       	ldi	r24, 0x00	; 0
- 2c0:	08 95       	ret
- 2c2:	80 e0       	ldi	r24, 0x00	; 0
- 2c4:	08 95       	ret
+ 472:	80 e0       	ldi	r24, 0x00	; 0
+ 474:	08 95       	ret
+ 476:	80 e0       	ldi	r24, 0x00	; 0
+ 478:	08 95       	ret
 unsigned char Hal__ReadKey(KEY_INPUT_TYPE key)
 {
 	if (key < NUM_OF_KEYS)
 	{
 		if (BIT_TEST(Hal_Keys_Buffer, key) > 0)
 		return (TRUE);
- 2c6:	81 e0       	ldi	r24, 0x01	; 1
+ 47a:	81 e0       	ldi	r24, 0x01	; 1
 	}
 	return (FALSE);
 }
- 2c8:	08 95       	ret
+ 47c:	08 95       	ret
 
-000002ca <Hal__ReadAllKey>:
+0000047e <Hal__ReadAllKey>:
  *  Use this function to read the status of all keys
  *  *  return: retorno o ponteiro da estrutura com os vetores das chaves*/
 
 
 unsigned char Hal__ReadAllKey(void)
 {
- 2ca:	0f 93       	push	r16
- 2cc:	1f 93       	push	r17
- 2ce:	cf 93       	push	r28
+ 47e:	0f 93       	push	r16
+ 480:	1f 93       	push	r17
+ 482:	cf 93       	push	r28
 	KEY_INPUT_TYPE index;
 	for(index = 0; index < NUM_OF_KEYS; index++)
- 2d0:	c0 e0       	ldi	r28, 0x00	; 0
- 2d2:	0c c0       	rjmp	.+24     	; 0x2ec <Hal__ReadAllKey+0x22>
+ 484:	c0 e0       	ldi	r28, 0x00	; 0
+ 486:	0c c0       	rjmp	.+24     	; 0x4a0 <Hal__ReadAllKey+0x22>
 	{
 		tab->key[index]=Hal__ReadKey(index);
- 2d4:	0c 2f       	mov	r16, r28
- 2d6:	10 e0       	ldi	r17, 0x00	; 0
- 2d8:	8c 2f       	mov	r24, r28
- 2da:	0e 94 4e 01 	call	0x29c	; 0x29c <Hal__ReadKey>
- 2de:	f8 01       	movw	r30, r16
- 2e0:	e5 5b       	subi	r30, 0xB5	; 181
- 2e2:	fe 4f       	sbci	r31, 0xFE	; 254
- 2e4:	80 83       	st	Z, r24
+ 488:	0c 2f       	mov	r16, r28
+ 48a:	10 e0       	ldi	r17, 0x00	; 0
+ 48c:	8c 2f       	mov	r24, r28
+ 48e:	0e 94 28 02 	call	0x450	; 0x450 <Hal__ReadKey>
+ 492:	f8 01       	movw	r30, r16
+ 494:	e3 59       	subi	r30, 0x93	; 147
+ 496:	fe 4f       	sbci	r31, 0xFE	; 254
+ 498:	80 83       	st	Z, r24
 		
 		if (tab->key[index] == TRUE){ // A chave x foi apertada
- 2e6:	81 30       	cpi	r24, 0x01	; 1
- 2e8:	29 f0       	breq	.+10     	; 0x2f4 <Hal__ReadAllKey+0x2a>
+ 49a:	81 30       	cpi	r24, 0x01	; 1
+ 49c:	29 f0       	breq	.+10     	; 0x4a8 <Hal__ReadAllKey+0x2a>
 
 
 unsigned char Hal__ReadAllKey(void)
 {
 	KEY_INPUT_TYPE index;
 	for(index = 0; index < NUM_OF_KEYS; index++)
- 2ea:	cf 5f       	subi	r28, 0xFF	; 255
- 2ec:	c4 30       	cpi	r28, 0x04	; 4
- 2ee:	90 f3       	brcs	.-28     	; 0x2d4 <Hal__ReadAllKey+0xa>
+ 49e:	cf 5f       	subi	r28, 0xFF	; 255
+ 4a0:	c4 30       	cpi	r28, 0x04	; 4
+ 4a2:	90 f3       	brcs	.-28     	; 0x488 <Hal__ReadAllKey+0xa>
 		
 		if (tab->key[index] == TRUE){ // A chave x foi apertada
 			return index;
 		}
 	}
 	return NUM_OF_KEYS; // Nenhuma chave apertada
- 2f0:	84 e0       	ldi	r24, 0x04	; 4
- 2f2:	01 c0       	rjmp	.+2      	; 0x2f6 <Hal__ReadAllKey+0x2c>
+ 4a4:	84 e0       	ldi	r24, 0x04	; 4
+ 4a6:	01 c0       	rjmp	.+2      	; 0x4aa <Hal__ReadAllKey+0x2c>
 	for(index = 0; index < NUM_OF_KEYS; index++)
 	{
 		tab->key[index]=Hal__ReadKey(index);
 		
 		if (tab->key[index] == TRUE){ // A chave x foi apertada
 			return index;
- 2f4:	8c 2f       	mov	r24, r28
+ 4a8:	8c 2f       	mov	r24, r28
 		}
 	}
 	return NUM_OF_KEYS; // Nenhuma chave apertada
 	
 }
- 2f6:	cf 91       	pop	r28
- 2f8:	1f 91       	pop	r17
- 2fa:	0f 91       	pop	r16
- 2fc:	08 95       	ret
+ 4aa:	cf 91       	pop	r28
+ 4ac:	1f 91       	pop	r17
+ 4ae:	0f 91       	pop	r16
+ 4b0:	08 95       	ret
 
-000002fe <Hal__WriteValtoSegment>:
+000004b2 <Hal__WriteValtoSegment>:
 
 
 
 void Hal__WriteValtoSegment(const char* ptr_display_values){	
 	SevenSeg_WriteValueToSegment(ptr_display_values);
- 2fe:	0e 94 ec 01 	call	0x3d8	; 0x3d8 <SevenSeg_WriteValueToSegment>
- 302:	08 95       	ret
+ 4b2:	0e 94 47 03 	call	0x68e	; 0x68e <SevenSeg_WriteValueToSegment>
+ 4b6:	08 95       	ret
 
-00000304 <LEDsUpdate>:
-//---------------------------------------------------------------------------------------------------------------------
+000004b8 <Hal_GetAnalogInput>:
+ *  Use this function to read a value ADC in the selected channel
+ *  
+ */
+unsigned short int Hal_GetAnalogInput(ANALOG_INPUT_TYPE input)
+{
+	if(input < NUM_OF_ANALOG_INPUT)
+ 4b8:	86 30       	cpi	r24, 0x06	; 6
+ 4ba:	48 f4       	brcc	.+18     	; 0x4ce <Hal_GetAnalogInput+0x16>
+		return Hal_Analog_Inputs[input];  // retorna o valor no buffer HAL_AnalogInputs do canal solicitado
+ 4bc:	e8 2f       	mov	r30, r24
+ 4be:	f0 e0       	ldi	r31, 0x00	; 0
+ 4c0:	ee 0f       	add	r30, r30
+ 4c2:	ff 1f       	adc	r31, r31
+ 4c4:	eb 57       	subi	r30, 0x7B	; 123
+ 4c6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4c8:	80 81       	ld	r24, Z
+ 4ca:	91 81       	ldd	r25, Z+1	; 0x01
+ 4cc:	08 95       	ret
+}
+ 4ce:	08 95       	ret
+
+000004d0 <LEDsUpdate>:
+
 /**
  *  This local function update the LEDs status
  */
 void LEDsUpdate(void)
 {
- 304:	cf 93       	push	r28
+ 4d0:	cf 93       	push	r28
 	unsigned char index;
 	unsigned char value;
 	
 	//LEDs Update
 	for(index = 0; index < NUM_OF_LEDS; index++){
- 306:	c0 e0       	ldi	r28, 0x00	; 0
- 308:	1b c0       	rjmp	.+54     	; 0x340 <LEDsUpdate+0x3c>
+ 4d2:	c0 e0       	ldi	r28, 0x00	; 0
+ 4d4:	1b c0       	rjmp	.+54     	; 0x50c <LEDsUpdate+0x3c>
 		if(Leds_Enable_Table[index] == ENABLED){
- 30a:	8c 2f       	mov	r24, r28
- 30c:	90 e0       	ldi	r25, 0x00	; 0
- 30e:	fc 01       	movw	r30, r24
- 310:	e6 5d       	subi	r30, 0xD6	; 214
- 312:	fe 4f       	sbci	r31, 0xFE	; 254
- 314:	20 81       	ld	r18, Z
- 316:	21 30       	cpi	r18, 0x01	; 1
- 318:	91 f4       	brne	.+36     	; 0x33e <LEDsUpdate+0x3a>
+ 4d6:	8c 2f       	mov	r24, r28
+ 4d8:	90 e0       	ldi	r25, 0x00	; 0
+ 4da:	fc 01       	movw	r30, r24
+ 4dc:	e4 5c       	subi	r30, 0xC4	; 196
+ 4de:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4e0:	20 81       	ld	r18, Z
+ 4e2:	21 30       	cpi	r18, 0x01	; 1
+ 4e4:	91 f4       	brne	.+36     	; 0x50a <LEDsUpdate+0x3a>
 			value = LED_ON;
 			if(Hal_Leds_Buffer[index] > 0){  
- 31a:	fc 01       	movw	r30, r24
- 31c:	e9 5b       	subi	r30, 0xB9	; 185
- 31e:	fe 4f       	sbci	r31, 0xFE	; 254
- 320:	20 81       	ld	r18, Z
- 322:	21 11       	cpse	r18, r1
- 324:	02 c0       	rjmp	.+4      	; 0x32a <LEDsUpdate+0x26>
+ 4e6:	fc 01       	movw	r30, r24
+ 4e8:	e7 59       	subi	r30, 0x97	; 151
+ 4ea:	fe 4f       	sbci	r31, 0xFE	; 254
+ 4ec:	20 81       	ld	r18, Z
+ 4ee:	21 11       	cpse	r18, r1
+ 4f0:	02 c0       	rjmp	.+4      	; 0x4f6 <LEDsUpdate+0x26>
 	unsigned char value;
 	
 	//LEDs Update
 	for(index = 0; index < NUM_OF_LEDS; index++){
 		if(Leds_Enable_Table[index] == ENABLED){
 			value = LED_ON;
- 326:	40 e0       	ldi	r20, 0x00	; 0
- 328:	01 c0       	rjmp	.+2      	; 0x32c <LEDsUpdate+0x28>
+ 4f2:	40 e0       	ldi	r20, 0x00	; 0
+ 4f4:	01 c0       	rjmp	.+2      	; 0x4f8 <LEDsUpdate+0x28>
 			if(Hal_Leds_Buffer[index] > 0){  
 					value = LED_OFF;
- 32a:	41 e0       	ldi	r20, 0x01	; 1
+ 4f6:	41 e0       	ldi	r20, 0x01	; 1
 			}
 			GPIO_PIN_WRITE(LED_GPIO[index].port, LED_GPIO[index].pin, value);
- 32c:	88 0f       	add	r24, r24
- 32e:	99 1f       	adc	r25, r25
- 330:	fc 01       	movw	r30, r24
- 332:	e2 5f       	subi	r30, 0xF2	; 242
- 334:	fe 4f       	sbci	r31, 0xFE	; 254
- 336:	61 81       	ldd	r22, Z+1	; 0x01
- 338:	80 81       	ld	r24, Z
- 33a:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 4f8:	88 0f       	add	r24, r24
+ 4fa:	99 1f       	adc	r25, r25
+ 4fc:	fc 01       	movw	r30, r24
+ 4fe:	e2 5f       	subi	r30, 0xF2	; 242
+ 500:	fe 4f       	sbci	r31, 0xFE	; 254
+ 502:	61 81       	ldd	r22, Z+1	; 0x01
+ 504:	80 81       	ld	r24, Z
+ 506:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 {
 	unsigned char index;
 	unsigned char value;
 	
 	//LEDs Update
 	for(index = 0; index < NUM_OF_LEDS; index++){
- 33e:	cf 5f       	subi	r28, 0xFF	; 255
- 340:	c4 30       	cpi	r28, 0x04	; 4
- 342:	18 f3       	brcs	.-58     	; 0x30a <LEDsUpdate+0x6>
+ 50a:	cf 5f       	subi	r28, 0xFF	; 255
+ 50c:	c4 30       	cpi	r28, 0x04	; 4
+ 50e:	18 f3       	brcs	.-58     	; 0x4d6 <LEDsUpdate+0x6>
 					value = LED_OFF;
 			}
 			GPIO_PIN_WRITE(LED_GPIO[index].port, LED_GPIO[index].pin, value);
 		}
 	}
 }
- 344:	cf 91       	pop	r28
- 346:	08 95       	ret
+ 510:	cf 91       	pop	r28
+ 512:	08 95       	ret
 
-00000348 <KeysRead>:
+00000514 <KeysRead>:
 /**
  *  This local function reads the keys input and update the Hal_Keys_Buffer
  */
 
 void KeysRead(void)
 {
- 348:	0f 93       	push	r16
- 34a:	1f 93       	push	r17
- 34c:	cf 93       	push	r28
+ 514:	0f 93       	push	r16
+ 516:	1f 93       	push	r17
+ 518:	cf 93       	push	r28
 	//Keys read
 	KEY_INPUT_TYPE key_index;
 	unsigned char value;
 	
 	for(key_index = KEY_0; key_index < NUM_OF_KEYS; key_index++){
- 34e:	c0 e0       	ldi	r28, 0x00	; 0
- 350:	38 c0       	rjmp	.+112    	; 0x3c2 <KeysRead+0x7a>
+ 51a:	c0 e0       	ldi	r28, 0x00	; 0
+ 51c:	38 c0       	rjmp	.+112    	; 0x58e <KeysRead+0x7a>
 		if(Keys_Enable_Table[key_index] == ENABLED){
- 352:	0c 2f       	mov	r16, r28
- 354:	10 e0       	ldi	r17, 0x00	; 0
- 356:	f8 01       	movw	r30, r16
- 358:	ea 5d       	subi	r30, 0xDA	; 218
- 35a:	fe 4f       	sbci	r31, 0xFE	; 254
- 35c:	80 81       	ld	r24, Z
- 35e:	81 30       	cpi	r24, 0x01	; 1
- 360:	79 f5       	brne	.+94     	; 0x3c0 <KeysRead+0x78>
+ 51e:	0c 2f       	mov	r16, r28
+ 520:	10 e0       	ldi	r17, 0x00	; 0
+ 522:	f8 01       	movw	r30, r16
+ 524:	e8 5c       	subi	r30, 0xC8	; 200
+ 526:	fe 4f       	sbci	r31, 0xFE	; 254
+ 528:	80 81       	ld	r24, Z
+ 52a:	81 30       	cpi	r24, 0x01	; 1
+ 52c:	79 f5       	brne	.+94     	; 0x58c <KeysRead+0x78>
 			value = GPIO_PIN_READ(KEYS_GPIO[key_index].port, KEYS_GPIO[key_index].pin);
- 362:	f8 01       	movw	r30, r16
- 364:	ee 0f       	add	r30, r30
- 366:	ff 1f       	adc	r31, r31
- 368:	ea 5f       	subi	r30, 0xFA	; 250
- 36a:	fe 4f       	sbci	r31, 0xFE	; 254
- 36c:	61 81       	ldd	r22, Z+1	; 0x01
- 36e:	80 81       	ld	r24, Z
- 370:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <GPIO_PIN_READ>
+ 52e:	f8 01       	movw	r30, r16
+ 530:	ee 0f       	add	r30, r30
+ 532:	ff 1f       	adc	r31, r31
+ 534:	ea 5f       	subi	r30, 0xFA	; 250
+ 536:	fe 4f       	sbci	r31, 0xFE	; 254
+ 538:	61 81       	ldd	r22, Z+1	; 0x01
+ 53a:	80 81       	ld	r24, Z
+ 53c:	0e 94 9c 01 	call	0x338	; 0x338 <GPIO_PIN_READ>
 			if(value == KEY_PRESSED){
- 374:	81 11       	cpse	r24, r1
- 376:	12 c0       	rjmp	.+36     	; 0x39c <KeysRead+0x54>
+ 540:	81 11       	cpse	r24, r1
+ 542:	12 c0       	rjmp	.+36     	; 0x568 <KeysRead+0x54>
 				BIT_SET(Hal_Keys_Buffer,key_index);
- 378:	81 e0       	ldi	r24, 0x01	; 1
- 37a:	90 e0       	ldi	r25, 0x00	; 0
- 37c:	a0 e0       	ldi	r26, 0x00	; 0
- 37e:	b0 e0       	ldi	r27, 0x00	; 0
- 380:	0c 2e       	mov	r0, r28
- 382:	04 c0       	rjmp	.+8      	; 0x38c <KeysRead+0x44>
- 384:	88 0f       	add	r24, r24
- 386:	99 1f       	adc	r25, r25
- 388:	aa 1f       	adc	r26, r26
- 38a:	bb 1f       	adc	r27, r27
- 38c:	0a 94       	dec	r0
- 38e:	d2 f7       	brpl	.-12     	; 0x384 <KeysRead+0x3c>
- 390:	20 91 57 01 	lds	r18, 0x0157	; 0x800157 <Hal_Keys_Buffer>
- 394:	82 2b       	or	r24, r18
- 396:	80 93 57 01 	sts	0x0157, r24	; 0x800157 <Hal_Keys_Buffer>
- 39a:	12 c0       	rjmp	.+36     	; 0x3c0 <KeysRead+0x78>
+ 544:	81 e0       	ldi	r24, 0x01	; 1
+ 546:	90 e0       	ldi	r25, 0x00	; 0
+ 548:	a0 e0       	ldi	r26, 0x00	; 0
+ 54a:	b0 e0       	ldi	r27, 0x00	; 0
+ 54c:	0c 2e       	mov	r0, r28
+ 54e:	04 c0       	rjmp	.+8      	; 0x558 <KeysRead+0x44>
+ 550:	88 0f       	add	r24, r24
+ 552:	99 1f       	adc	r25, r25
+ 554:	aa 1f       	adc	r26, r26
+ 556:	bb 1f       	adc	r27, r27
+ 558:	0a 94       	dec	r0
+ 55a:	d2 f7       	brpl	.-12     	; 0x550 <KeysRead+0x3c>
+ 55c:	20 91 98 01 	lds	r18, 0x0198	; 0x800198 <Hal_Keys_Buffer>
+ 560:	82 2b       	or	r24, r18
+ 562:	80 93 98 01 	sts	0x0198, r24	; 0x800198 <Hal_Keys_Buffer>
+ 566:	12 c0       	rjmp	.+36     	; 0x58c <KeysRead+0x78>
 			}
 			else{
 				BIT_CLR(Hal_Keys_Buffer,key_index);
- 39c:	81 e0       	ldi	r24, 0x01	; 1
- 39e:	90 e0       	ldi	r25, 0x00	; 0
- 3a0:	a0 e0       	ldi	r26, 0x00	; 0
- 3a2:	b0 e0       	ldi	r27, 0x00	; 0
- 3a4:	0c 2e       	mov	r0, r28
- 3a6:	04 c0       	rjmp	.+8      	; 0x3b0 <KeysRead+0x68>
- 3a8:	88 0f       	add	r24, r24
- 3aa:	99 1f       	adc	r25, r25
- 3ac:	aa 1f       	adc	r26, r26
- 3ae:	bb 1f       	adc	r27, r27
- 3b0:	0a 94       	dec	r0
- 3b2:	d2 f7       	brpl	.-12     	; 0x3a8 <KeysRead+0x60>
- 3b4:	80 95       	com	r24
- 3b6:	90 91 57 01 	lds	r25, 0x0157	; 0x800157 <Hal_Keys_Buffer>
- 3ba:	89 23       	and	r24, r25
- 3bc:	80 93 57 01 	sts	0x0157, r24	; 0x800157 <Hal_Keys_Buffer>
+ 568:	81 e0       	ldi	r24, 0x01	; 1
+ 56a:	90 e0       	ldi	r25, 0x00	; 0
+ 56c:	a0 e0       	ldi	r26, 0x00	; 0
+ 56e:	b0 e0       	ldi	r27, 0x00	; 0
+ 570:	0c 2e       	mov	r0, r28
+ 572:	04 c0       	rjmp	.+8      	; 0x57c <KeysRead+0x68>
+ 574:	88 0f       	add	r24, r24
+ 576:	99 1f       	adc	r25, r25
+ 578:	aa 1f       	adc	r26, r26
+ 57a:	bb 1f       	adc	r27, r27
+ 57c:	0a 94       	dec	r0
+ 57e:	d2 f7       	brpl	.-12     	; 0x574 <KeysRead+0x60>
+ 580:	80 95       	com	r24
+ 582:	90 91 98 01 	lds	r25, 0x0198	; 0x800198 <Hal_Keys_Buffer>
+ 586:	89 23       	and	r24, r25
+ 588:	80 93 98 01 	sts	0x0198, r24	; 0x800198 <Hal_Keys_Buffer>
 {
 	//Keys read
 	KEY_INPUT_TYPE key_index;
 	unsigned char value;
 	
 	for(key_index = KEY_0; key_index < NUM_OF_KEYS; key_index++){
- 3c0:	cf 5f       	subi	r28, 0xFF	; 255
- 3c2:	c4 30       	cpi	r28, 0x04	; 4
- 3c4:	30 f2       	brcs	.-116    	; 0x352 <KeysRead+0xa>
+ 58c:	cf 5f       	subi	r28, 0xFF	; 255
+ 58e:	c4 30       	cpi	r28, 0x04	; 4
+ 590:	30 f2       	brcs	.-116    	; 0x51e <KeysRead+0xa>
 			}
 		}
 	}
 	
 
 }
- 3c6:	cf 91       	pop	r28
- 3c8:	1f 91       	pop	r17
- 3ca:	0f 91       	pop	r16
- 3cc:	08 95       	ret
+ 592:	cf 91       	pop	r28
+ 594:	1f 91       	pop	r17
+ 596:	0f 91       	pop	r16
+ 598:	08 95       	ret
 
-000003ce <Hal__FastHandler>:
-	
-}
-
+0000059a <Hal__FastHandler>:
+ *  This function shall run in background in the main loop 
+ *  Call rate: 1ms, 5ms, 10ms, ...PARA ADC
+ */
 void Hal__FastHandler(void)
 {
 	LEDsUpdate();   // update the LEDs status
- 3ce:	0e 94 82 01 	call	0x304	; 0x304 <LEDsUpdate>
+ 59a:	0e 94 68 02 	call	0x4d0	; 0x4d0 <LEDsUpdate>
 	KeysRead();     // reads the keys and update the Hal_Keys_Buffer
- 3d2:	0e 94 a4 01 	call	0x348	; 0x348 <KeysRead>
- 3d6:	08 95       	ret
+ 59e:	0e 94 8a 02 	call	0x514	; 0x514 <KeysRead>
+ 5a2:	08 95       	ret
 
-000003d8 <SevenSeg_WriteValueToSegment>:
+000005a4 <ADProcess>:
+ *  This local function reads the analog input and update the buffer Hal_Analog_inputs[]
+    ROTINA ONDE SÃO FEITAS AS VÁRIAS LEITURAS DE AMOSTRAGEM (NUM_AD_SAMPLES) E DEPOIS TIRADO A MÉDIA DOS  VALORES
+****/
+
+void ADProcess(void)
+{
+ 5a4:	cf 93       	push	r28
+ 5a6:	df 93       	push	r29
+	switch (AD_Mux_State)
+ 5a8:	80 91 91 01 	lds	r24, 0x0191	; 0x800191 <AD_Mux_State>
+ 5ac:	81 30       	cpi	r24, 0x01	; 1
+ 5ae:	19 f0       	breq	.+6      	; 0x5b6 <ADProcess+0x12>
+ 5b0:	83 30       	cpi	r24, 0x03	; 3
+ 5b2:	31 f0       	breq	.+12     	; 0x5c0 <ADProcess+0x1c>
+ 5b4:	5c c0       	rjmp	.+184    	; 0x66e <ADProcess+0xca>
+	  {
+	  case MUX_INIT:
+		break;
+	  case MUX_AD_CONFIG:
+		ADC__ConfigModes(MODE_10BITS,AD_SINGLE_CONVERSION);
+ 5b6:	60 e0       	ldi	r22, 0x00	; 0
+ 5b8:	81 e0       	ldi	r24, 0x01	; 1
+ 5ba:	0e 94 12 01 	call	0x224	; 0x224 <ADC__ConfigModes>
+		break;
+ 5be:	57 c0       	rjmp	.+174    	; 0x66e <ADProcess+0xca>
+	  case MUX_DUMMY_STATE_1: //=> This state is placed in order to assure the raising time for ADC reading
+		break;
+	  case MUX_AD_READ:
+		  if(AD_Enable_Table[AD_Channel] == ENABLED)
+ 5c0:	c0 91 68 01 	lds	r28, 0x0168	; 0x800168 <AD_Channel>
+ 5c4:	d0 e0       	ldi	r29, 0x00	; 0
+ 5c6:	fe 01       	movw	r30, r28
+ 5c8:	ee 5c       	subi	r30, 0xCE	; 206
+ 5ca:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5cc:	80 81       	ld	r24, Z
+ 5ce:	81 30       	cpi	r24, 0x01	; 1
+ 5d0:	09 f0       	breq	.+2      	; 0x5d4 <ADProcess+0x30>
+ 5d2:	44 c0       	rjmp	.+136    	; 0x65c <ADProcess+0xb8>
+			 {
+			 if(AD_Counter[AD_Channel] < NUM_AD_SAMPLES)
+ 5d4:	fe 01       	movw	r30, r28
+ 5d6:	ee 56       	subi	r30, 0x6E	; 110
+ 5d8:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5da:	80 81       	ld	r24, Z
+ 5dc:	88 30       	cpi	r24, 0x08	; 8
+ 5de:	30 f5       	brcc	.+76     	; 0x62c <ADProcess+0x88>
+				 {
+				 AD_Sample[AD_Channel] = ADC__GetValue(AD_Channel_Table[AD_Channel]);
+ 5e0:	fe 01       	movw	r30, r28
+ 5e2:	e4 5d       	subi	r30, 0xD4	; 212
+ 5e4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 5e6:	80 81       	ld	r24, Z
+ 5e8:	0e 94 3e 01 	call	0x27c	; 0x27c <ADC__GetValue>
+ 5ec:	cc 0f       	add	r28, r28
+ 5ee:	dd 1f       	adc	r29, r29
+ 5f0:	c7 58       	subi	r28, 0x87	; 135
+ 5f2:	de 4f       	sbci	r29, 0xFE	; 254
+ 5f4:	99 83       	std	Y+1, r25	; 0x01
+ 5f6:	88 83       	st	Y, r24
+				 AD_Accumulator[AD_Channel] += AD_Sample[AD_Channel];
+ 5f8:	e0 91 68 01 	lds	r30, 0x0168	; 0x800168 <AD_Channel>
+ 5fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5fe:	df 01       	movw	r26, r30
+ 600:	aa 0f       	add	r26, r26
+ 602:	bb 1f       	adc	r27, r27
+ 604:	ed 01       	movw	r28, r26
+ 606:	c7 58       	subi	r28, 0x87	; 135
+ 608:	de 4f       	sbci	r29, 0xFE	; 254
+ 60a:	88 81       	ld	r24, Y
+ 60c:	99 81       	ldd	r25, Y+1	; 0x01
+ 60e:	a7 56       	subi	r26, 0x67	; 103
+ 610:	be 4f       	sbci	r27, 0xFE	; 254
+ 612:	2d 91       	ld	r18, X+
+ 614:	3c 91       	ld	r19, X
+ 616:	11 97       	sbiw	r26, 0x01	; 1
+ 618:	82 0f       	add	r24, r18
+ 61a:	93 1f       	adc	r25, r19
+ 61c:	8d 93       	st	X+, r24
+ 61e:	9c 93       	st	X, r25
+				 AD_Counter[AD_Channel]++;
+ 620:	ee 56       	subi	r30, 0x6E	; 110
+ 622:	fe 4f       	sbci	r31, 0xFE	; 254
+ 624:	80 81       	ld	r24, Z
+ 626:	8f 5f       	subi	r24, 0xFF	; 255
+ 628:	80 83       	st	Z, r24
+ 62a:	18 c0       	rjmp	.+48     	; 0x65c <ADProcess+0xb8>
+				 }
+			 else
+				{  // O Buffer Hal_Analog_Inputs[] é a média do valor de ADC e éAQUI atualizado!
+				Hal_Analog_Inputs[AD_Channel] = (unsigned short int)(AD_Accumulator[AD_Channel]/NUM_AD_SAMPLES);
+ 62c:	ce 01       	movw	r24, r28
+ 62e:	88 0f       	add	r24, r24
+ 630:	99 1f       	adc	r25, r25
+ 632:	fc 01       	movw	r30, r24
+ 634:	e7 56       	subi	r30, 0x67	; 103
+ 636:	fe 4f       	sbci	r31, 0xFE	; 254
+ 638:	20 81       	ld	r18, Z
+ 63a:	31 81       	ldd	r19, Z+1	; 0x01
+ 63c:	36 95       	lsr	r19
+ 63e:	27 95       	ror	r18
+ 640:	36 95       	lsr	r19
+ 642:	27 95       	ror	r18
+ 644:	36 95       	lsr	r19
+ 646:	27 95       	ror	r18
+ 648:	dc 01       	movw	r26, r24
+ 64a:	ab 57       	subi	r26, 0x7B	; 123
+ 64c:	be 4f       	sbci	r27, 0xFE	; 254
+ 64e:	2d 93       	st	X+, r18
+ 650:	3c 93       	st	X, r19
+				AD_Accumulator[AD_Channel] = 0;
+ 652:	11 82       	std	Z+1, r1	; 0x01
+ 654:	10 82       	st	Z, r1
+				AD_Counter[AD_Channel] = 0;
+ 656:	ce 56       	subi	r28, 0x6E	; 110
+ 658:	de 4f       	sbci	r29, 0xFE	; 254
+ 65a:	18 82       	st	Y, r1
+				}
+			  } 
+		   AD_Channel++;
+ 65c:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <AD_Channel>
+ 660:	8f 5f       	subi	r24, 0xFF	; 255
+ 662:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <AD_Channel>
+		   if(AD_Channel >= NUM_OF_ANALOG_INPUT)
+ 666:	86 30       	cpi	r24, 0x06	; 6
+ 668:	10 f0       	brcs	.+4      	; 0x66e <ADProcess+0xca>
+			 {
+			 AD_Channel = 0;
+ 66a:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <AD_Channel>
+		   break;
+	  default:
+		   break;
+	  }
+
+	AD_Mux_State++;                                // Ticking the state machine.
+ 66e:	80 91 91 01 	lds	r24, 0x0191	; 0x800191 <AD_Mux_State>
+ 672:	8f 5f       	subi	r24, 0xFF	; 255
+ 674:	80 93 91 01 	sts	0x0191, r24	; 0x800191 <AD_Mux_State>
+
+	if (AD_Mux_State >= NUM_MUX_STEPS){
+ 678:	84 30       	cpi	r24, 0x04	; 4
+ 67a:	18 f0       	brcs	.+6      	; 0x682 <ADProcess+0xde>
+	  AD_Mux_State = MUX_AD_CONFIG;
+ 67c:	81 e0       	ldi	r24, 0x01	; 1
+ 67e:	80 93 91 01 	sts	0x0191, r24	; 0x800191 <AD_Mux_State>
+    }
+ 682:	df 91       	pop	r29
+ 684:	cf 91       	pop	r28
+ 686:	08 95       	ret
+
+00000688 <Hal__BackgroundHandler>:
+ *  Call rate: 1ms, 5ms, 10ms, ...PARA ADC
+ */
+
+void Hal__BackgroundHandler(void)
+{
+	ADProcess();
+ 688:	0e 94 d2 02 	call	0x5a4	; 0x5a4 <ADProcess>
+ 68c:	08 95       	ret
+
+0000068e <SevenSeg_WriteValueToSegment>:
 const char SEGMENT_SELECT[] = {0xF1,0xF2,0xF4,0xF8};
 
 
 /* Write a value to one of the 4 digits of the display */
 void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 {
- 3d8:	0f 93       	push	r16
- 3da:	1f 93       	push	r17
- 3dc:	cf 93       	push	r28
- 3de:	df 93       	push	r29
- 3e0:	ec 01       	movw	r28, r24
+ 68e:	0f 93       	push	r16
+ 690:	1f 93       	push	r17
+ 692:	cf 93       	push	r28
+ 694:	df 93       	push	r29
+ 696:	ec 01       	movw	r28, r24
 	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
- 3e2:	00 e0       	ldi	r16, 0x00	; 0
- 3e4:	6a c0       	rjmp	.+212    	; 0x4ba <__EEPROM_REGION_LENGTH__+0xba>
+ 698:	00 e0       	ldi	r16, 0x00	; 0
+ 69a:	66 c0       	rjmp	.+204    	; 0x768 <SevenSeg_WriteValueToSegment+0xda>
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET); // Inicia o processo de escrever no registrador
- 3e6:	40 e0       	ldi	r20, 0x00	; 0
- 3e8:	64 e0       	ldi	r22, 0x04	; 4
- 3ea:	82 e0       	ldi	r24, 0x02	; 2
- 3ec:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 69c:	40 e0       	ldi	r20, 0x00	; 0
+ 69e:	64 e0       	ldi	r22, 0x04	; 4
+ 6a0:	82 e0       	ldi	r24, 0x02	; 2
+ 6a2:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 
 
 		for (uint8_t i = 0; i < 8; i++) { // Digitos do display a serem escritos
- 3f0:	10 e0       	ldi	r17, 0x00	; 0
- 3f2:	2a c0       	rjmp	.+84     	; 0x448 <__EEPROM_REGION_LENGTH__+0x48>
+ 6a6:	10 e0       	ldi	r17, 0x00	; 0
+ 6a8:	26 c0       	rjmp	.+76     	; 0x6f6 <SevenSeg_WriteValueToSegment+0x68>
 			
 			if (ptr_display_values[Segment] & (1 << (7 - i))) {
- 3f4:	fe 01       	movw	r30, r28
- 3f6:	e0 0f       	add	r30, r16
- 3f8:	f1 1d       	adc	r31, r1
- 3fa:	80 81       	ld	r24, Z
- 3fc:	27 e0       	ldi	r18, 0x07	; 7
- 3fe:	30 e0       	ldi	r19, 0x00	; 0
- 400:	21 1b       	sub	r18, r17
- 402:	31 09       	sbc	r19, r1
- 404:	90 e0       	ldi	r25, 0x00	; 0
- 406:	02 c0       	rjmp	.+4      	; 0x40c <__EEPROM_REGION_LENGTH__+0xc>
- 408:	95 95       	asr	r25
- 40a:	87 95       	ror	r24
- 40c:	2a 95       	dec	r18
- 40e:	e2 f7       	brpl	.-8      	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
- 410:	80 ff       	sbrs	r24, 0
- 412:	06 c0       	rjmp	.+12     	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+ 6aa:	fe 01       	movw	r30, r28
+ 6ac:	e0 0f       	add	r30, r16
+ 6ae:	f1 1d       	adc	r31, r1
+ 6b0:	80 81       	ld	r24, Z
+ 6b2:	27 e0       	ldi	r18, 0x07	; 7
+ 6b4:	30 e0       	ldi	r19, 0x00	; 0
+ 6b6:	21 1b       	sub	r18, r17
+ 6b8:	31 09       	sbc	r19, r1
+ 6ba:	90 e0       	ldi	r25, 0x00	; 0
+ 6bc:	02 c0       	rjmp	.+4      	; 0x6c2 <SevenSeg_WriteValueToSegment+0x34>
+ 6be:	95 95       	asr	r25
+ 6c0:	87 95       	ror	r24
+ 6c2:	2a 95       	dec	r18
+ 6c4:	e2 f7       	brpl	.-8      	; 0x6be <SevenSeg_WriteValueToSegment+0x30>
+ 6c6:	80 ff       	sbrs	r24, 0
+ 6c8:	06 c0       	rjmp	.+12     	; 0x6d6 <SevenSeg_WriteValueToSegment+0x48>
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
- 414:	41 e0       	ldi	r20, 0x01	; 1
- 416:	60 e0       	ldi	r22, 0x00	; 0
- 418:	80 e0       	ldi	r24, 0x00	; 0
- 41a:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
- 41e:	05 c0       	rjmp	.+10     	; 0x42a <__EEPROM_REGION_LENGTH__+0x2a>
+ 6ca:	41 e0       	ldi	r20, 0x01	; 1
+ 6cc:	60 e0       	ldi	r22, 0x00	; 0
+ 6ce:	80 e0       	ldi	r24, 0x00	; 0
+ 6d0:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
+ 6d4:	05 c0       	rjmp	.+10     	; 0x6e0 <SevenSeg_WriteValueToSegment+0x52>
 			}
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
- 420:	40 e0       	ldi	r20, 0x00	; 0
- 422:	60 e0       	ldi	r22, 0x00	; 0
- 424:	80 e0       	ldi	r24, 0x00	; 0
- 426:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 6d6:	40 e0       	ldi	r20, 0x00	; 0
+ 6d8:	60 e0       	ldi	r22, 0x00	; 0
+ 6da:	80 e0       	ldi	r24, 0x00	; 0
+ 6dc:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 			}	
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
- 42a:	41 e0       	ldi	r20, 0x01	; 1
- 42c:	67 e0       	ldi	r22, 0x07	; 7
- 42e:	82 e0       	ldi	r24, 0x02	; 2
- 430:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 6e0:	41 e0       	ldi	r20, 0x01	; 1
+ 6e2:	67 e0       	ldi	r22, 0x07	; 7
+ 6e4:	82 e0       	ldi	r24, 0x02	; 2
+ 6e6:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
- 434:	40 e0       	ldi	r20, 0x00	; 0
- 436:	67 e0       	ldi	r22, 0x07	; 7
- 438:	82 e0       	ldi	r24, 0x02	; 2
- 43a:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
-	#else
-		//round up by default
-		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
-	#endif
-
-	__builtin_avr_delay_cycles(__ticks_dc);
- 43e:	86 ea       	ldi	r24, 0xA6	; 166
- 440:	8a 95       	dec	r24
- 442:	f1 f7       	brne	.-4      	; 0x440 <__EEPROM_REGION_LENGTH__+0x40>
- 444:	00 c0       	rjmp	.+0      	; 0x446 <__EEPROM_REGION_LENGTH__+0x46>
+ 6ea:	40 e0       	ldi	r20, 0x00	; 0
+ 6ec:	67 e0       	ldi	r22, 0x07	; 7
+ 6ee:	82 e0       	ldi	r24, 0x02	; 2
+ 6f0:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 {
 	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, RESET); // Inicia o processo de escrever no registrador
 
 
 		for (uint8_t i = 0; i < 8; i++) { // Digitos do display a serem escritos
- 446:	1f 5f       	subi	r17, 0xFF	; 255
- 448:	18 30       	cpi	r17, 0x08	; 8
- 44a:	a0 f2       	brcs	.-88     	; 0x3f4 <SevenSeg_WriteValueToSegment+0x1c>
- 44c:	10 e0       	ldi	r17, 0x00	; 0
- 44e:	2d c0       	rjmp	.+90     	; 0x4aa <__EEPROM_REGION_LENGTH__+0xaa>
+ 6f4:	1f 5f       	subi	r17, 0xFF	; 255
+ 6f6:	18 30       	cpi	r17, 0x08	; 8
+ 6f8:	c0 f2       	brcs	.-80     	; 0x6aa <SevenSeg_WriteValueToSegment+0x1c>
+ 6fa:	10 e0       	ldi	r17, 0x00	; 0
+ 6fc:	27 c0       	rjmp	.+78     	; 0x74c <SevenSeg_WriteValueToSegment+0xbe>
 		}
 
 		
 
 		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
 			if (SEGMENT_SELECT[Segment] & (1 << (7 - i))) {
- 450:	e0 2f       	mov	r30, r16
- 452:	f0 e0       	ldi	r31, 0x00	; 0
- 454:	e2 5d       	subi	r30, 0xD2	; 210
- 456:	fe 4f       	sbci	r31, 0xFE	; 254
- 458:	80 81       	ld	r24, Z
- 45a:	27 e0       	ldi	r18, 0x07	; 7
- 45c:	30 e0       	ldi	r19, 0x00	; 0
- 45e:	21 1b       	sub	r18, r17
- 460:	31 09       	sbc	r19, r1
- 462:	90 e0       	ldi	r25, 0x00	; 0
- 464:	02 c0       	rjmp	.+4      	; 0x46a <__EEPROM_REGION_LENGTH__+0x6a>
- 466:	95 95       	asr	r25
- 468:	87 95       	ror	r24
- 46a:	2a 95       	dec	r18
- 46c:	e2 f7       	brpl	.-8      	; 0x466 <__EEPROM_REGION_LENGTH__+0x66>
- 46e:	80 ff       	sbrs	r24, 0
- 470:	06 c0       	rjmp	.+12     	; 0x47e <__EEPROM_REGION_LENGTH__+0x7e>
+ 6fe:	e0 2f       	mov	r30, r16
+ 700:	f0 e0       	ldi	r31, 0x00	; 0
+ 702:	e0 5c       	subi	r30, 0xC0	; 192
+ 704:	fe 4f       	sbci	r31, 0xFE	; 254
+ 706:	80 81       	ld	r24, Z
+ 708:	27 e0       	ldi	r18, 0x07	; 7
+ 70a:	30 e0       	ldi	r19, 0x00	; 0
+ 70c:	21 1b       	sub	r18, r17
+ 70e:	31 09       	sbc	r19, r1
+ 710:	90 e0       	ldi	r25, 0x00	; 0
+ 712:	02 c0       	rjmp	.+4      	; 0x718 <SevenSeg_WriteValueToSegment+0x8a>
+ 714:	95 95       	asr	r25
+ 716:	87 95       	ror	r24
+ 718:	2a 95       	dec	r18
+ 71a:	e2 f7       	brpl	.-8      	; 0x714 <SevenSeg_WriteValueToSegment+0x86>
+ 71c:	80 ff       	sbrs	r24, 0
+ 71e:	06 c0       	rjmp	.+12     	; 0x72c <SevenSeg_WriteValueToSegment+0x9e>
 				GPIO_PIN_WRITE(PORT_B, 0, SET);
- 472:	41 e0       	ldi	r20, 0x01	; 1
- 474:	60 e0       	ldi	r22, 0x00	; 0
- 476:	80 e0       	ldi	r24, 0x00	; 0
- 478:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
- 47c:	05 c0       	rjmp	.+10     	; 0x488 <__EEPROM_REGION_LENGTH__+0x88>
+ 720:	41 e0       	ldi	r20, 0x01	; 1
+ 722:	60 e0       	ldi	r22, 0x00	; 0
+ 724:	80 e0       	ldi	r24, 0x00	; 0
+ 726:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
+ 72a:	05 c0       	rjmp	.+10     	; 0x736 <SevenSeg_WriteValueToSegment+0xa8>
 			} 
 			else {
 				GPIO_PIN_WRITE(PORT_B, 0, RESET);
- 47e:	40 e0       	ldi	r20, 0x00	; 0
- 480:	60 e0       	ldi	r22, 0x00	; 0
- 482:	80 e0       	ldi	r24, 0x00	; 0
- 484:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 72c:	40 e0       	ldi	r20, 0x00	; 0
+ 72e:	60 e0       	ldi	r22, 0x00	; 0
+ 730:	80 e0       	ldi	r24, 0x00	; 0
+ 732:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 			}
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
- 488:	41 e0       	ldi	r20, 0x01	; 1
- 48a:	67 e0       	ldi	r22, 0x07	; 7
- 48c:	82 e0       	ldi	r24, 0x02	; 2
- 48e:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 736:	41 e0       	ldi	r20, 0x01	; 1
+ 738:	67 e0       	ldi	r22, 0x07	; 7
+ 73a:	82 e0       	ldi	r24, 0x02	; 2
+ 73c:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
- 492:	40 e0       	ldi	r20, 0x00	; 0
- 494:	67 e0       	ldi	r22, 0x07	; 7
- 496:	82 e0       	ldi	r24, 0x02	; 2
- 498:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 740:	40 e0       	ldi	r20, 0x00	; 0
+ 742:	67 e0       	ldi	r22, 0x07	; 7
+ 744:	82 e0       	ldi	r24, 0x02	; 2
+ 746:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
+			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
+		}
+
+		
+
+		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
+ 74a:	1f 5f       	subi	r17, 0xFF	; 255
+ 74c:	18 30       	cpi	r17, 0x08	; 8
+ 74e:	b8 f2       	brcs	.-82     	; 0x6fe <SevenSeg_WriteValueToSegment+0x70>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 49c:	8d ee       	ldi	r24, 0xED	; 237
- 49e:	92 e0       	ldi	r25, 0x02	; 2
- 4a0:	01 97       	sbiw	r24, 0x01	; 1
- 4a2:	f1 f7       	brne	.-4      	; 0x4a0 <__EEPROM_REGION_LENGTH__+0xa0>
- 4a4:	00 c0       	rjmp	.+0      	; 0x4a6 <__EEPROM_REGION_LENGTH__+0xa6>
- 4a6:	00 00       	nop
-			_delay_us(500);
-		}
-
-		
-
-		for (uint8_t i = 0; i < 8; i++) { // Quais seguimento que devemos escrever
- 4a8:	1f 5f       	subi	r17, 0xFF	; 255
- 4aa:	18 30       	cpi	r17, 0x08	; 8
- 4ac:	88 f2       	brcs	.-94     	; 0x450 <__EEPROM_REGION_LENGTH__+0x50>
+ 750:	8d ee       	ldi	r24, 0xED	; 237
+ 752:	92 e0       	ldi	r25, 0x02	; 2
+ 754:	01 97       	sbiw	r24, 0x01	; 1
+ 756:	f1 f7       	brne	.-4      	; 0x754 <SevenSeg_WriteValueToSegment+0xc6>
+ 758:	00 c0       	rjmp	.+0      	; 0x75a <SevenSeg_WriteValueToSegment+0xcc>
+ 75a:	00 00       	nop
+			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
-			_delay_ms(3);
-		}
-		
 			
+		}
+		_delay_ms(3);
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
- 4ae:	41 e0       	ldi	r20, 0x01	; 1
- 4b0:	64 e0       	ldi	r22, 0x04	; 4
- 4b2:	82 e0       	ldi	r24, 0x02	; 2
- 4b4:	0e 94 c7 00 	call	0x18e	; 0x18e <GPIO_PIN_WRITE>
+ 75c:	41 e0       	ldi	r20, 0x01	; 1
+ 75e:	64 e0       	ldi	r22, 0x04	; 4
+ 760:	82 e0       	ldi	r24, 0x02	; 2
+ 762:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <GPIO_PIN_WRITE>
 
 
 /* Write a value to one of the 4 digits of the display */
 void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 {
 	for (uint8_t Segment = 0 ; Segment < NUM_SEG; Segment ++){
- 4b8:	0f 5f       	subi	r16, 0xFF	; 255
- 4ba:	04 30       	cpi	r16, 0x04	; 4
- 4bc:	08 f4       	brcc	.+2      	; 0x4c0 <__EEPROM_REGION_LENGTH__+0xc0>
- 4be:	93 cf       	rjmp	.-218    	; 0x3e6 <SevenSeg_WriteValueToSegment+0xe>
-			
+ 766:	0f 5f       	subi	r16, 0xFF	; 255
+ 768:	04 30       	cpi	r16, 0x04	; 4
+ 76a:	08 f4       	brcc	.+2      	; 0x76e <SevenSeg_WriteValueToSegment+0xe0>
+ 76c:	97 cf       	rjmp	.-210    	; 0x69c <SevenSeg_WriteValueToSegment+0xe>
+		_delay_ms(3);
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
 		
 	}
 	
 }
- 4c0:	df 91       	pop	r29
- 4c2:	cf 91       	pop	r28
- 4c4:	1f 91       	pop	r17
- 4c6:	0f 91       	pop	r16
- 4c8:	08 95       	ret
+ 76e:	df 91       	pop	r29
+ 770:	cf 91       	pop	r28
+ 772:	1f 91       	pop	r17
+ 774:	0f 91       	pop	r16
+ 776:	08 95       	ret
 
-000004ca <Display__Initialize>:
+00000778 <Display__Initialize>:
 /**
  *  Inicializa vari?veis referente ao estado inicial do forno e das chaves
  */
 void Display__Initialize(void)
 	{
 	Oven_Display_State = OVEN_INIT;
- 4ca:	84 e0       	ldi	r24, 0x04	; 4
- 4cc:	80 93 59 01 	sts	0x0159, r24	; 0x800159 <Oven_Display_State>
+ 778:	84 e0       	ldi	r24, 0x04	; 4
+ 77a:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <Oven_Display_State>
 	Display_Keys_Map = KEY_OFF_EVENT;
- 4d0:	10 92 58 01 	sts	0x0158, r1	; 0x800158 <Display_Keys_Map>
- 4d4:	08 95       	ret
+ 77e:	10 92 a5 01 	sts	0x01A5, r1	; 0x8001a5 <Display_Keys_Map>
+ 782:	08 95       	ret
 
-000004d6 <Display__SetState>:
+00000784 <Display__SetState>:
  *  A funcao atualiza a variavel global:
  *  Oven_Display_State que indica o estado do forno  
  */
 void Display__SetState(OVEN_DISPLAY_STATE_TYPE state)
 {
 	if(state < NUM_OF_OVEN_STATES)
- 4d6:	86 30       	cpi	r24, 0x06	; 6
- 4d8:	10 f4       	brcc	.+4      	; 0x4de <Display__SetState+0x8>
+ 784:	86 30       	cpi	r24, 0x06	; 6
+ 786:	10 f4       	brcc	.+4      	; 0x78c <Display__SetState+0x8>
 	{
 		Oven_Display_State = state;
- 4da:	80 93 59 01 	sts	0x0159, r24	; 0x800159 <Oven_Display_State>
- 4de:	08 95       	ret
+ 788:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <Oven_Display_State>
+ 78c:	08 95       	ret
 
-000004e0 <UpdateDisplayLeds>:
+0000078e <UpdateDisplayLeds>:
+/**
+ *   Atualiza os estados dos leds chamando fun??es 
      tipo Hal__SetLed() 
  */
 void UpdateDisplayLeds(void)
 {
+ 78e:	cf 93       	push	r28
+ 790:	df 93       	push	r29
 	
+	unsigned short int leitura_adc = Hal_GetAnalogInput(POT_EXT);
+ 792:	85 e0       	ldi	r24, 0x05	; 5
+ 794:	90 e0       	ldi	r25, 0x00	; 0
+ 796:	0e 94 5c 02 	call	0x4b8	; 0x4b8 <Hal_GetAnalogInput>
+ 79a:	ec 01       	movw	r28, r24
+		
 	switch(Oven_Display_State)
- 4e0:	80 91 59 01 	lds	r24, 0x0159	; 0x800159 <Oven_Display_State>
- 4e4:	81 30       	cpi	r24, 0x01	; 1
- 4e6:	51 f0       	breq	.+20     	; 0x4fc <UpdateDisplayLeds+0x1c>
- 4e8:	28 f0       	brcs	.+10     	; 0x4f4 <UpdateDisplayLeds+0x14>
- 4ea:	82 30       	cpi	r24, 0x02	; 2
- 4ec:	a1 f0       	breq	.+40     	; 0x516 <UpdateDisplayLeds+0x36>
- 4ee:	83 30       	cpi	r24, 0x03	; 3
- 4f0:	f9 f0       	breq	.+62     	; 0x530 <UpdateDisplayLeds+0x50>
- 4f2:	08 95       	ret
+ 79c:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <Oven_Display_State>
+ 7a0:	82 30       	cpi	r24, 0x02	; 2
+ 7a2:	61 f1       	breq	.+88     	; 0x7fc <UpdateDisplayLeds+0x6e>
+ 7a4:	28 f4       	brcc	.+10     	; 0x7b0 <UpdateDisplayLeds+0x22>
+ 7a6:	88 23       	and	r24, r24
+ 7a8:	41 f0       	breq	.+16     	; 0x7ba <UpdateDisplayLeds+0x2c>
+ 7aa:	81 30       	cpi	r24, 0x01	; 1
+ 7ac:	71 f0       	breq	.+28     	; 0x7ca <UpdateDisplayLeds+0x3c>
+ 7ae:	57 c0       	rjmp	.+174    	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+ 7b0:	83 30       	cpi	r24, 0x03	; 3
+ 7b2:	e9 f1       	breq	.+122    	; 0x82e <__DATA_REGION_LENGTH__+0x2e>
+ 7b4:	84 30       	cpi	r24, 0x04	; 4
+ 7b6:	29 f0       	breq	.+10     	; 0x7c2 <UpdateDisplayLeds+0x34>
+ 7b8:	52 c0       	rjmp	.+164    	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
 	{
-	case OVEN_OFF:
-	{
-	       Hal__SetAllLeds(APAGA_LED);
- 4f4:	81 e0       	ldi	r24, 0x01	; 1
- 4f6:	0e 94 3b 01 	call	0x276	; 0x276 <Hal__SetAllLeds>
-		   break;
- 4fa:	08 95       	ret
-	   		
+		case OVEN_OFF:
+		{
+			Hal__SetAllLeds(APAGA_LED);
+ 7ba:	81 e0       	ldi	r24, 0x01	; 1
+ 7bc:	0e 94 15 02 	call	0x42a	; 0x42a <Hal__SetAllLeds>
+			break;
+ 7c0:	4e c0       	rjmp	.+156    	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+		}
+		case OVEN_INIT:
+		{
+			Hal__SetAllLeds(APAGA_LED);
+ 7c2:	81 e0       	ldi	r24, 0x01	; 1
+ 7c4:	0e 94 15 02 	call	0x42a	; 0x42a <Hal__SetAllLeds>
+			break;
+ 7c8:	4a c0       	rjmp	.+148    	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+		
 		break;
 
-	case OVEN_MIN:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
- 4fc:	60 e0       	ldi	r22, 0x00	; 0
- 4fe:	80 e0       	ldi	r24, 0x00	; 0
- 500:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_1, APAGA_LED);
- 504:	61 e0       	ldi	r22, 0x01	; 1
- 506:	81 e0       	ldi	r24, 0x01	; 1
- 508:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_2, APAGA_LED);
- 50c:	61 e0       	ldi	r22, 0x01	; 1
- 50e:	82 e0       	ldi	r24, 0x02	; 2
- 510:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		break;
- 514:	08 95       	ret
+		case OVEN_MIN:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+ 7ca:	60 e0       	ldi	r22, 0x00	; 0
+ 7cc:	80 e0       	ldi	r24, 0x00	; 0
+ 7ce:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_1, APAGA_LED);
+ 7d2:	61 e0       	ldi	r22, 0x01	; 1
+ 7d4:	81 e0       	ldi	r24, 0x01	; 1
+ 7d6:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_2, APAGA_LED);
+ 7da:	61 e0       	ldi	r22, 0x01	; 1
+ 7dc:	82 e0       	ldi	r24, 0x02	; 2
+ 7de:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			
+			if (leitura_adc > 300){
+ 7e2:	cd 32       	cpi	r28, 0x2D	; 45
+ 7e4:	d1 40       	sbci	r29, 0x01	; 1
+ 7e6:	28 f0       	brcs	.+10     	; 0x7f2 <UpdateDisplayLeds+0x64>
+				Hal__SetLed(LED_3,ACENDE_LED);
+ 7e8:	60 e0       	ldi	r22, 0x00	; 0
+ 7ea:	83 e0       	ldi	r24, 0x03	; 3
+ 7ec:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+ 7f0:	36 c0       	rjmp	.+108    	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+ 7f2:	61 e0       	ldi	r22, 0x01	; 1
+ 7f4:	83 e0       	ldi	r24, 0x03	; 3
+ 7f6:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+ 7fa:	31 c0       	rjmp	.+98     	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			
+			break;
+		}
+		case OVEN_MED:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+ 7fc:	60 e0       	ldi	r22, 0x00	; 0
+ 7fe:	80 e0       	ldi	r24, 0x00	; 0
+ 800:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_1, ACENDE_LED);
+ 804:	60 e0       	ldi	r22, 0x00	; 0
+ 806:	81 e0       	ldi	r24, 0x01	; 1
+ 808:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_2, APAGA_LED);
+ 80c:	61 e0       	ldi	r22, 0x01	; 1
+ 80e:	82 e0       	ldi	r24, 0x02	; 2
+ 810:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			
+			if (leitura_adc > 500){
+ 814:	c5 3f       	cpi	r28, 0xF5	; 245
+ 816:	d1 40       	sbci	r29, 0x01	; 1
+ 818:	28 f0       	brcs	.+10     	; 0x824 <__DATA_REGION_LENGTH__+0x24>
+				Hal__SetLed(LED_3,ACENDE_LED);
+ 81a:	60 e0       	ldi	r22, 0x00	; 0
+ 81c:	83 e0       	ldi	r24, 0x03	; 3
+ 81e:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+ 822:	1d c0       	rjmp	.+58     	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+ 824:	61 e0       	ldi	r22, 0x01	; 1
+ 826:	83 e0       	ldi	r24, 0x03	; 3
+ 828:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+ 82c:	18 c0       	rjmp	.+48     	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			
+			break;
+		}
+		case OVEN_MAX:
+		{
+			Hal__SetLed(LED_0, ACENDE_LED);
+ 82e:	60 e0       	ldi	r22, 0x00	; 0
+ 830:	80 e0       	ldi	r24, 0x00	; 0
+ 832:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_1, ACENDE_LED);
+ 836:	60 e0       	ldi	r22, 0x00	; 0
+ 838:	81 e0       	ldi	r24, 0x01	; 1
+ 83a:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			Hal__SetLed(LED_2, ACENDE_LED);
+ 83e:	60 e0       	ldi	r22, 0x00	; 0
+ 840:	82 e0       	ldi	r24, 0x02	; 2
+ 842:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+			
+			if (leitura_adc > 800){
+ 846:	c1 32       	cpi	r28, 0x21	; 33
+ 848:	d3 40       	sbci	r29, 0x03	; 3
+ 84a:	28 f0       	brcs	.+10     	; 0x856 <__DATA_REGION_LENGTH__+0x56>
+				Hal__SetLed(LED_3,ACENDE_LED);
+ 84c:	60 e0       	ldi	r22, 0x00	; 0
+ 84e:	83 e0       	ldi	r24, 0x03	; 3
+ 850:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+ 854:	04 c0       	rjmp	.+8      	; 0x85e <__DATA_REGION_LENGTH__+0x5e>
+			}
+			else{
+				Hal__SetLed(LED_3,APAGA_LED);
+ 856:	61 e0       	ldi	r22, 0x01	; 1
+ 858:	83 e0       	ldi	r24, 0x03	; 3
+ 85a:	0e 94 08 02 	call	0x410	; 0x410 <Hal__SetLed>
+		}
 	}
-	case OVEN_MED:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
- 516:	60 e0       	ldi	r22, 0x00	; 0
- 518:	80 e0       	ldi	r24, 0x00	; 0
- 51a:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_1, ACENDE_LED);
- 51e:	60 e0       	ldi	r22, 0x00	; 0
- 520:	81 e0       	ldi	r24, 0x01	; 1
- 522:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_2, APAGA_LED);
- 526:	61 e0       	ldi	r22, 0x01	; 1
- 528:	82 e0       	ldi	r24, 0x02	; 2
- 52a:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		break;
- 52e:	08 95       	ret
-	}
-	case OVEN_MAX:
-	{
-		Hal__SetLed(LED_0, ACENDE_LED);
- 530:	60 e0       	ldi	r22, 0x00	; 0
- 532:	80 e0       	ldi	r24, 0x00	; 0
- 534:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_1, ACENDE_LED);
- 538:	60 e0       	ldi	r22, 0x00	; 0
- 53a:	81 e0       	ldi	r24, 0x01	; 1
- 53c:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
-		Hal__SetLed(LED_2, ACENDE_LED);
- 540:	60 e0       	ldi	r22, 0x00	; 0
- 542:	82 e0       	ldi	r24, 0x02	; 2
- 544:	0e 94 2e 01 	call	0x25c	; 0x25c <Hal__SetLed>
- 548:	08 95       	ret
+	
+	
+ 
+}
+ 85e:	df 91       	pop	r29
+ 860:	cf 91       	pop	r28
+ 862:	08 95       	ret
 
-0000054a <ReadDisplayKeys>:
+00000864 <ReadDisplayKeys>:
  *  Atualiza a variavel global (Display_Keys_Map) das chaves
  *  chamando Hal_ReadKey()
  */
 void ReadDisplayKeys(void)
 {	
 	unsigned char key_press=Hal__ReadAllKey(); // Lê todas as chaves
- 54a:	0e 94 65 01 	call	0x2ca	; 0x2ca <Hal__ReadAllKey>
+ 864:	0e 94 3f 02 	call	0x47e	; 0x47e <Hal__ReadAllKey>
 	
 	switch(key_press){
- 54e:	81 30       	cpi	r24, 0x01	; 1
- 550:	51 f0       	breq	.+20     	; 0x566 <ReadDisplayKeys+0x1c>
- 552:	28 f0       	brcs	.+10     	; 0x55e <ReadDisplayKeys+0x14>
- 554:	82 30       	cpi	r24, 0x02	; 2
- 556:	59 f0       	breq	.+22     	; 0x56e <ReadDisplayKeys+0x24>
- 558:	83 30       	cpi	r24, 0x03	; 3
- 55a:	69 f0       	breq	.+26     	; 0x576 <ReadDisplayKeys+0x2c>
- 55c:	08 95       	ret
+ 868:	81 30       	cpi	r24, 0x01	; 1
+ 86a:	51 f0       	breq	.+20     	; 0x880 <ReadDisplayKeys+0x1c>
+ 86c:	28 f0       	brcs	.+10     	; 0x878 <ReadDisplayKeys+0x14>
+ 86e:	82 30       	cpi	r24, 0x02	; 2
+ 870:	59 f0       	breq	.+22     	; 0x888 <ReadDisplayKeys+0x24>
+ 872:	83 30       	cpi	r24, 0x03	; 3
+ 874:	69 f0       	breq	.+26     	; 0x890 <ReadDisplayKeys+0x2c>
+ 876:	08 95       	ret
 		case KEY_0:
 			Display_Keys_Map= KEY_MIN_EVENT;
- 55e:	81 e0       	ldi	r24, 0x01	; 1
- 560:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <Display_Keys_Map>
+ 878:	81 e0       	ldi	r24, 0x01	; 1
+ 87a:	80 93 a5 01 	sts	0x01A5, r24	; 0x8001a5 <Display_Keys_Map>
 			break;
- 564:	08 95       	ret
+ 87e:	08 95       	ret
 		case KEY_1:
 			Display_Keys_Map= KEY_MED_EVENT;
- 566:	82 e0       	ldi	r24, 0x02	; 2
- 568:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <Display_Keys_Map>
+ 880:	82 e0       	ldi	r24, 0x02	; 2
+ 882:	80 93 a5 01 	sts	0x01A5, r24	; 0x8001a5 <Display_Keys_Map>
 			break;
- 56c:	08 95       	ret
+ 886:	08 95       	ret
 		case KEY_2:
 			Display_Keys_Map= KEY_MAX_EVENT;
- 56e:	83 e0       	ldi	r24, 0x03	; 3
- 570:	80 93 58 01 	sts	0x0158, r24	; 0x800158 <Display_Keys_Map>
+ 888:	83 e0       	ldi	r24, 0x03	; 3
+ 88a:	80 93 a5 01 	sts	0x01A5, r24	; 0x8001a5 <Display_Keys_Map>
 			break;
- 574:	08 95       	ret
+ 88e:	08 95       	ret
 		case KEY_3:
 			Display_Keys_Map= KEY_OFF_EVENT;
- 576:	10 92 58 01 	sts	0x0158, r1	; 0x800158 <Display_Keys_Map>
- 57a:	08 95       	ret
+ 890:	10 92 a5 01 	sts	0x01A5, r1	; 0x8001a5 <Display_Keys_Map>
+ 894:	08 95       	ret
 
-0000057c <Display__GetEvent>:
+00000896 <Display__GetEvent>:
 
 
 KEY_EVENT_TYPE Display__GetEvent(void)
 {
 	KEY_EVENT_TYPE event;
 	ReadDisplayKeys();    // L? as chaves e coloca valor na vari?vel global Display_Keys_Map
- 57c:	0e 94 a5 02 	call	0x54a	; 0x54a <ReadDisplayKeys>
+ 896:	0e 94 32 04 	call	0x864	; 0x864 <ReadDisplayKeys>
 	event = Display_Keys_Map;  //atribui a event o global atualizada em ReadDisplayKeys()
 	return (event);
 }
- 580:	80 91 58 01 	lds	r24, 0x0158	; 0x800158 <Display_Keys_Map>
- 584:	08 95       	ret
+ 89a:	80 91 a5 01 	lds	r24, 0x01A5	; 0x8001a5 <Display_Keys_Map>
+ 89e:	08 95       	ret
 
-00000586 <UpdateDisplaySevenSeg>:
+000008a0 <UpdateDisplaySevenSeg>:
 
 
 void UpdateDisplaySevenSeg(void)
 {
 	const char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
 	switch(Oven_Display_State)
- 586:	80 91 59 01 	lds	r24, 0x0159	; 0x800159 <Oven_Display_State>
- 58a:	82 30       	cpi	r24, 0x02	; 2
- 58c:	39 f0       	breq	.+14     	; 0x59c <UpdateDisplaySevenSeg+0x16>
- 58e:	83 30       	cpi	r24, 0x03	; 3
- 590:	41 f0       	breq	.+16     	; 0x5a2 <UpdateDisplaySevenSeg+0x1c>
- 592:	81 30       	cpi	r24, 0x01	; 1
- 594:	49 f0       	breq	.+18     	; 0x5a8 <UpdateDisplaySevenSeg+0x22>
+ 8a0:	80 91 a6 01 	lds	r24, 0x01A6	; 0x8001a6 <Oven_Display_State>
+ 8a4:	82 30       	cpi	r24, 0x02	; 2
+ 8a6:	39 f0       	breq	.+14     	; 0x8b6 <UpdateDisplaySevenSeg+0x16>
+ 8a8:	83 30       	cpi	r24, 0x03	; 3
+ 8aa:	41 f0       	breq	.+16     	; 0x8bc <UpdateDisplaySevenSeg+0x1c>
+ 8ac:	81 30       	cpi	r24, 0x01	; 1
+ 8ae:	49 f0       	breq	.+18     	; 0x8c2 <UpdateDisplaySevenSeg+0x22>
 
 
 
 void UpdateDisplaySevenSeg(void)
 {
 	const char* ptr_display_values = &ZERADO_DIGITO[0]; // Inicializa o ponteiro 
- 596:	8e e3       	ldi	r24, 0x3E	; 62
- 598:	91 e0       	ldi	r25, 0x01	; 1
- 59a:	08 c0       	rjmp	.+16     	; 0x5ac <UpdateDisplaySevenSeg+0x26>
+ 8b0:	80 e5       	ldi	r24, 0x50	; 80
+ 8b2:	91 e0       	ldi	r25, 0x01	; 1
+ 8b4:	08 c0       	rjmp	.+16     	; 0x8c6 <UpdateDisplaySevenSeg+0x26>
 		case OVEN_MIN:
 			ptr_display_values = &MINIMO_DIGITO[0];
 			break;
 		case OVEN_MED:
 			{
 			ptr_display_values = &MEDIO_DIGITO[0];
- 59c:	86 e3       	ldi	r24, 0x36	; 54
- 59e:	91 e0       	ldi	r25, 0x01	; 1
+ 8b6:	88 e4       	ldi	r24, 0x48	; 72
+ 8b8:	91 e0       	ldi	r25, 0x01	; 1
 			break;
- 5a0:	05 c0       	rjmp	.+10     	; 0x5ac <UpdateDisplaySevenSeg+0x26>
+ 8ba:	05 c0       	rjmp	.+10     	; 0x8c6 <UpdateDisplaySevenSeg+0x26>
 			}
 		case OVEN_MAX:
 			{
 			ptr_display_values = &MAXIMO_DIGITO[0];
- 5a2:	82 e3       	ldi	r24, 0x32	; 50
- 5a4:	91 e0       	ldi	r25, 0x01	; 1
+ 8bc:	84 e4       	ldi	r24, 0x44	; 68
+ 8be:	91 e0       	ldi	r25, 0x01	; 1
 			break;
- 5a6:	02 c0       	rjmp	.+4      	; 0x5ac <UpdateDisplaySevenSeg+0x26>
+ 8c0:	02 c0       	rjmp	.+4      	; 0x8c6 <UpdateDisplaySevenSeg+0x26>
 			break;
 		case OVEN_INIT:
 		case OVEN_TIMEOUT:
 			break;
 		case OVEN_MIN:
 			ptr_display_values = &MINIMO_DIGITO[0];
- 5a8:	8a e3       	ldi	r24, 0x3A	; 58
- 5aa:	91 e0       	ldi	r25, 0x01	; 1
+ 8c2:	8c e4       	ldi	r24, 0x4C	; 76
+ 8c4:	91 e0       	ldi	r25, 0x01	; 1
 		default:
 			{
 			break;
 			}
 	   }
 		Hal__WriteValtoSegment(ptr_display_values);
- 5ac:	0e 94 7f 01 	call	0x2fe	; 0x2fe <Hal__WriteValtoSegment>
- 5b0:	08 95       	ret
+ 8c6:	0e 94 59 02 	call	0x4b2	; 0x4b2 <Hal__WriteValtoSegment>
+ 8ca:	08 95       	ret
 
-000005b2 <Display__Handler>:
+000008cc <Display__Handler>:
  *   Atualiza o display(leds) do estado do forno em fun??o da leitura das chaves
  */
 void Display__Handler(void)
 {
 	#if (LED_DISPLAY == ENABLED)	
 	   UpdateDisplayLeds();        // atualiza??o dos leds
- 5b2:	0e 94 70 02 	call	0x4e0	; 0x4e0 <UpdateDisplayLeds>
+ 8cc:	0e 94 c7 03 	call	0x78e	; 0x78e <UpdateDisplayLeds>
 	#endif	                       // fun??o privada!
 	#if (SEVEN_SEG_DISPLAY == ENABLED)
 		UpdateDisplaySevenSeg();
- 5b6:	0e 94 c3 02 	call	0x586	; 0x586 <UpdateDisplaySevenSeg>
- 5ba:	08 95       	ret
+ 8d0:	0e 94 50 04 	call	0x8a0	; 0x8a0 <UpdateDisplaySevenSeg>
+ 8d4:	08 95       	ret
 
-000005bc <_exit>:
- 5bc:	f8 94       	cli
+000008d6 <_exit>:
+ 8d6:	f8 94       	cli
 
-000005be <__stop_program>:
- 5be:	ff cf       	rjmp	.-2      	; 0x5be <__stop_program>
+000008d8 <__stop_program>:
+ 8d8:	ff cf       	rjmp	.-2      	; 0x8d8 <__stop_program>

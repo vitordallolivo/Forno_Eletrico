@@ -35,7 +35,6 @@ void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 			}	
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
-			_delay_us(500);
 		}
 
 		
@@ -49,10 +48,9 @@ void SevenSeg_WriteValueToSegment(const char* ptr_display_values)
 			}
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, SET);
 			GPIO_PIN_WRITE(PORT_D, CLK_PIN, RESET);
-			_delay_ms(3);
-		}
-		
 			
+		}
+		_delay_ms(3);
 		GPIO_PIN_WRITE(PORT_D, LATCH_PIN, SET);
 		
 	}
