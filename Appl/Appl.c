@@ -7,16 +7,20 @@
 
 //-------------------------------------- Include Files ----------------------------------------------------------------
 
-//#include "C_Types.h"    ainda não...
-#include <avr/io.h> //definições do componente especificado
-#include <util/delay.h> /*biblioteca para o uso das rotinas de _delay_ms() e _delay_us()*/
+#include "..\Header\C_Types.h"
 #include "..\Header\Appl.h"
-#include "..\Header\Gpio.h"
 #include "..\Header\Display.h"
+#include "..\Header\Gpio.h"
+#include "..\Header\Adc.h"
+#include "..\Header\Hal.h"
+#include "..\Header\OvenTempControl.h"
 //-------------------------------------- PUBLIC (Variables) -----------------------------------------------------------
 KEY_EVENT_TYPE User_Action;
 
 //-------------------------------------- Defines, Enumerations ----------------------------------------------------------------
+#define EXP_ADC                ENABLED
+#define EXP_OVEN               ENABLED
+
 #define ACESO       0
 #define APAGADO     1
 //-------------------------------------- Global Variables ----------------------------------------------------------------
@@ -46,21 +50,27 @@ void Appl__Handler(void)
 		{
 			case KEY_OFF_EVENT:
 			Display__SetState(OVEN_OFF);
+			OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
 			break;
 			
 			case KEY_MIN_EVENT:
 			Display__SetState(OVEN_MIN);
+			OvenTempControl__SetLevel(TEMP_LEVEL_MIN);
 			break;
 			
 			case KEY_MED_EVENT:
 			Display__SetState(OVEN_MED);
+			OvenTempControl__SetLevel(TEMP_LEVEL_MED);
 			break;
 			
 			case KEY_MAX_EVENT:
 			Display__SetState(OVEN_MAX);
+			OvenTempControl__SetLevel(TEMP_LEVEL_MAX);
 			break;
 
 			default:
+			Display__SetState(OVEN_OFF);
+			OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
 			break;
 
 		}

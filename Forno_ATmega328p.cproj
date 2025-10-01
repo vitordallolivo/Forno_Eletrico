@@ -168,6 +168,9 @@
     <Compile Include="Appl\main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Appl\OvenTempControl.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Drivers\ADC.c">
       <SubType>compile</SubType>
     </Compile>
@@ -207,6 +210,9 @@
     <Compile Include="Header\Hal_prm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\TempSensor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\main.h">
       <SubType>compile</SubType>
     </Compile>
@@ -216,10 +222,22 @@
     <Compile Include="Header\Micro.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\OvenTempControl.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\OvenTempControl_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\SevenSeg.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\TempSensor_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="System\Display.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="System\TempSensor.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

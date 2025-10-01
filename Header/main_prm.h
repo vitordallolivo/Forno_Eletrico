@@ -38,44 +38,46 @@
 // ENALBED or DISABLED the Watchdog
 #define WATCHDOG_ENABLE  	 ENABLED// //DISABLED
 
-
 #define INITIALIZE_TASKS()\
 {\
 	Hal__Initialize();\
 	Display__Initialize();\
 	Appl__Initialize();\
+	ADC__Initialize();\
+	TempSensor__Initialize();\
+	OvenTempControl__Initialize();\
 }
 
 #define ALL_SLOTS_TASKS()\
 {\
 	Hal__FastHandler();\
 	Hal__BackgroundHandler();\
+	ADC__Handler();\
 }
 
 #define SLOT_1_TASKS()\
 {\
-	Appl__Handler();\
 }
 
 #define SLOT_2_TASKS()\
 {\
+	Appl__Handler();\
 	Display__Handler();\
 }
-	
+
 #define SLOT_3_TASKS()\
 {\
-	ADC__Handler();\
+	TempSensor__ConversionHandler();\
 }
-	
+
 #define SLOT_4_TASKS()\
 {\
+	OvenTempControl__Handler();\
 }
-	
+
 #define SLOT_5_TASKS()\
 {\
 }
-	
-
 
 
 #endif /* MAIN_PRM_H_ */

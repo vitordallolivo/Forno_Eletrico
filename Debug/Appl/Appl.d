@@ -1,4 +1,8 @@
-Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c \
+Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c ../Appl/..\Header\C_Types.h \
+ ../Appl/..\Header\Appl.h ../Appl/..\Header\Display.h \
+ ../Appl/..\Header\..\Header\Display_prm.h \
+ ../Appl/..\Header\..\Header\..\Header\C_types.h ../Appl/..\Header\Gpio.h \
+ ../Appl/..\Header\../Header/Micro.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -10,13 +14,27 @@ Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- ../Appl/..\Header\Appl.h ../Appl/..\Header\Gpio.h \
- ../Appl/..\Header\../Header/Micro.h ../Appl/..\Header\Display.h \
- ../Appl/..\Header\..\Header\Display_prm.h \
- ../Appl/..\Header\..\Header\..\Header\C_types.h
+ ../Appl/..\Header\Adc.h ../Appl/..\Header\..\Header\Micro.h \
+ ../Appl/..\Header\..\Header\Adc_prm.h ../Appl/..\Header\Hal.h \
+ ../Appl/..\Header\..\Header\Hal_prm.h \
+ ../Appl/..\Header\..\Header\..\Header\C_Types.h \
+ ../Appl/..\Header\OvenTempControl.h \
+ ../Appl/..\Header\..\Header\OvenTempControl_prm.h \
+ ../Appl/..\Header\..\Header\..\Header\Hal.h
+
+../Appl/..\Header\C_Types.h:
+
+../Appl/..\Header\Appl.h:
+
+../Appl/..\Header\Display.h:
+
+../Appl/..\Header\..\Header\Display_prm.h:
+
+../Appl/..\Header\..\Header\..\Header\C_types.h:
+
+../Appl/..\Header\Gpio.h:
+
+../Appl/..\Header\../Header/Micro.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -40,20 +58,20 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+../Appl/..\Header\Adc.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+../Appl/..\Header\..\Header\Micro.h:
 
-c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
+../Appl/..\Header\..\Header\Adc_prm.h:
 
-../Appl/..\Header\Appl.h:
+../Appl/..\Header\Hal.h:
 
-../Appl/..\Header\Gpio.h:
+../Appl/..\Header\..\Header\Hal_prm.h:
 
-../Appl/..\Header\../Header/Micro.h:
+../Appl/..\Header\..\Header\..\Header\C_Types.h:
 
-../Appl/..\Header\Display.h:
+../Appl/..\Header\OvenTempControl.h:
 
-../Appl/..\Header\..\Header\Display_prm.h:
+../Appl/..\Header\..\Header\OvenTempControl_prm.h:
 
-../Appl/..\Header\..\Header\..\Header\C_types.h:
+../Appl/..\Header\..\Header\..\Header\Hal.h:

@@ -32,6 +32,9 @@ enum
 #define SW_OFF 1  // é invertido por conta do pullup
 #define SW_ON  0
 
+#define ACENDE_LED          0
+#define APAGA_LED           1
+
 #define BIT_TEST(mem,bit)   ((mem)&(1UL<<(bit))) //This macro is used to perform test on bit of the data
 #define BIT_SET(mem,bit)    ((mem)|=(1UL<<(bit))) //This macro is used to set the bit of the data
 #define BIT_CLR(mem,bit)    ((mem)&=~(1UL<<(bit))) //This macro is used to clear the bit of the data

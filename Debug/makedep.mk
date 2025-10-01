@@ -6,6 +6,8 @@ Appl\Appl.c
 
 Appl\main.c
 
+Appl\OvenTempControl.c
+
 Drivers\ADC.c
 
 Drivers\GPIO.c
@@ -15,4 +17,6 @@ Hal\Hal.c
 Hal\SevenSeg.c
 
 System\Display.c
+
+System\TempSensor.c
 
