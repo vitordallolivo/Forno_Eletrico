@@ -9,7 +9,7 @@
 //#include "C_Types.h"
 #include "..\Header\Gpio.h"
 #include "..\Header\ADC.h"
-//#include "PWM.h"
+#include "..\Header\Pwm.h"
 #include "..\Header\Hal.h"
 #include "..\Header\SevenSeg.h"
 #include <util/delay.h>
@@ -58,6 +58,11 @@ HAL_GPIO_TYPE KEYS_GPIO[NUM_OF_KEYS] =
 	{PORT_C,SW2},    //!SW2
 	{PORT_C,SW3},    //!SW3
 	{PORT_D,SW4}     // SW4 (Pino D5)
+};
+
+HAL_GPIO_TYPE BUZZER_GPIO={
+	.port = PORT_D,
+	.pin  = 3
 };
 
 
@@ -126,6 +131,10 @@ void Hal__Initialize(void)
 	GPIO_CONFIG(PORT_D,4,OUTPUT_DIGITAL);
 	GPIO_CONFIG(PORT_D,7,OUTPUT_DIGITAL);
 	GPIO_CONFIG(PORT_B,0,OUTPUT_DIGITAL);
+	
+	// Buzzer GPIO Configuration
+	GPIO_CONFIG(BUZZER_GPIO.port,BUZZER_GPIO.pin,OUTPUT_DIGITAL);
+	
 	
 	// Analog Inputs Configuration - modo de conversão e resolução e inicializa os buffers de várias leitura do ADC
 	ADC__ConfigModes(HAL_ANALOG_MODE,HAL_CONVERSION_METHOD);
@@ -252,6 +261,45 @@ unsigned short int Hal_GetAnalogInput(ANALOG_INPUT_TYPE input)
 {
 	if(input < NUM_OF_ANALOG_INPUT)
 		return Hal_Analog_Inputs[input];  // retorna o valor no buffer HAL_AnalogInputs do canal solicitado
+}
+
+
+/**
+ * 
+ */
+void Hal__SetBuzzer(unsigned char state)
+{
+#if (USE_BUZZER == ENABLED)
+
+	if(state > 0)
+		{
+		//BuzzerRequest = ON;
+		Pwm__SetDutyCycle(PWM5,BUZZER_DEFAULT_ON_DUTY);
+		}
+	else
+		{
+		Pwm__SetDutyCycle(PWM5,BUZZER_OFF_DUTY);
+		}
+	
+#endif // (USE_BUZZER == ENABLED)
+	
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+/**
+ * 
+ */
+void Hal__SetBuzzerFreq(unsigned short int frequency)
+{
+#if (USE_BUZZER == ENABLED)
+	
+	if(frequency >= 2000)
+		{
+		Pwm__SetTCFrequency(PWM_TC2, frequency);
+		}
+	
+#endif // (USE_BUZZER == ENABLED)
+	
 }
 
 

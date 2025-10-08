@@ -12,11 +12,15 @@ Drivers\ADC.c
 
 Drivers\GPIO.c
 
+Drivers\Pwm.c
+
 Hal\Hal.c
 
 Hal\SevenSeg.c
 
 System\Display.c
+
+System\Sounds.c
 
 System\TempSensor.c
 

@@ -63,5 +63,13 @@ unsigned char Hal__ReadAllKey(void);
 
 void Hal__WriteValtoSegment(const char* ptr_display_values);
 
+// ADC
+unsigned short int Hal_GetAnalogInput(ANALOG_INPUT_TYPE input);
+
+// Buzzer
+void Hal__SetBuzzer(unsigned char state);
+void Hal__SetBuzzerFreq(unsigned short int frequency);
+
+
 
 #endif /* HAL_H_ */

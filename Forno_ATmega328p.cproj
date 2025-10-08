@@ -177,6 +177,9 @@
     <Compile Include="Drivers\GPIO.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Drivers\Pwm.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Hal\Hal.c">
       <SubType>compile</SubType>
     </Compile>
@@ -210,6 +213,18 @@
     <Compile Include="Header\Hal_prm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\Pwm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Pwm_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Sounds.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Sounds_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Header\TempSensor.h">
       <SubType>compile</SubType>
     </Compile>
@@ -235,6 +250,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="System\Display.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="System\Sounds.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="System\TempSensor.c">

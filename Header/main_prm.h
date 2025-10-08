@@ -41,7 +41,9 @@
 #define INITIALIZE_TASKS()\
 {\
 	Hal__Initialize();\
+	Pwm__Initialize();\
 	Display__Initialize();\
+	Sounds__Initialize();\
 	Appl__Initialize();\
 	ADC__Initialize();\
 	TempSensor__Initialize();\
@@ -57,6 +59,7 @@
 
 #define SLOT_1_TASKS()\
 {\
+	Sounds__Background();\
 }
 
 #define SLOT_2_TASKS()\
