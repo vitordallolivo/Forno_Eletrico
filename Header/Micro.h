@@ -115,11 +115,11 @@ typedef struct
 	} TC0_REG_TYPE;
 
 	// TC0 Registers Address
-	#define TC0_TCCR0A  (*((volatile TC0_REG_TYPE *)0x00))	/*** TCCR0A  - Timer/Counter Control 0 Register A;     ***/
-	#define TC0_TCCR0B  (*((volatile DEF_LOWBYTE *)0x00))    /*** TCCR0B  - Timer/Counter Control 0 Register B;     ***/
-	#define TC0_TCNT0   (*((volatile DEF_LOWBYTE *)0x00))    /*** TCNT0   - Timer/Counter 0 Register;               ***/
-	#define TC0_OCR0A   (*((volatile DEF_LOWBYTE *)0x00))    /*** OCR0A   - Output Compare 0 Register A;            ***/
-	#define TC0_OCR0B  (*((volatile DEF_LOWBYTE  *)0x00))     /*** OCR0B   - Output Compare 0 Register B;            ***/
+	#define TC0_TCCR0A  (*((volatile TC0_REG_TYPE *)0x44))	/*** TCCR0A  - Timer/Counter Control 0 Register A;     ***/
+	#define TC0_TCCR0B  (*((volatile DEF_LOWBYTE *)0x45))    /*** TCCR0B  - Timer/Counter Control 0 Register B;     ***/
+	#define TC0_TCNT0   (*((volatile DEF_LOWBYTE *)0x46))    /*** TCNT0   - Timer/Counter 0 Register;               ***/
+	#define TC0_OCR0A   (*((volatile DEF_LOWBYTE *)0x47))    /*** OCR0A   - Output Compare 0 Register A;            ***/
+	#define TC0_OCR0B  (*((volatile DEF_LOWBYTE  *)0x48))     /*** OCR0B   - Output Compare 0 Register B;            ***/
 
 	#define TC0_REGISTERS  &TC0_TCCR0A
 
@@ -140,17 +140,17 @@ typedef struct
 	} TC1_REG_TYPE;
 
 	// TC1 Registers Address
-	#define TC1_TCCR1A  (*((volatile TC1_REG_TYPE *)0x00))	/*** TCCR1A  - Timer/Counter Control 1 Register A;     ***/
-	#define TC1_TCCR1B  (*((volatile DEF_LOWBYTE *)0x00))    /*** TCCR1B  - Timer/Counter Control 1 Register B;     ***/
-	#define TC1_TCCR1C  (*((volatile DEF_LOWBYTE *)0x00))    /*** TCCR1B  - Timer/Counter Control 1 Register C;     ***/
-	#define TC1_TCNT1L   (*((volatile DEF_LOWBYTE *)0x00))    /*** TCNT1L   - Timer/Counter 1 Low Register;         ***/
-	#define TC1_TCNT1H   (*((volatile DEF_LOWBYTE *)0x00))    /*** TCNT1H   - Timer/Counter 1 High Register;        ***/
-	#define TC1_ICR1L   (*((volatile DEF_LOWBYTE *)0x00))    /*** ICR1L   - Input capture Low Register 1;           ***/
-	#define TC1_ICR1H   (*((volatile DEF_LOWBYTE *)0x00))    /*** ICR1H   - Input capture High Register 1;          ***/
-	#define TC1_OCR1AL   (*((volatile DEF_LOWBYTE *)0x00))    /*** OCR1AL   - Output Compare 0 Low Register A;      ***/
-	#define TC1_OCR1AH   (*((volatile DEF_LOWBYTE *)0x00))    /*** OCR1AH   - Output Compare 0 High Register A;     ***/
-	#define TC1_OCR1BL  (*((volatile DEF_LOWBYTE *)0x00))     /*** OCR1BL   - Output Compare 0 Low Register B;      ***/
-	#define TC1_OCR1BH  (*((volatile DEF_LOWBYTE *)0x00))     /*** OCR1BH   - Output Compare 0 High Register B;     ***/
+	#define TC1_TCCR1A  (*((volatile TC1_REG_TYPE *)0x80))	/*** TCCR1A  - Timer/Counter Control 1 Register A;     ***/
+	#define TC1_TCCR1B  (*((volatile DEF_LOWBYTE *)0x81))    /*** TCCR1B  - Timer/Counter Control 1 Register B;     ***/
+	#define TC1_TCCR1C  (*((volatile DEF_LOWBYTE *)0x82))    /*** TCCR1B  - Timer/Counter Control 1 Register C;     ***/
+	#define TC1_TCNT1L   (*((volatile DEF_LOWBYTE *)0x84))    /*** TCNT1L   - Timer/Counter 1 Low Register;         ***/
+	#define TC1_TCNT1H   (*((volatile DEF_LOWBYTE *)0x85))    /*** TCNT1H   - Timer/Counter 1 High Register;        ***/
+	#define TC1_ICR1L   (*((volatile DEF_LOWBYTE *)0x86))    /*** ICR1L   - Input capture Low Register 1;           ***/
+	#define TC1_ICR1H   (*((volatile DEF_LOWBYTE *)0x87))    /*** ICR1H   - Input capture High Register 1;          ***/
+	#define TC1_OCR1AL   (*((volatile DEF_LOWBYTE *)0x88))    /*** OCR1AL   - Output Compare 0 Low Register A;      ***/
+	#define TC1_OCR1AH   (*((volatile DEF_LOWBYTE *)0x89))    /*** OCR1AH   - Output Compare 0 High Register A;     ***/
+	#define TC1_OCR1BL  (*((volatile DEF_LOWBYTE *)0x8A))     /*** OCR1BL   - Output Compare 0 Low Register B;      ***/
+	#define TC1_OCR1BH  (*((volatile DEF_LOWBYTE *)0x8B))     /*** OCR1BH   - Output Compare 0 High Register B;     ***/
 
 	#define TC1_REGISTERS  &TC1_TCCR1A
 
@@ -164,11 +164,11 @@ typedef struct
 	} TC2_REG_TYPE;
 
 	// TC2 Registers Address
-	#define TC2_TCCR2A  (*((volatile TC2_REG_TYPE *)0x00))	/*** TCCR2A  - Timer/Counter Control 0 Register A;     ***/
-	#define TC2_TCCR2B  (*((volatile DEF_LOWBYTE *)0x00))    /*** TCCR2B  - Timer/Counter Control 0 Register B;     ***/
-	#define TC2_TCNT2   (*((volatile DEF_LOWBYTE *)0x00))    /*** TCNT2   - Timer/Counter 0 Register;               ***/
-	#define TC2_OCR2A   (*((volatile DEF_LOWBYTE *)0x00))    /*** OCR2A   - Output Compare 0 Register A;            ***/
-	#define TC2_OCR2B  (*((volatile DEF_LOWBYTE  *)0x00))     /*** OCR2B   - Output Compare 0 Register B;            ***/
+	#define TC2_TCCR2A  (*((volatile TC2_REG_TYPE *)0xB0))	/*** TCCR2A  - Timer/Counter Control 0 Register A;     ***/
+	#define TC2_TCCR2B  (*((volatile DEF_LOWBYTE *)0xB1))    /*** TCCR2B  - Timer/Counter Control 0 Register B;     ***/
+	#define TC2_TCNT2   (*((volatile DEF_LOWBYTE *)0xB2))    /*** TCNT2   - Timer/Counter 0 Register;               ***/
+	#define TC2_OCR2A   (*((volatile DEF_LOWBYTE *)0xB3))    /*** OCR2A   - Output Compare 0 Register A;            ***/
+	#define TC2_OCR2B  (*((volatile DEF_LOWBYTE  *)0xB4))     /*** OCR2B   - Output Compare 0 Register B;            ***/
 
 	#define TC2_REGISTERS  &TC2_TCCR2A
 

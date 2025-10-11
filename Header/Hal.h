@@ -68,6 +68,7 @@ unsigned short int Hal_GetAnalogInput(ANALOG_INPUT_TYPE input);
 
 // Buzzer
 void Hal__SetBuzzer(unsigned char state);
+void Hal_SetBuzzerDutyCycle(unsigned char duty);
 void Hal__SetBuzzerFreq(unsigned short int frequency);
 
 

@@ -10,11 +10,17 @@
 #define Sounds_H_
 
 
+#include "../Header/Sounds_prm.h"
+
 typedef enum {
 	SOUND_POWER_ON = 0,
 	SOUND_KEY_PRESS,
 	SOUND_END_CYCLE,
 	PLAY_NO_SOUND,   // NÃO RETIRE ESTA LINHA
+	PLAY_MIN,
+	PLAY_MED,
+	PLAY_MAX,
+	PLAY_OFF,
 	NUM_OF_SOUNDS,
 } SOUNDS_TYPE;
 

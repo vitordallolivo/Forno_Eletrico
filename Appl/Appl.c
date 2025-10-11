@@ -32,6 +32,8 @@ KEY_EVENT_TYPE User_Action;
 unsigned char Timer_Counter;
 unsigned char Toggle;
 unsigned char Trigger;
+
+
 //-------------------------------------- PRIVATE (Function Prototypes) ---------------------------------------------------
 
 
@@ -53,33 +55,38 @@ void Appl__Handler(void)
 	{
 		switch(User_Action)
 		{
+			case KEY_NONE:
+				Sounds__PlaySounds(PLAY_NO_SOUND);
+			break;
+			
 			case KEY_OFF_EVENT:
-			Display__SetState(OVEN_OFF);
-			OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
-			Sounds__PlaySounds(SOUND_KEY_PRESS);    //buzzer de key press
+				Display__SetState(OVEN_OFF);
+				OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
+				Sounds__PlaySounds(PLAY_OFF);    //buzzer de key press
 			break;
 			
 			case KEY_MIN_EVENT:
-			Display__SetState(OVEN_MIN);
-			OvenTempControl__SetLevel(TEMP_LEVEL_MIN);
-			Sounds__PlaySounds(SOUND_KEY_PRESS);    //buzzer de key press
+				Display__SetState(OVEN_MIN);
+				OvenTempControl__SetLevel(TEMP_LEVEL_MIN);
+				Sounds__PlaySounds(PLAY_MIN);    //buzzer de key press
 			break;
 			
 			case KEY_MED_EVENT:
-			Display__SetState(OVEN_MED);
-			OvenTempControl__SetLevel(TEMP_LEVEL_MED);
-			Sounds__PlaySounds(SOUND_KEY_PRESS);    //buzzer de key press
+				Display__SetState(OVEN_MED);
+				OvenTempControl__SetLevel(TEMP_LEVEL_MED);
+				Sounds__PlaySounds(PLAY_MED);    //buzzer de key press
 			break;
 			
 			case KEY_MAX_EVENT:
-			Display__SetState(OVEN_MAX);
-			OvenTempControl__SetLevel(TEMP_LEVEL_MAX);
-			Sounds__PlaySounds(SOUND_KEY_PRESS);    //buzzer de key press
+				Display__SetState(OVEN_MAX);
+				OvenTempControl__SetLevel(TEMP_LEVEL_MAX);
+				Sounds__PlaySounds(PLAY_MAX);    //buzzer de key press
 			break;
 
 			default:
-			Display__SetState(OVEN_OFF);
-			OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
+				Display__SetState(OVEN_OFF);
+				OvenTempControl__SetLevel(TEMP_LEVEL_OVEN_OFF);
+				Sounds__PlaySounds(PLAY_NO_SOUND);
 			break;
 
 		}

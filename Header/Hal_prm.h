@@ -75,7 +75,6 @@
 // --------------------------------- BUZZER CONFIGURATION ------------------------------------
 //-------------------------------------------------------------------------------------------
 
-#define USE_BUZZER				ENABLED  //	DISABLED
 #define BUZZER_DEFAULT_ON_DUTY	99 //100%
 #define BUZZER_OFF_DUTY	    0 //0%
 #define BUZZER_DEFAULT_FREQ		4000 //Hz

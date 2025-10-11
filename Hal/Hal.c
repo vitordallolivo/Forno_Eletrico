@@ -134,6 +134,7 @@ void Hal__Initialize(void)
 	
 	// Buzzer GPIO Configuration
 	GPIO_CONFIG(BUZZER_GPIO.port,BUZZER_GPIO.pin,OUTPUT_DIGITAL);
+	GPIO_PIN_WRITE(BUZZER_GPIO.port,BUZZER_GPIO.pin, SET); // BUZZER DESLIGADO
 	
 	
 	// Analog Inputs Configuration - modo de conversão e resolução e inicializa os buffers de várias leitura do ADC
@@ -269,7 +270,7 @@ unsigned short int Hal_GetAnalogInput(ANALOG_INPUT_TYPE input)
  */
 void Hal__SetBuzzer(unsigned char state)
 {
-#if (USE_BUZZER == ENABLED)
+	#if (USE_BUZZER == ENABLED)
 
 	if(state > 0)
 		{
@@ -281,8 +282,14 @@ void Hal__SetBuzzer(unsigned char state)
 		Pwm__SetDutyCycle(PWM5,BUZZER_OFF_DUTY);
 		}
 	
-#endif // (USE_BUZZER == ENABLED)
+	#endif // (USE_BUZZER == ENABLED)
 	
+}
+
+
+
+void Hal_SetBuzzerDutyCycle(unsigned char duty){
+	Pwm__SetDutyCycle(PWM5,duty);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -291,15 +298,7 @@ void Hal__SetBuzzer(unsigned char state)
  */
 void Hal__SetBuzzerFreq(unsigned short int frequency)
 {
-#if (USE_BUZZER == ENABLED)
-	
-	if(frequency >= 2000)
-		{
-		Pwm__SetTCFrequency(PWM_TC2, frequency);
-		}
-	
-#endif // (USE_BUZZER == ENABLED)
-	
+	Pwm__SetTCFrequency(PWM_TC2, frequency);
 }
 
 

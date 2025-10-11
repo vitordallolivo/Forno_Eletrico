@@ -20,17 +20,24 @@
 typedef enum
 {
 	SOUND_DONE =0,
-	SOUND_PLAYING=1 
+	SOUND_PLAYING=1,
 }SOUND_STATUS;
 //-----------------------Globais -----------------
 
 SOUNDS_TYPE PlaySound;
+SOUNDS_TYPE WhichSound = PLAY_NO_SOUND;
 
 unsigned char EndCycleSound_Counter = 0;
+
+
 //-------------------------------------- PRIVATE (Function Prototypes) ---------------------------------------------------
 SOUND_STATUS PowerOnSoundHandler(void);
 SOUND_STATUS KeyPressSoundHandler(void);
 SOUND_STATUS EndCycleSoundHandler(void);
+
+void tone(unsigned short int frequency, unsigned short int duration, unsigned char duty_cycle);
+void sound_delay(unsigned short int  duration);
+
 
 //*********************************************************
 //
@@ -91,10 +98,19 @@ void Sounds__Background(void)
 
 void Sounds__PlaySounds( SOUNDS_TYPE sound_id)
 {
-	PlaySound = PLAY_NO_SOUND;
-
-	if(sound_id < NUM_OF_SOUNDS)
-   		PlaySound = sound_id;
+	WhichSound = PLAY_NO_SOUND;
+	
+	if(sound_id < NUM_OF_SOUNDS){
+   		WhichSound = sound_id;
+		
+		if(WhichSound >= PLAY_NO_SOUND){
+			PlaySound = SOUND_KEY_PRESS;	   
+		}
+		else{
+			PlaySound = sound_id;
+		}
+		
+	}
 }
 
 //=====================================================================================================================
@@ -110,14 +126,10 @@ SOUND_STATUS PowerOnSoundHandler(void)
 	//Hal__SetAllLeds(LED_ON);
 
 	status = SOUND_PLAYING;
-	Hal__SetBuzzerFreq(4000);
-	Hal__SetBuzzer(ON);
-	_delay_ms(2000);
-	Hal__SetBuzzer(OFF);
-	_delay_ms(1000);
-	Hal__SetBuzzer(ON);
-	_delay_ms(3000);
-	Hal__SetBuzzer(OFF);
+	
+	tone(NOTE_DS8,2000,20);
+	tone(NOTE_DS8,3000,20);
+	
 
 	status = SOUND_DONE;
 	return status;
@@ -128,10 +140,44 @@ SOUND_STATUS KeyPressSoundHandler(void)
 	SOUND_STATUS status;
 
 	status = SOUND_PLAYING;
-	Hal__SetBuzzerFreq(4000);
-	Hal__SetBuzzer(ON);
-	_delay_ms(1000);
-	Hal__SetBuzzer(OFF);
+	
+	switch(WhichSound){
+		
+		case PLAY_MIN:
+			  tone(NOTE_B0,2000,20);
+			  tone(NOTE_DS8,3000,20);
+			  tone(NOTE_D5,1000,20);
+			  tone(NOTE_AS7,3000,10);
+		break;
+		
+		case PLAY_MED:
+			tone(NOTE_B0,2000,20);
+			tone(NOTE_FS7,3000,20);
+			tone(NOTE_B0,2000,20);
+			tone(NOTE_CS5,3000,20);
+		break;
+		
+		case PLAY_MAX:
+			tone(NOTE_D2,1000,20);
+			tone(NOTE_CS5,3000,20);
+			tone(NOTE_F2,1000,20);
+			tone(NOTE_DS8,2500,20);
+		break;
+		
+		case PLAY_OFF:
+		
+			for(unsigned char i=0; i<10; i++){
+				tone(NOTE_C6,2000,20);
+				sound_delay(200);
+			}
+		break;
+		
+		
+		
+	}
+
+
+
 	status = SOUND_DONE;
 	return status;
 }
@@ -141,11 +187,28 @@ SOUND_STATUS EndCycleSoundHandler(void)
 	SOUND_STATUS status;
 
 	status = SOUND_PLAYING;
-	//Hal__SetBuzzerFreq(4000);
-	//Hal__SetBuzzer(ON);
-	//_delay_ms(1000);
 	Hal__SetBuzzer(OFF);
 
 	status = SOUND_DONE;
 	return status;
+}
+
+
+void sound_delay(unsigned short int duration) {
+	for (unsigned short int i = 0; i < duration; i++) {
+		_delay_ms(1);
+	}
+}
+
+void tone(unsigned short int frequency, unsigned short int duration, unsigned char duty_cycle) {
+	if (frequency == 0) {
+		Hal__SetBuzzer(OFF);
+		sound_delay(duration);
+	} 
+	else {
+		Hal__SetBuzzerFreq(frequency);
+		Hal_SetBuzzerDutyCycle(duty_cycle);
+		sound_delay(duration);
+		Hal__SetBuzzer(OFF);
+	}
 }

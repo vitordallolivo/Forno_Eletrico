@@ -27,9 +27,9 @@ typedef enum {
 } PWM_ID_TYPE;
 
 typedef enum {
-	PWM_TC0 = 0,
-	PWM_TC1,
-	PWM_TC2,
+	PWM_TC0 = 0, // 8 bits
+	PWM_TC1, // 16 bits
+	PWM_TC2, // 8 bits
 	NUM_OF_PWM_TC,
 } PWM_TC_TYPE;
 

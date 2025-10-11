@@ -26,8 +26,14 @@ const unsigned char PWM_Enable_Table[NUM_OF_PWM] = {
 	#define  F_CPU 16000000UL
 #endif
 
+//-------------------------------------- Global Variables  --------------------------------------------------------------------
+
+unsigned char last_frequency[NUM_OF_PWM_TC] = {0};
+
+
 //-------------------------------------- PRIVATE (Function Prototypes) ---------------------------------------------------
 
+uint8_t CalculatePrescaler(PWM_TC_TYPE tc, unsigned short frequency);
 
 
 
@@ -89,7 +95,7 @@ void Pwm__Initialize(void){
 				TC_channel = PWM_TC2;
 				break;
 
-				case PWM5: // OC2B — já configurado antes, mas ok repetir
+				case PWM5: // OC2B 
 				pwm_pt2->TCCR2A_REG.byte |= 0b00110001;
 				
 				TC_channel = PWM_TC2;
@@ -111,80 +117,34 @@ void Pwm__Initialize(void){
 //*********************************************************
 //
 //   Esta rotina configura o TC numa determinada frequência 
-//   ( verifcar no livro para cada TC)
+//   ( verificar no livro para cada TC)
 //
 //*********************************************************
  
+ 
 void Pwm__SetTCFrequency(PWM_TC_TYPE tc, unsigned short frequency) {
+	
 	volatile TC0_REG_TYPE *pwm_pt0 = TC0_REGISTERS;
 	volatile TC1_REG_TYPE *pwm_pt1 = TC1_REGISTERS;
 	volatile TC2_REG_TYPE *pwm_pt2 = TC2_REGISTERS;
 
-	const uint32_t f_cpu = F_CPU;
-	const uint16_t top = 255;
-	const uint32_t target = 2UL * frequency * (top + 1); 
-
 	uint8_t prescaler_bits = 0;
-	uint8_t found = 0;
+	
+	
+	prescaler_bits = CalculatePrescaler(tc,frequency); // calculate prescaler
 
 	switch (tc) {
-		case PWM_TC0: {
-			const uint16_t prescaler_values[] = {1, 8, 64, 256, 1024};
-			const uint8_t prescaler_codes[]   = {0x01, 0x02, 0x03, 0x04, 0x05};
-
-			for (uint8_t i = 0; i < sizeof(prescaler_values)/sizeof(prescaler_values[0]); i++) {
-				if ((f_cpu / prescaler_values[i]) >= target) {
-					prescaler_bits = prescaler_codes[i];
-					found = 1;
-					break;
-				}
-			}
-
-			if (!found) {
-				prescaler_bits = 0x05; // Máximo prescaler = 1024
-			}
-
-			// Atualiza TCCR0B apenas com os bits do prescaler
+		case PWM_TC0:{
 			pwm_pt0->TCCR0B_REG.byte = (pwm_pt0->TCCR0B_REG.byte & 0xF8) | prescaler_bits;
 			break;
 		}
 
 		case PWM_TC1: {
-			const uint16_t prescaler_values[] = {1, 8, 64, 256, 1024};
-			const uint8_t prescaler_codes[]   = {0x01, 0x02, 0x03, 0x04, 0x05};
-
-			for (uint8_t i = 0; i < sizeof(prescaler_values)/sizeof(prescaler_values[0]); i++) {
-				if ((f_cpu / prescaler_values[i]) >= target) {
-					prescaler_bits = prescaler_codes[i];
-					found = 1;
-					break;
-				}
-			}
-
-			if (!found) {
-				prescaler_bits = 0x05;
-			}
-
 			pwm_pt1->TCCR1B_REG.byte = (pwm_pt1->TCCR1B_REG.byte & 0xF8) | prescaler_bits;
 			break;
 		}
 
 		case PWM_TC2: {
-			const uint16_t prescaler_values[] = {1, 8, 32, 64, 128, 256, 1024};
-			const uint8_t prescaler_codes[]   = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
-
-			for (uint8_t i = 0; i < sizeof(prescaler_values)/sizeof(prescaler_values[0]); i++) {
-				if ((f_cpu / prescaler_values[i]) >= target) {
-					prescaler_bits = prescaler_codes[i];
-					found = 1;
-					break;
-				}
-			}
-
-			if (!found) {
-				prescaler_bits = 0x07;
-			}
-
 			pwm_pt2->TCCR2B_REG.byte = (pwm_pt2->TCCR2B_REG.byte & 0xF8) | prescaler_bits;
 			break;
 		}
@@ -193,6 +153,8 @@ void Pwm__SetTCFrequency(PWM_TC_TYPE tc, unsigned short frequency) {
 		// Timer inválido
 		break;
 	}
+	
+	last_frequency[tc]  = frequency;
 }
 
 //*********************************************************
@@ -239,3 +201,85 @@ void Pwm__SetDutyCycle( PWM_ID_TYPE pwm, unsigned char duty){
 	}
 }
 
+
+
+//=====================================================================================================================
+//-------------------------------------- Private Functions -------------------------------------------------------------
+//=====================================================================================================================
+
+
+uint8_t CalculatePrescaler(PWM_TC_TYPE tc, unsigned short frequency){
+	
+		// Ensure that we don't make more calculations than necessary
+		if(last_frequency[tc] == frequency){
+			return last_frequency[tc];
+		}
+	
+		uint8_t prescaler_bits = 0;
+		
+		
+		switch (tc) {
+			case PWM_TC0: { // Timer0 - 8-bit
+				const uint32_t required_prescaler = F_CPU / (frequency * (255UL + 1UL));
+				const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
+				const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
+		 
+				for (uint8_t i = 0; i < 5 ; i++) {
+					if (prescaler_values[i] >= required_prescaler) {
+						prescaler_bits = prescaler_codes[i];
+						break;
+					}
+				}
+		 
+				if (prescaler_bits == 0) {
+					prescaler_bits = 0x05; // Max prescaler
+				}
+				break;
+			}
+	 
+			case PWM_TC1: { // Timer1 - 16-bit
+				const uint32_t required_prescaler = F_CPU / (frequency * (1023UL));
+				const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
+				const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
+		 
+				for (uint8_t i = 0; i < 5; i++) {
+					if (prescaler_values[i] >= required_prescaler) {
+						prescaler_bits = prescaler_codes[i];
+						break;
+					}
+				}
+		 
+				if (prescaler_bits == 0) {
+					prescaler_bits = 0x05;
+				}
+				break;
+			}
+	 
+			case PWM_TC2: { // Timer2 - 8-bit
+				const uint32_t required_prescaler = F_CPU / (frequency * (255UL + 1UL));
+				const uint16_t prescaler_values[7] = {1, 8, 32, 64, 128, 256, 1024};
+				const uint8_t prescaler_codes[7]   = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
+		 
+				for (uint8_t i = 0; i < 7; i++) {
+					if (prescaler_values[i] >= required_prescaler) {
+						prescaler_bits = prescaler_codes[i];
+						break;
+					}
+				}
+		 
+				if (prescaler_bits == 0) {
+					prescaler_bits = 0x07;
+				}
+				break;
+			}
+	 
+			default:
+			prescaler_bits = 0;
+			break;
+		}
+ 
+		
+		last_frequency[tc] = frequency;		
+		
+		return prescaler_bits;
+}

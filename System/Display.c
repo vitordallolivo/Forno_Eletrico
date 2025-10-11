@@ -188,6 +188,7 @@ void ReadDisplayKeys(void)
 			Display_Keys_Map= KEY_OFF_EVENT;
 			break;
 		case NUM_OF_KEYS:
+			Display_Keys_Map = KEY_NONE;
 			break;
 	}
 	

@@ -15,6 +15,8 @@ Drivers/Pwm.d Drivers/Pwm.o: ../Drivers/Pwm.c \
  ../Drivers/..\Header\..\Header\..\Header\C_Types.h \
  ../Drivers/..\Header\Pwm.h ../Drivers/..\Header\..\Header\Micro.h \
  ../Drivers/..\Header\..\Header\Sounds.h \
+ ../Drivers/..\Header\..\Header\../Header/Sounds_prm.h \
+ c:\users\vitor\desktop\aam\forno_eletrico\header\c_types.h \
  ../Drivers/..\Header\..\Header\Pwm_prm.h \
  ../Drivers/..\Header\..\Header\../Header/C_Types.h \
  ../Drivers/..\Header\Micro.h
@@ -56,6 +58,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Drivers/..\Header\..\Header\Micro.h:
 
 ../Drivers/..\Header\..\Header\Sounds.h:
+
+../Drivers/..\Header\..\Header\../Header/Sounds_prm.h:
+
+c:\users\vitor\desktop\aam\forno_eletrico\header\c_types.h:
 
 ../Drivers/..\Header\..\Header\Pwm_prm.h:
 

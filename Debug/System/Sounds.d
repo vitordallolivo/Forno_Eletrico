@@ -13,7 +13,8 @@ System/Sounds.d System/Sounds.o: ../System/Sounds.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  ../System/..\Header\Hal.h ../System/..\Header\..\Header\Hal_prm.h \
  ../System/..\Header\..\Header\..\Header\C_Types.h \
- ../System/..\Header\Sounds.h \
+ ../System/..\Header\Sounds.h ../System/..\Header\../Header/Sounds_prm.h \
+ ../System/..\Header\../Header/..\Header\C_types.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
@@ -49,6 +50,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../System/..\Header\..\Header\..\Header\C_Types.h:
 
 ../System/..\Header\Sounds.h:
+
+../System/..\Header\../Header/Sounds_prm.h:
+
+../System/..\Header\../Header/..\Header\C_types.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
 
