@@ -108,6 +108,6 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-
+#define PAUSE 0
 
 #endif /* SOUND_PRM_H_ */

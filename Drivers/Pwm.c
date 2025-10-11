@@ -220,7 +220,7 @@ uint8_t CalculatePrescaler(PWM_TC_TYPE tc, unsigned short frequency){
 		
 		switch (tc) {
 			case PWM_TC0: { // Timer0 - 8-bit
-				const uint32_t required_prescaler = F_CPU / (frequency * (255UL + 1UL));
+				const uint32_t required_prescaler = F_CPU / (2*frequency * (255UL + 1UL));
 				const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
 				const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
 		 
@@ -256,7 +256,7 @@ uint8_t CalculatePrescaler(PWM_TC_TYPE tc, unsigned short frequency){
 			}
 	 
 			case PWM_TC2: { // Timer2 - 8-bit
-				const uint32_t required_prescaler = F_CPU / (frequency * (255UL + 1UL));
+				const uint32_t required_prescaler = F_CPU / (2*frequency * (255UL + 1UL));
 				const uint16_t prescaler_values[7] = {1, 8, 32, 64, 128, 256, 1024};
 				const uint8_t prescaler_codes[7]   = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
 		 

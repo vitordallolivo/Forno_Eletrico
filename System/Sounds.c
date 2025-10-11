@@ -29,7 +29,6 @@ SOUNDS_TYPE WhichSound = PLAY_NO_SOUND;
 
 unsigned char EndCycleSound_Counter = 0;
 
-
 //-------------------------------------- PRIVATE (Function Prototypes) ---------------------------------------------------
 SOUND_STATUS PowerOnSoundHandler(void);
 SOUND_STATUS KeyPressSoundHandler(void);
@@ -119,6 +118,7 @@ void Sounds__PlaySounds( SOUNDS_TYPE sound_id)
 
 //---------------------------------------------------------------------------------------------------------------------
 
+
 SOUND_STATUS PowerOnSoundHandler(void)
 {
 	SOUND_STATUS status;
@@ -129,7 +129,6 @@ SOUND_STATUS PowerOnSoundHandler(void)
 	
 	tone(NOTE_DS8,2000,20);
 	tone(NOTE_DS8,3000,20);
-	
 
 	status = SOUND_DONE;
 	return status;
@@ -166,9 +165,11 @@ SOUND_STATUS KeyPressSoundHandler(void)
 		
 		case PLAY_OFF:
 		
-			for(unsigned char i=0; i<10; i++){
-				tone(NOTE_C6,2000,20);
-				sound_delay(200);
+			for(unsigned char i=0; i<3; i++){
+				tone(NOTE_DS8,1000,20);
+				sound_delay(1000);
+				tone(80000,500,20);
+				sound_delay(500);
 			}
 		break;
 		
