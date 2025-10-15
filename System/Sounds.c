@@ -9,7 +9,7 @@
 #include "..\Header\Micro.h"
 #include "..\Header\Hal.h"
 #include "..\Header\Sounds.h"
-#include <util/delay.h>   //para incluir rotina _delay_ms()
+#include "..\Header\Timer.h"
 
 //--------------------defines---------------------
 #define POWER_ON_SOUND   0
@@ -22,10 +22,40 @@ typedef enum
 	SOUND_DONE =0,
 	SOUND_PLAYING=1,
 }SOUND_STATUS;
+
+
+typedef enum
+{
+	POWER_ON_SOUND_STEP1 = 0,
+	POWER_ON_SOUND_STEP2,
+	POWER_ON_SOUND_STEP3,
+	POWER_ON_SOUND_STEP4,
+	POWER_ON_SOUND_STEP5,
+	POWER_ON_SOUND_STEP6
+}POWER_ON_SOUND_STEPS;
+
+typedef enum
+{
+	KEY_PRESS_SOUND_STEP1 = 0,
+	KEY_PRESS_SOUND_STEP2
+}KEY_PRESS_SOUND_STEPS;
+
+typedef enum
+{
+	END_CYCLE_SOUND_STEP_OFF = 0,
+	END_CYCLE_SOUND_STEP_ON
+}END_CYCLE_SOUND_STEPS;
+
+
+
 //-----------------------Globais -----------------
 
 SOUNDS_TYPE PlaySound;
 SOUNDS_TYPE WhichSound = PLAY_NO_SOUND;
+
+KEY_PRESS_SOUND_STEPS Key_Press_Sound_Step;
+POWER_ON_SOUND_STEPS PowerON_Sound_Step;
+END_CYCLE_SOUND_STEPS End_Cycle_Sound_Step;
 
 unsigned char EndCycleSound_Counter = 0;
 
@@ -34,8 +64,7 @@ SOUND_STATUS PowerOnSoundHandler(void);
 SOUND_STATUS KeyPressSoundHandler(void);
 SOUND_STATUS EndCycleSoundHandler(void);
 
-void tone(unsigned short int frequency, unsigned short int duration, unsigned char duty_cycle);
-void sound_delay(unsigned short int  duration);
+
 
 
 //*********************************************************
@@ -46,6 +75,9 @@ void sound_delay(unsigned short int  duration);
 //*********************************************************
  void Sounds__Initialize(void){
 	PlaySound = PLAY_NO_SOUND;   // variável global => sem som no início	
+	PowerON_Sound_Step = POWER_ON_SOUND_STEP1;
+	Key_Press_Sound_Step = KEY_PRESS_SOUND_STEP1;
+	End_Cycle_Sound_Step = END_CYCLE_SOUND_STEP_ON;
 }
 
 //*********************************************************
@@ -68,7 +100,7 @@ void Sounds__Background(void)
 		case SOUND_KEY_PRESS:
 			if(KeyPressSoundHandler() == SOUND_DONE){
 				PlaySound = PLAY_NO_SOUND;    
-				}
+			}
 			break;
 
 		case SOUND_END_CYCLE:
@@ -112,6 +144,18 @@ void Sounds__PlaySounds( SOUNDS_TYPE sound_id)
 	}
 }
 
+
+//*********************************************************
+//
+//   Esta rotina  devolve o valor da variável global PlaySound
+//
+//*********************************************************
+ SOUNDS_TYPE Sounds__GetSounds( void)
+{
+	return (PlaySound);
+}
+
+
 //=====================================================================================================================
 //-------------------------------------- Private Functions -------------------------------------------------------------
 //=====================================================================================================================
@@ -122,94 +166,163 @@ void Sounds__PlaySounds( SOUNDS_TYPE sound_id)
 SOUND_STATUS PowerOnSoundHandler(void)
 {
 	SOUND_STATUS status;
-
-	//Hal__SetAllLeds(LED_ON);
-
 	status = SOUND_PLAYING;
-	
-	tone(NOTE_DS8,2000,20);
-	tone(NOTE_DS8,3000,20);
+	Hal__SetBuzzerFreq(4000);
 
-	status = SOUND_DONE;
+	switch (PowerON_Sound_Step)
+	{
+		case POWER_ON_SOUND_STEP1:
+		Hal__SetBuzzer(ON);  // aqui entra
+		//_delay_ms(2000);
+		Timer__HMSSet(TIMER_HMS_POWER_ON_SOUND, 0,0,1);
+		PowerON_Sound_Step = POWER_ON_SOUND_STEP2;
+		break;
+
+		case POWER_ON_SOUND_STEP2:
+		if(Timer__HMSGetStatus(TIMER_HMS_POWER_ON_SOUND) == TIMER_EXPIRED)
+		{
+			Timer__HMSSet(TIMER_HMS_POWER_ON_SOUND, 0,0,1);
+			//	Hal__SetBuzzer(ON);    // não entra aqui  !!!
+			//_delay_ms(2000);
+			PowerON_Sound_Step = POWER_ON_SOUND_STEP3;
+			Hal__SetBuzzer(OFF);
+		}
+		break;
+
+		case POWER_ON_SOUND_STEP3:
+		if(Timer__HMSGetStatus(TIMER_HMS_POWER_ON_SOUND) == TIMER_EXPIRED)
+		{
+			Timer__HMSSet(TIMER_HMS_POWER_ON_SOUND, 0,0,1);
+			PowerON_Sound_Step = POWER_ON_SOUND_STEP4;
+			//Hal__SetBuzzerFreq(4000);   //mudar frequencia do PWM
+			Hal__SetBuzzer(ON);
+			//Hal__SetLed(LED_1, LED_ON);   //depuração
+			//_delay_ms(2000);
+		}
+		break;
+		
+		case POWER_ON_SOUND_STEP4:
+		if(Timer__HMSGetStatus(TIMER_HMS_POWER_ON_SOUND) == TIMER_EXPIRED)
+		{
+			Timer__HMSSet(TIMER_HMS_POWER_ON_SOUND, 0,0,1);
+			PowerON_Sound_Step = POWER_ON_SOUND_STEP5;
+			Hal__SetBuzzer(OFF);
+			//Hal__SetLed(LED_1, LED_OFF);
+			//_delay_ms(2000);
+		}
+		break;
+		
+		case POWER_ON_SOUND_STEP5:
+		if(Timer__HMSGetStatus(TIMER_HMS_POWER_ON_SOUND) == TIMER_EXPIRED)
+		{
+			Timer__HMSSet(TIMER_HMS_POWER_ON_SOUND, 0,0,1);
+			PowerON_Sound_Step = POWER_ON_SOUND_STEP6;
+			//Hal__SetBuzzerFreq(4000);
+			Hal__SetBuzzer(ON);
+			//Hal__SetLed(LED_1, LED_ON);
+			//_delay_ms(2000);
+		}
+		break;
+		
+		case POWER_ON_SOUND_STEP6:
+		if(Timer__HMSGetStatus(TIMER_HMS_POWER_ON_SOUND) == TIMER_EXPIRED)
+		{
+			PowerON_Sound_Step = POWER_ON_SOUND_STEP1;
+			Hal__SetBuzzer(OFF);
+			//Hal__SetLed(LED_1, LED_OFF);
+			status = SOUND_DONE;
+		}
+		break;
+
+		default:
+		PowerON_Sound_Step = POWER_ON_SOUND_STEP1;
+		status = SOUND_DONE;
+		break;
+	}
 	return status;
 }
 
 SOUND_STATUS KeyPressSoundHandler(void)
 {
 	SOUND_STATUS status;
-
+	unsigned char time = 0;
 	status = SOUND_PLAYING;
-	
 	switch(WhichSound){
-		
 		case PLAY_MIN:
-			  tone(NOTE_B0,2000,20);
-			  tone(NOTE_DS8,3000,20);
-			  tone(NOTE_D5,1000,20);
-			  tone(NOTE_AS7,3000,10);
-		break;
+			Hal__SetBuzzerFreq(NOTE_CS6);
+			time = 1;
+			break;
 		
 		case PLAY_MED:
-			tone(NOTE_B0,2000,20);
-			tone(NOTE_FS7,3000,20);
-			tone(NOTE_B0,2000,20);
-			tone(NOTE_CS5,3000,20);
-		break;
-		
+			Hal__SetBuzzerFreq(NOTE_GS5);
+			time   = 2;
+			break;
 		case PLAY_MAX:
-			tone(NOTE_D2,1000,20);
-			tone(NOTE_CS5,3000,20);
-			tone(NOTE_F2,1000,20);
-			tone(NOTE_DS8,2500,20);
-		break;
-		
+			Hal__SetBuzzerFreq(NOTE_DS8);
+			time   = 3;
+			break;
 		case PLAY_OFF:
-		
-			for(unsigned char i=0; i<3; i++){
-				tone(NOTE_DS8,1000,20);
-				sound_delay(1000);
-				tone(80000,500,20);
-				sound_delay(500);
-			}
-		break;
-		
-		
-		
+			Hal__SetBuzzerFreq(NOTE_G4);
+			time   = 3;
+			break;
 	}
+	
+	switch(Key_Press_Sound_Step)
+	{
+		case KEY_PRESS_SOUND_STEP1:
+		Timer__HMSSet(TIMER_HMS_KEY_PRESS_SOUND, 0,0,time);
+		Hal__SetBuzzer(ON);
+		Key_Press_Sound_Step = KEY_PRESS_SOUND_STEP2;
+		break;
 
-
-
-	status = SOUND_DONE;
+		case KEY_PRESS_SOUND_STEP2:
+		if(Timer__HMSGetStatus(TIMER_HMS_KEY_PRESS_SOUND) == TIMER_EXPIRED)
+		{
+			Hal__SetBuzzer(OFF);
+			Key_Press_Sound_Step = KEY_PRESS_SOUND_STEP1;
+			status = SOUND_DONE;
+		}
+		break;
+		default:
+		Key_Press_Sound_Step = KEY_PRESS_SOUND_STEP1;
+		status = SOUND_DONE;
+		break;
+	}
+	
 	return status;
 }
 
 SOUND_STATUS EndCycleSoundHandler(void)
 {
 	SOUND_STATUS status;
-
 	status = SOUND_PLAYING;
-	Hal__SetBuzzer(OFF);
+	Hal__SetBuzzerFreq(4000);
 
-	status = SOUND_DONE;
+	switch(End_Cycle_Sound_Step)
+	{
+		case END_CYCLE_SOUND_STEP_ON:
+		Timer__HMSSet(TIMER_HMS_END_CYCLE_SOUND, 0,0,3);
+		Hal__SetBuzzer(ON);
+		//_delay_ms(2000);
+		End_Cycle_Sound_Step = END_CYCLE_SOUND_STEP_OFF;
+		break;
+
+		case END_CYCLE_SOUND_STEP_OFF:
+		//Hal__SetBuzzer(ON);
+		//_delay_ms(2000);
+		if(Timer__HMSGetStatus(TIMER_HMS_END_CYCLE_SOUND) == TIMER_EXPIRED)
+		{
+			Hal__SetBuzzer(OFF);
+			End_Cycle_Sound_Step = END_CYCLE_SOUND_STEP_ON;
+			status = SOUND_DONE;
+		}
+		break;
+		default:
+		End_Cycle_Sound_Step = END_CYCLE_SOUND_STEP_ON;
+		status = SOUND_DONE;
+		break;
+	}
+
 	return status;
 }
 
-
-void sound_delay(unsigned short int duration) {
-	for (unsigned short int i = 0; i < duration; i++) {
-		_delay_ms(1);
-	}
-}
-
-void tone(unsigned short int frequency, unsigned short int duration, unsigned char duty_cycle) {
-	if (frequency == 0) {
-		Hal__SetBuzzer(OFF);
-		sound_delay(duration);
-	} 
-	else {
-		Hal__SetBuzzerFreq(frequency);
-		Hal_SetBuzzerDutyCycle(duty_cycle);
-		sound_delay(duration);
-		Hal__SetBuzzer(OFF);
-	}
-}

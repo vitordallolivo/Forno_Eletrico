@@ -9,21 +9,17 @@
 #ifndef MAIN_PRM_H_
 #define MAIN_PRM_H_
 //-------------------------------------- Include Files ----------------------------------------------------------------
-//#include "C_Types.h"
+#include "..\Header\C_Types.h"
 #include "..\Header\Appl.h"
-//#include "Gpio.h"
-
-
-#include "..\Header\ADC.h"
-#include "..\Header\Hal.h"
 #include "..\Header\Display.h"
-
-//#include "TempSensor.h"
-//#include "OvenTempControl.h"
-//#include "Sounds.h"
-//#include "Timer.h"
-//#include "PWM.h"
-//#include "LcdMgr.h"
+#include "..\Header\Gpio.h"
+#include "..\Header\Adc.h"
+#include "..\Header\Timer.h"
+#include "..\Header\Hal.h"
+#include "..\Header\TempSensor.h"
+#include "..\Header\OvenTempControl.h"
+#include "..\Header\Pwm.h"
+#include "..\Header\Sounds.h"
 //-------------------------------------- Defines ----------------------------------------------------------------
 
 // Select ENALBED to use a fixed slot time duration for each main slot, otherwise select DISABLED
@@ -43,6 +39,7 @@
 	Hal__Initialize();\
 	Pwm__Initialize();\
 	Display__Initialize();\
+	Timer__Initialize();\
 	Sounds__Initialize();\
 	Appl__Initialize();\
 	ADC__Initialize();\
@@ -53,6 +50,7 @@
 #define ALL_SLOTS_TASKS()\
 {\
 	Hal__FastHandler();\
+	Timer__HMSHandler();\
 	Hal__BackgroundHandler();\
 	ADC__Handler();\
 }
@@ -65,7 +63,6 @@
 #define SLOT_2_TASKS()\
 {\
 	Appl__Handler();\
-	Display__Handler();\
 }
 
 #define SLOT_3_TASKS()\
@@ -80,6 +77,7 @@
 
 #define SLOT_5_TASKS()\
 {\
+	Display__Handler();\
 }
 
 

@@ -29,6 +29,11 @@ enum
 #define ENABLED		1
 #define DISABLED 	0
 
+
+#define  TRUE           1
+#define  FALSE          0
+
+
 #define SW_OFF 1  // é invertido por conta do pullup
 #define SW_ON  0
 

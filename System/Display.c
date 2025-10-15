@@ -124,7 +124,7 @@ void UpdateDisplayLeds(void)
 			break;
 		}
 		case OVEN_TIMEOUT:
-		
+			Hal__SetAllLeds(APAGA_LED);
 		break;
 
 		case OVEN_MIN:

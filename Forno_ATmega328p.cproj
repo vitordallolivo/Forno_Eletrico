@@ -249,6 +249,12 @@
     <Compile Include="Header\TempSensor_prm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Header\Timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Header\Timer_prm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="System\Display.c">
       <SubType>compile</SubType>
     </Compile>
@@ -256,6 +262,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="System\TempSensor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="System\Timer.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

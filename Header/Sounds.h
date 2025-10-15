@@ -29,6 +29,8 @@ void Sounds__Initialize(void);
 void Sounds__Background(void);
 void Sounds__PlaySounds( SOUNDS_TYPE sound_id);
 
+SOUNDS_TYPE Sounds__GetSounds( void);   //novo
+
 
 
 

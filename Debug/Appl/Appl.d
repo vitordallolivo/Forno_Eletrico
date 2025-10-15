@@ -15,7 +15,8 @@ Appl/Appl.d Appl/Appl.o: ../Appl/Appl.c ../Appl/..\Header\C_Types.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  ../Appl/..\Header\Adc.h ../Appl/..\Header\..\Header\Micro.h \
- ../Appl/..\Header\..\Header\Adc_prm.h ../Appl/..\Header\Hal.h \
+ ../Appl/..\Header\..\Header\Adc_prm.h ../Appl/..\Header\Timer.h \
+ ../Appl/..\Header\..\Header\Timer_prm.h ../Appl/..\Header\Hal.h \
  ../Appl/..\Header\..\Header\Hal_prm.h \
  ../Appl/..\Header\..\Header\..\Header\C_Types.h \
  ../Appl/..\Header\OvenTempControl.h \
@@ -69,6 +70,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Appl/..\Header\..\Header\Micro.h:
 
 ../Appl/..\Header\..\Header\Adc_prm.h:
+
+../Appl/..\Header\Timer.h:
+
+../Appl/..\Header\..\Header\Timer_prm.h:
 
 ../Appl/..\Header\Hal.h:
 

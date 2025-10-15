@@ -24,3 +24,5 @@ System\Sounds.c
 
 System\TempSensor.c
 
+System\Timer.c
+

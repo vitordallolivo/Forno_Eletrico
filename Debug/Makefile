@@ -52,7 +52,8 @@ C_SRCS +=  \
 ../Hal/SevenSeg.c \
 ../System/Display.c \
 ../System/Sounds.c \
-../System/TempSensor.c
+../System/TempSensor.c \
+../System/Timer.c
 
 
 PREPROCESSING_SRCS += 
@@ -72,7 +73,8 @@ Hal/Hal.o \
 Hal/SevenSeg.o \
 System/Display.o \
 System/Sounds.o \
-System/TempSensor.o
+System/TempSensor.o \
+System/Timer.o
 
 OBJS_AS_ARGS +=  \
 Appl/Appl.o \
@@ -85,7 +87,8 @@ Hal/Hal.o \
 Hal/SevenSeg.o \
 System/Display.o \
 System/Sounds.o \
-System/TempSensor.o
+System/TempSensor.o \
+System/Timer.o
 
 C_DEPS +=  \
 Appl/Appl.d \
@@ -98,7 +101,8 @@ Hal/Hal.d \
 Hal/SevenSeg.d \
 System/Display.d \
 System/Sounds.d \
-System/TempSensor.d
+System/TempSensor.d \
+System/Timer.d
 
 C_DEPS_AS_ARGS +=  \
 Appl/Appl.d \
@@ -111,7 +115,8 @@ Hal/Hal.d \
 Hal/SevenSeg.d \
 System/Display.d \
 System/Sounds.d \
-System/TempSensor.d
+System/TempSensor.d \
+System/Timer.d
 
 OUTPUT_FILE_PATH +=Forno_ATmega328p.elf
 
@@ -198,6 +203,13 @@ System/Sounds.o: ../System/Sounds.c
 	
 
 System/TempSensor.o: ../System/TempSensor.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+System/Timer.o: ../System/Timer.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
