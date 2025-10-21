@@ -259,11 +259,11 @@ SOUND_STATUS KeyPressSoundHandler(void)
 			break;
 		case PLAY_MAX:
 			Hal__SetBuzzerFreq(NOTE_DS8);
-			time   = 3;
+			time   = 2;
 			break;
 		case PLAY_OFF:
 			Hal__SetBuzzerFreq(NOTE_G4);
-			time   = 3;
+			time   = 1;
 			break;
 	}
 	

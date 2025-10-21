@@ -32,7 +32,7 @@ Appl/main.d Appl/main.o: ../Appl/main.c ../Appl/..\Header\main_prm.h \
  ../Appl/..\Header\..\Header\Pwm.h \
  ../Appl/..\Header\..\Header\..\Header\Sounds.h \
  ../Appl/..\Header\..\Header\..\Header\../Header/Sounds_prm.h \
- c:\users\vitor\desktop\aam\forno_eletrico\header\c_types.h \
+ ../Appl/..\Header\..\Header\..\Header\../Header/..\Header\C_types.h \
  ../Appl/..\Header\..\Header\..\Header\Pwm_prm.h \
  ../Appl/..\Header\..\Header\..\Header\../Header/C_Types.h \
  ../Appl/..\Header\..\Header\Sounds.h \
@@ -108,7 +108,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ../Appl/..\Header\..\Header\..\Header\../Header/Sounds_prm.h:
 
-c:\users\vitor\desktop\aam\forno_eletrico\header\c_types.h:
+../Appl/..\Header\..\Header\..\Header\../Header/..\Header\C_types.h:
 
 ../Appl/..\Header\..\Header\..\Header\Pwm_prm.h:
 

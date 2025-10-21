@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include "stdlib.h"
 #include "..\Header\Gpio.h"
 #include "..\Header\Hal.h"
 #include "..\Header\Pwm.h"
@@ -56,7 +57,7 @@ void Pwm__Initialize(void){
 	pwm_pt2 = TC2_REGISTERS;
 	
 	
-	for (PWM_id ; PWM_id <= NUM_OF_PWM; PWM_id++){
+	for(PWM_id ; PWM_id <= NUM_OF_PWM; PWM_id++){
 		if(PWM_Enable_Table[PWM_id] == ENABLED){ 
 			switch(PWM_id){
 				case PWM0: // OC0A
@@ -210,76 +211,74 @@ void Pwm__SetDutyCycle( PWM_ID_TYPE pwm, unsigned char duty){
 
 uint8_t CalculatePrescaler(PWM_TC_TYPE tc, unsigned short frequency){
 	
-		// Ensure that we don't make more calculations than necessary
-		if(last_frequency[tc] == frequency){
-			return last_frequency[tc];
-		}
+	// Cache para melhor performance
+	static uint8_t last_prescaler[3] = {0};
+	static unsigned short last_frequency[3] = {0};
 	
-		uint8_t prescaler_bits = 0;
-		
-		
-		switch (tc) {
-			case PWM_TC0: { // Timer0 - 8-bit
-				const uint32_t required_prescaler = F_CPU / (2*frequency * (255UL + 1UL));
-				const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
-				const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
-		 
-				for (uint8_t i = 0; i < 5 ; i++) {
-					if (prescaler_values[i] >= required_prescaler) {
-						prescaler_bits = prescaler_codes[i];
-						break;
-					}
+	if(last_frequency[tc] == frequency){
+		return last_prescaler[tc];
+	}
+	
+	uint8_t prescaler_bits = 0;
+	uint32_t required_prescaler;
+	
+	switch (tc) {
+		case PWM_TC0: { // Timer0 - 8-bit
+			required_prescaler = F_CPU / (2 * frequency * 256UL);
+			const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
+			const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
+			
+			uint32_t min_distance = 0xFFFFFFFF;
+			for (uint8_t i = 0; i < 5; i++) {
+				uint32_t distance = abs((int32_t)(prescaler_values[i] - required_prescaler));
+				if (distance < min_distance) {
+					min_distance = distance;
+					prescaler_bits = prescaler_codes[i];
 				}
-		 
-				if (prescaler_bits == 0) {
-					prescaler_bits = 0x05; // Max prescaler
-				}
-				break;
 			}
-	 
-			case PWM_TC1: { // Timer1 - 16-bit
-				const uint32_t required_prescaler = F_CPU / (frequency * (1023UL));
-				const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
-				const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
-		 
-				for (uint8_t i = 0; i < 5; i++) {
-					if (prescaler_values[i] >= required_prescaler) {
-						prescaler_bits = prescaler_codes[i];
-						break;
-					}
-				}
-		 
-				if (prescaler_bits == 0) {
-					prescaler_bits = 0x05;
-				}
-				break;
-			}
-	 
-			case PWM_TC2: { // Timer2 - 8-bit
-				const uint32_t required_prescaler = F_CPU / (2*frequency * (255UL + 1UL));
-				const uint16_t prescaler_values[7] = {1, 8, 32, 64, 128, 256, 1024};
-				const uint8_t prescaler_codes[7]   = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
-		 
-				for (uint8_t i = 0; i < 7; i++) {
-					if (prescaler_values[i] >= required_prescaler) {
-						prescaler_bits = prescaler_codes[i];
-						break;
-					}
-				}
-		 
-				if (prescaler_bits == 0) {
-					prescaler_bits = 0x07;
-				}
-				break;
-			}
-	 
-			default:
-			prescaler_bits = 0;
 			break;
 		}
- 
 		
-		last_frequency[tc] = frequency;		
+		case PWM_TC1: { // Timer1 - 16-bit
+			required_prescaler = F_CPU / (frequency * 1024UL);
+			const uint16_t prescaler_values[5] = {1, 8, 64, 256, 1024};
+			const uint8_t prescaler_codes[5]   = {0x01, 0x02, 0x03, 0x04, 0x05};
+			
+			uint32_t min_distance = 0xFFFFFFFF;
+			for (uint8_t i = 0; i < 5; i++) {
+				uint32_t distance = abs((int32_t)(prescaler_values[i] - required_prescaler));
+				if (distance < min_distance) {
+					min_distance = distance;
+					prescaler_bits = prescaler_codes[i];
+				}
+			}
+			break;
+		}
 		
-		return prescaler_bits;
+		case PWM_TC2: { // Timer2 - 8-bit
+			required_prescaler = F_CPU / (2 * frequency * 256UL);
+			const uint16_t prescaler_values[7] = {1, 8, 32, 64, 128, 256, 1024};
+			const uint8_t prescaler_codes[7]   = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
+			
+			uint32_t min_distance = 0xFFFFFFFF;
+			for (uint8_t i = 0; i < 7; i++) {
+				uint32_t distance = abs((int32_t)(prescaler_values[i] - required_prescaler));
+				if (distance < min_distance) {
+					min_distance = distance;
+					prescaler_bits = prescaler_codes[i];
+				}
+			}
+			break;
+		}
+		
+		default:
+		prescaler_bits = 0;
+		break;
+	}
+	
+	// Atualiza cache
+	last_frequency[tc] = frequency;
+	last_prescaler[tc] = prescaler_bits;
+	
+	return prescaler_bits;
 }

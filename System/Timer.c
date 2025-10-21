@@ -12,7 +12,7 @@
 #include <util/delay.h>   //para incluir rotina _delay_ms()
 
 //------------------------- Variáveis Globais---------------------
-unsigned char flag_seg = 0;    // variável global para saber se passou 1seg.
+unsigned short int flag_seg = 0;    // variável global para saber se passou 1seg.
 //-------------------------------------- PRIVATE (Variables, Constants & Defines) -------------------------------------
 
 //!Millisecond Timer structure
@@ -168,7 +168,7 @@ void Timer__HMSHandler(void)
 {
 	unsigned char i;                                
 	
-	if (flag_seg ==250)
+	if (flag_seg ==1000)
 	{
 		for (i=0; i < NUM_OF_HMS_TIMERS; i++)             			// Loop through all  HMS timers
 		{
@@ -197,7 +197,7 @@ void Timer__HMSHandler(void)
 				}
 			}
 		}
-    flag_seg = 0;    //reseta a variável para o próx. 250ms
+    flag_seg = 0;    
 	}
 
 }
